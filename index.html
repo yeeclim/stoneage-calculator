@@ -175,7 +175,7 @@ h1,h2,h3,.display{
 }
 .stat-stepper input::-webkit-outer-spin-button,
 .stat-stepper input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
-.stat-box .sref{ font-size:10px; color:var(--text-muted); font-family:"JetBrains Mono",monospace; }
+.stat-box .sref{ font-size:10px; color:var(--text-muted); font-family:"JetBrains Mono",monospace; text-align:center; line-height:1.4; }
 
 .calc-row{ display:flex; align-items:center; gap:14px; margin-top:16px; flex-wrap:wrap; }
 .calc-btn{
@@ -612,7 +612,7 @@ h1,h2,h3,.display{
           <input type="number" inputmode="numeric" id="stat-${i}" value="${statVals[i]}" ${p.ok?'':'disabled'}>
           <button type="button" data-i="${i}" data-d="-1" aria-label="${lbl} 감소">−</button>
         </div>
-        <span class="sref">S급 ${p.initS[i]}</span>
+        <span class="sref">S급 ${p.initS[i]}${p.growthS!=null?` · 성장 ${(+p.growthS[i]).toFixed(2)}`:''}</span>
       </div>`).join('');
 
     grid.addEventListener('click', (e)=>{
