@@ -184,6 +184,12 @@ h1,h2,h3,.display{
 }
 .calc-btn:hover{ filter:brightness(1.05); }
 .calc-btn:disabled{ opacity:.45; cursor:not-allowed; }
+.reset-btn{
+  background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:10px;
+  padding:12px 18px; font-size:14px; font-weight:700; cursor:pointer; font-family:"Manrope",sans-serif;
+}
+.reset-btn:hover{ background:var(--surface-3); }
+.reset-btn:disabled{ opacity:.45; cursor:not-allowed; }
 .calc-note{ font-size:12px; color:var(--text-muted); }
 
 .results{ display:flex; flex-direction:column; gap:14px; }
@@ -593,6 +599,7 @@ h1,h2,h3,.display{
       <div class="stat-grid" id="statGrid"></div>
       <div class="calc-row">
         <button class="calc-btn" id="calcBtn" ${p.ok?'':'disabled'}>✨ 등급 감정하기</button>
+        <button class="reset-btn" id="resetBtn" type="button" ${p.ok?'':'disabled'} title="스탯을 S급 참고 초기치로 되돌립니다">↺ 초기화</button>
         <span class="calc-note">S급 참고 초기치: <span class="mono">${p.initS[0]}/${p.initS[1]}/${p.initS[2]}/${p.initS[3]}</span> (내구/공격/방어/순발)${p.ok ? ` · 계산값 <span class="mono">${calcSGradeInitDecimal(p).map(v=>v.toFixed(2)).join('/')}</span>` : ''}</span>
       </div>
     `;
@@ -623,6 +630,16 @@ h1,h2,h3,.display{
     });
 
     document.getElementById('calcBtn').addEventListener('click', runCalc);
+
+    const resetBtn = document.getElementById('resetBtn');
+    if(resetBtn){
+      resetBtn.addEventListener('click', ()=>{
+        if(!p.ok) return;
+        statVals = p.initS.slice();
+        statVals.forEach((v,i)=>{ document.getElementById('stat-'+i).value = v; });
+        runCalc();
+      });
+    }
   }
 
   const GRADES = [8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8];
