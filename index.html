@@ -147,6 +147,34 @@ h1,h2,h3,.display{
   background:var(--danger-bg); color:var(--danger); border:1px solid var(--danger);
 }
 
+/* 실측 보정 표시 */
+.field-note{
+  margin:12px 0 0; padding:10px 12px; border-radius:10px; font-size:12.5px; line-height:1.65;
+  background:var(--surface-2); color:var(--text-muted); border:1px solid var(--border);
+}
+.field-note b{ color:var(--text); }
+.field-note-own{ display:block; margin-top:7px; padding-top:7px; border-top:1px solid var(--border); }
+.field-note-own.warn{ color:var(--danger); }
+.field-note-own.warn b{ color:var(--danger); }
+.field-note-sub{ display:block; margin-top:6px; font-size:11.5px; opacity:.78; }
+/* 세로 마커 - 트랙과 등급색 양쪽 위에서 보이도록 후광을 준다 */
+.gfield-mark{
+  position:absolute; inset:0 auto 0 0; box-sizing:border-box; pointer-events:none;
+  border-right:2px solid var(--text);
+  box-shadow:2px 0 0 var(--surface), -1px 0 0 var(--surface);
+  transition:width .5s cubic-bezier(.2,.8,.2,1);
+}
+.grade-row .gpct-field{
+  display:block; font-style:normal; font-size:11px; opacity:.8; margin-top:1px;
+}
+.result-summary .rs-item .rv .rv-field{
+  font-size:.62em; opacity:.72; margin-left:5px; font-weight:600;
+}
+.result-summary .rs-item .rv .rv-field i{
+  font-style:normal; opacity:.5; margin-right:5px; font-weight:400;
+}
+.result-summary .rs-item .rl em{ font-style:normal; opacity:.75; text-transform:none; letter-spacing:0; }
+
 .attr-gauge-wrap{ display:flex; flex-direction:column; gap:6px; margin-top:14px; }
 .attr-row{ display:grid; grid-template-columns:22px 1fr 44px; align-items:center; gap:10px; }
 .attr-label{ font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:700; text-align:center; }
@@ -292,7 +320,7 @@ h1,h2,h3,.display{
   <div class="masthead">
     <div class="title-block">
       <h1>스톤에이지 환각 계산기</h1>
-      <p>겉으로 보이는 초기치만으로는 알 수 없는 펫의 진짜 등급을, 178,750가지 경우의 수를 모두 대조해 확률로 감정합니다.</p>
+      <p>초기치만으로는 알 수 없는 펫의 진짜 등급을, 178,750가지 경우의 수를 모두 대조해 확률로 감정합니다.</p>
     </div>
     <div class="method-badge">RANK 역산 · 등급 -8 ~ +8</div>
   </div>
@@ -348,18 +376,29 @@ h1,h2,h3,.display{
     Ds.push([a,b,c,d]);
   }
 
+  // 등급오프셋(-2~+2)의 실제 출현 분포. 균등(0.2씩)이 아니라는 것을 직접 포획한 개체
+  // 표본으로 추정한 값이다. 등급 굴림은 종과 무관해 보여 모든 펫에 같은 값을 쓴다.
+  const FIELD_W = [0.063366, 0.401799, 0.098793, 0.298737, 0.137305];
+  const FIELD_OWN = { '97':361, '132':46, '148':5, '88':1, '77':1 }; // pet id -> 실측 표본 수
+  const FIELD_N = 407;
+
   function computeGradeDist(origin, k, target){
     const counts = {};
+    const wcounts = {};  // FIELD_W 로 가중한 매칭량
     const matches = {}; // grade -> [{offset:[..], bonus:[..], raw:[..]}]
-    let total = 0;
+    let total = 0, wtotal = 0;
     for(const d0 of OFFSETS){
       const G0 = origin[0]+d0;
+      const w0 = FIELD_W[d0+2];
       for(const d1 of OFFSETS){
         const G1 = origin[1]+d1;
+        const w1 = w0*FIELD_W[d1+2];
         for(const d2 of OFFSETS){
           const G2 = origin[2]+d2;
+          const w2 = w1*FIELD_W[d2+2];
           for(const d3 of OFFSETS){
             const G3 = origin[3]+d3;
+            const w = w2*FIELD_W[d3+2];
             const grade = d0+d1+d2+d3;
             for(let i=0;i<Ds.length;i++){
               const D = Ds[i];
@@ -378,7 +417,9 @@ h1,h2,h3,.display{
               const p2 = Math.floor(raw2);
               if(p2!==target[2]) continue;
               counts[grade] = (counts[grade]||0)+1;
+              wcounts[grade] = (wcounts[grade]||0)+w;
               total++;
+              wtotal += w;
               (matches[grade] = matches[grade]||[]).push({
                 offset:[d0,d1,d2,d3], bonus:D, raw:[raw0,raw1,raw2,raw3]
               });
@@ -387,7 +428,7 @@ h1,h2,h3,.display{
         }
       }
     }
-    return {counts, matches, total};
+    return {counts, matches, total, wcounts, wtotal};
   }
 
   // ---- chosung search ----
@@ -402,9 +443,6 @@ h1,h2,h3,.display{
   }
   for(const p of PETS){ p._cho = chosung(p.name); }
 
-  // 겹자음 초성 검색 보정: 빠르게 연속 입력하면 IME가 'ㄹ'+'ㅍ' -> 'ㄿ' 처럼
-  // 받침용 겹자음으로 합쳐버리는 경우가 있어서, 검색어에서만 원래 두 자음으로
-  // 풀어준다 (초성 자리엔 겹자음이 올 수 없으므로 펫 이름 쪽엔 해당 없음).
   const CLUSTER_SPLIT = {
     'ㄳ':'ㄱㅅ','ㄵ':'ㄴㅈ','ㄶ':'ㄴㅎ','ㄺ':'ㄹㄱ','ㄻ':'ㄹㅁ',
     'ㄼ':'ㄹㅂ','ㄽ':'ㄹㅅ','ㄾ':'ㄹㅌ','ㄿ':'ㄹㅍ','ㅀ':'ㄹㅎ','ㅄ':'ㅂㅅ',
@@ -677,19 +715,19 @@ h1,h2,h3,.display{
   function runCalc(){
     const p = findPet(selectedId);
     if(!p || !p.ok) return;
-    const {counts, matches, total} = computeGradeDist(p.origin, p.k, statVals);
+    const {counts, matches, total, wcounts, wtotal} = computeGradeDist(p.origin, p.k, statVals);
     lastMatches = matches;
     lastCounts = counts;
     openGrades = new Set();
     growthPanelOpen = false;
-    renderResults(p, counts, total);
+    renderResults(p, counts, total, wcounts, wtotal);
   }
 
   function renderUnsupportedResult(p){
     els.results.innerHTML = `<div class="empty-state">‘${p.name}’은(는) 진화·환생 계열로 추정되어 원본계수 역산이 맞지 않았습니다. 등급 계산을 지원하지 않습니다.</div>`;
   }
 
-  function renderResults(p, counts, total){
+  function renderResults(p, counts, total, wcounts, wtotal){
     if(total===0){
       els.results.innerHTML = `<div class="empty-state">입력하신 초기치(${statVals.join('/')})와 일치하는 조합이 없습니다. 스탯을 다시 확인해주세요.</div>`;
       return;
@@ -698,16 +736,26 @@ h1,h2,h3,.display{
     const eightPct = ((counts[8]||0)/total*100);
     const fun = funMessage(eightPct, topGrade);
 
+    // 보정은 전 종에 적용하고, 직접 포획 표본이 있는 펫은 그 사실을 따로 밝힌다.
+    const ownN = FIELD_OWN[p.id] || 0;
+    const showField = wtotal > 0;
+    const fieldPct = g => (wcounts[g]||0)/wtotal*100;
+    const eightField = showField ? fieldPct(8) : null;
+
     const rows = GRADES.filter(g=>counts[g]).map(g=>{
       const c = counts[g];
       const pct = c/total*100;
       const open = openGrades.has(g);
+      const fp = showField ? fieldPct(g) : null;
       return `<div class="grade-block">
         <button type="button" class="grade-row" data-grade="${g}" aria-expanded="${open}">
           <span class="gchev">${open?'▾':'▸'}</span>
           <span class="glabel ${g===topGrade?'best':''}">${g}</span>
-          <div class="gtrack"><div class="gfill" style="width:${pct.toFixed(2)}%; background:${gradeColor(g)}"></div></div>
-          <span class="gpct">${c}건 · ${pct.toFixed(1)}%</span>
+          <div class="gtrack">
+            <div class="gfill" style="width:${pct.toFixed(2)}%; background:${gradeColor(g)}"></div>
+            ${showField?`<div class="gfield-mark" style="width:${fp.toFixed(2)}%" title="실측 보정 ${fp.toFixed(2)}%"></div>`:''}
+          </div>
+          <span class="gpct">${c}건 · ${pct.toFixed(1)}%${showField?`<em class="gpct-field">실측 ${fp.toFixed(1)}%</em>`:''}</span>
         </button>
         <div class="grade-detail" id="detail-${g}" ${open?'':'hidden'}>${open?renderDetailTable(g):''}</div>
       </div>`;
@@ -722,8 +770,15 @@ h1,h2,h3,.display{
       <div class="result-summary">
         <div class="rs-item"><div class="rv mono">${total.toLocaleString()}<span style="font-size:14px;color:var(--text-muted)"> / 178,750</span></div><div class="rl">일치 조합</div></div>
         <div class="rs-item"><div class="rv mono" style="color:var(--accent)">${topGrade}등급</div><div class="rl">최고 등급</div></div>
-        <div class="rs-item"><div class="rv mono">${eightPct.toFixed(2)}%</div><div class="rl">+8등급(환각) 확률</div></div>
+        <div class="rs-item"><div class="rv mono">${eightPct.toFixed(2)}%${showField?`<span class="rv-field"><i>/</i>${eightField.toFixed(2)}%</span>`:''}</div><div class="rl">+8등급(환각) 확률${showField?' <em>이론 / 실측</em>':''}</div></div>
       </div>
+      ${showField?`<div class="field-note">
+        <b>📌 실측 보정 적용</b> — 직접 포획한 <b>${FIELD_N.toLocaleString()}마리</b> 실측 기반.
+        막대 위 <b>세로선</b>과 <em>실측</em> 수치가 보정값이며, 환각 확률은 대체로 <b>이론값의 0.2~0.5배로 하향</b>됩니다.
+        ${ownN ? `<span class="field-note-own">✅ 이 펫 직접 포획 표본 <b>${ownN.toLocaleString()}마리</b></span>`
+                : `<span class="field-note-own warn">⚠ 이 펫 포획 표본은 없음 — 다른 종 분포를 대신 적용</span>`}
+        <span class="field-note-sub">보너스분배 균등 가정하에 적합 — 배율은 달라질 수 있음(방향은 유지).</span>
+      </div>`:''}
       <div class="fun-banner">
         <span class="fun-emoji">${fun.emoji}</span>
         <span class="fun-text">${fun.text}</span>
