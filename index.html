@@ -153,10 +153,9 @@ h1,h2,h3,.display{
   background:var(--surface-2); color:var(--text-muted); border:1px solid var(--border);
 }
 .field-note b{ color:var(--text); }
-.field-note-own{ display:block; margin-top:7px; padding-top:7px; border-top:1px solid var(--border); }
+.field-note-own{ display:block; }
 .field-note-own.warn{ color:var(--danger); }
 .field-note-own.warn b{ color:var(--danger); }
-.field-note-sub{ display:block; margin-top:6px; font-size:11.5px; opacity:.78; }
 /* 세로 마커 - 트랙과 등급색 양쪽 위에서 보이도록 후광을 준다 */
 .gfield-mark{
   position:absolute; inset:0 auto 0 0; box-sizing:border-box; pointer-events:none;
@@ -824,11 +823,8 @@ h1,h2,h3,.display{
         <div class="rs-item"><div class="rv mono">${eightPct.toFixed(2)}%${showField?`<span class="rv-field"><i>/</i>${eightField.toFixed(2)}%</span>`:''}</div><div class="rl">+8등급(환각) 확률${showField?' <em>이론 / 실측</em>':''}</div></div>
       </div>
       ${showField?`<div class="field-note">
-        <b>📌 실측 보정 적용</b> — 직접 포획한 <b>${(Math.floor(FIELD_N/100)*100).toLocaleString()}마리</b> 실측 기반.
-        막대 위 <b>세로선</b>과 <em>실측</em> 수치가 보정값이며, 환각 확률은 대체로 <b>이론값의 0.2~0.5배로 하향</b>됩니다.
-        ${ownN ? `<span class="field-note-own">✅ 이 펫 직접 포획 표본 <b>${ownN.toLocaleString()}마리</b></span>`
+        ${ownN ? `<span class="field-note-own">✅ 이 펫 직접 포획 표본 <b>${(ownN>=100?Math.floor(ownN/100)*100:Math.floor(ownN/10)*10).toLocaleString()}마리</b></span>`
                 : `<span class="field-note-own warn">⚠ 이 펫 포획 표본은 없음 — 다른 종 분포를 대신 적용</span>`}
-        <span class="field-note-sub">보너스분배 균등 가정하에 적합 — 배율은 달라질 수 있음(방향은 유지).</span>
       </div>`:''}
       <div class="fun-banner">
         <span class="fun-emoji">${fun.emoji}</span>
