@@ -409,9 +409,20 @@ h1,h2,h3,.display{
 
   // 등급오프셋(-2~+2)의 실제 출현 분포. 균등(0.2씩)이 아니라는 것을 직접 포획한 개체
   // 표본으로 추정한 값이다. 등급 굴림은 종과 무관해 보여 모든 펫에 같은 값을 쓴다.
-  const FIELD_W = [0.063366, 0.401799, 0.098793, 0.298737, 0.137305];
-  const FIELD_OWN = { '97':361, '132':46, '148':5, '88':1, '77':1 }; // pet id -> 실측 표본 수
-  const FIELD_N = 407;
+  // 2026-09 오토파일럿 포획 로그(4종, 732마리, 그린고르/가가로스/반기노/기라노)로
+  // computeGradeDist와 같은 매칭 로직 위에서 EM(최대우도) 재적합한 값. 이전 407마리
+  // 추정치(반기노 편중)보다 표본이 크고 종이 다양해 이 값으로 교체했다.
+  const FIELD_W = [0.087318, 0.226101, 0.419270, 0.076997, 0.190313];
+  const FIELD_OWN = { '112':514, '148':133, '97':75, '132':10 }; // pet id -> 실측 표본 수
+  const FIELD_N = 732;
+
+  // 위 4종의 실제 포획 개체 초기치 분포(오토파일럿 로그 실측, 참고용 표시 전용).
+  const REAL_RANGE = {
+    '112': { n:514, min:[43,8,8,0],  max:[52,10,11,2] }, // 그린고르
+    '148': { n:133, min:[52,9,9,2],  max:[61,12,11,5] }, // 가가로스
+    '97':  { n:75,  min:[45,10,5,4], max:[52,13,8,7]  }, // 반기노
+    '132': { n:10,  min:[57,13,7,6], max:[63,14,8,7]  }, // 기라노
+  };
 
   function computeGradeDist(origin, k, target){
     const counts = {};
@@ -682,6 +693,7 @@ h1,h2,h3,.display{
         <button class="reset-btn" id="resetBtn" type="button" ${p.ok?'':'disabled'} title="스탯을 S급 참고 초기치로 되돌립니다">↺ 초기화</button>
         <span class="calc-note">S급 참고 초기치: <span class="mono">${p.initS[0]}/${p.initS[1]}/${p.initS[2]}/${p.initS[3]}</span> (내구/공격/방어/순발)${p.ok ? ` · 계산값 <span class="mono">${calcSGradeInitDecimal(p).map(v=>v.toFixed(2)).join('/')}</span>` : ''}</span>
       </div>
+      ${REAL_RANGE[p.id] ? (rr=>`<p class="calc-note">✅ 실측 초기치 범위(직접 포획 <b>${rr.n}</b>마리): <span class="mono">${rr.min[0]}~${rr.max[0]} / ${rr.min[1]}~${rr.max[1]} / ${rr.min[2]}~${rr.max[2]} / ${rr.min[3]}~${rr.max[3]}</span> (내구/공격/방어/순발)</p>`)(REAL_RANGE[p.id]) : ''}
     `;
     const grid = document.getElementById('statGrid');
     grid.innerHTML = STAT_LABELS.map((lbl,i)=>`
@@ -812,7 +824,7 @@ h1,h2,h3,.display{
         <div class="rs-item"><div class="rv mono">${eightPct.toFixed(2)}%${showField?`<span class="rv-field"><i>/</i>${eightField.toFixed(2)}%</span>`:''}</div><div class="rl">+8등급(환각) 확률${showField?' <em>이론 / 실측</em>':''}</div></div>
       </div>
       ${showField?`<div class="field-note">
-        <b>📌 실측 보정 적용</b> — 직접 포획한 <b>${FIELD_N.toLocaleString()}마리</b> 실측 기반.
+        <b>📌 실측 보정 적용</b> — 직접 포획한 <b>${(Math.floor(FIELD_N/100)*100).toLocaleString()}마리</b> 실측 기반.
         막대 위 <b>세로선</b>과 <em>실측</em> 수치가 보정값이며, 환각 확률은 대체로 <b>이론값의 0.2~0.5배로 하향</b>됩니다.
         ${ownN ? `<span class="field-note-own">✅ 이 펫 직접 포획 표본 <b>${ownN.toLocaleString()}마리</b></span>`
                 : `<span class="field-note-own warn">⚠ 이 펫 포획 표본은 없음 — 다른 종 분포를 대신 적용</span>`}
