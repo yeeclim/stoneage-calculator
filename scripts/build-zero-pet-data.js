@@ -53,10 +53,49 @@ function solveA(S) {
   return [a0, a1, a2, a3];
 }
 
+// computeGradeDist(index.html)와 동일한 보너스분배 전체 목록(10을 4칸에 나누는
+// 정수 조합, 286가지). "오프셋 전부 +2(=S급 최고등급)"에서 이 중 하나라도 표기
+// 초기치와 내림 일치해야, 계산기에서 이 펫을 고르자마자 "일치하는 조합 없음"이
+// 뜨지 않는다.
+const Ds = [];
+for (let a = 0; a <= 10; a++) for (let b = 0; b <= 10 - a; b++) for (let c = 0; c <= 10 - a - b; c++) {
+  Ds.push([a, b, c, 10 - a - b - c]);
+}
+
+function existsExactMatchAtTop(origin, k, target) {
+  for (const D of Ds) {
+    const v0 = origin[0] + 2 + D[0], v1 = origin[1] + 2 + D[1], v2 = origin[2] + 2 + D[2], v3 = origin[3] + 2 + D[3];
+    const a0 = (k * v0) / 100, a1 = (k * v1) / 100, a2 = (k * v2) / 100, a3 = (k * v3) / 100;
+    if (Math.floor(a3) !== target[3]) continue;
+    if (Math.floor(0.1 * a0 + a1 + 0.1 * a2 + 0.05 * a3) !== target[1]) continue;
+    if (Math.floor(0.1 * a0 + 0.1 * a1 + a2 + 0.05 * a3) !== target[2]) continue;
+    if (Math.floor(4 * a0 + a1 + a2 + a3) !== target[0]) continue;
+    return true;
+  }
+  return false;
+}
+
 function estimateOrigin(initS) {
   const a = solveA(initS);
-  // a_i = k*(origin_i + 2 + 2.5)/100  ->  origin_i = 100*a_i/k - 4.5
-  return a.map(ai => Math.max(0, Math.round((100 * ai) / K_ASSUMED - 4.5)));
+  // a_i = k*(origin_i + 2 + 2.5)/100  ->  origin_i = 100*a_i/k - 4.5 (연속 근사치)
+  const base = a.map(ai => Math.max(0, Math.round((100 * ai) / K_ASSUMED - 4.5)));
+
+  // solveA는 initS가 이미 내림된 정수라 소수부 정보를 잃은 채로 역산해서, base를
+  // 그대로 쓰면 178,750가지 조합(오프셋×보너스분배) 중 단 하나도 표기 초기치를
+  // 정확히 재현 못 할 때가 있다 — 그러면 계산기에서 "일치하는 조합이 없습니다"만
+  // 뜬다. base에서 가까운 순서로(맨해튼 거리 오름차순) origin을 훑으면서, "오프셋
+  // 전부 +2"에서 실제로 일치하는 보너스분배가 존재하는 첫 origin을 채택한다.
+  const R = 6;
+  for (let dist = 0; dist <= 4 * R; dist++) {
+    for (let d0 = -R; d0 <= R; d0++) for (let d1 = -R; d1 <= R; d1++)
+      for (let d2 = -R; d2 <= R; d2++) for (let d3 = -R; d3 <= R; d3++) {
+        if (Math.abs(d0) + Math.abs(d1) + Math.abs(d2) + Math.abs(d3) !== dist) continue;
+        const o = [base[0] + d0, base[1] + d1, base[2] + d2, base[3] + d3];
+        if (o.some(v => v < 0)) continue;
+        if (existsExactMatchAtTop(o, K_ASSUMED, initS)) return o;
+      }
+  }
+  return base; // 이론상 도달 안 함(항상 근처에서 찾힘) — 안전망
 }
 
 const idSeen = new Set();
