@@ -38,6 +38,32 @@
 3. `node scripts/inject-zero-pet-data.js` → `index.html` 의 `pet-data-zero` 블록 갱신.
 4. `git push` → Vercel 자동 재배포.
 
+## 데이터 갱신 (ohrsa.net 자동 스크랩, GitHub Actions)
+
+`.github/workflows/scrape-ohrsa.yml` 가 매일 자동으로 `https://ohrsa.net/petinfo` 를
+스크랩해서 새 펫이 있으면 `index.html` 에 반영하고 바로 `main` 에 커밋·푸시한다
+(사람 개입 없음 → 리뷰 없이 바로 배포됨에 유의).
+
+- `scripts/scrape-ohrsa.playwright.js` — 헤드리스 브라우저로 로그인 후 petinfo 페이지를
+  열어 `scrape-ohrsa.console.js` 와 동일한 DOM 파싱 로직을 그대로 실행한다.
+  `scripts/ohrsa_pets_auto.json` 에 원본 스크랩 결과를 저장(매 실행 덮어씀, 커밋됨).
+- `scripts/merge-auto-scrape.js` — 위 결과 중 `pet-data`(base) 와 기존 `pet-data-extra`
+  양쪽 모두에 없는, **진짜 신규 펫만** 골라 기존 `pet-data-extra` 뒤에 이어붙인다.
+  `add-validate-merge.js` 와 달리 기존 `pet-data-extra` 내용(예: 도감에 없는 퀘스트
+  보상 펫처럼 수동으로 추가한 항목)을 절대 지우지 않는다 — 항상 추가만 한다.
+- 필요한 저장소 시크릿(Settings → Secrets and variables → Actions):
+  - `OHRSA_USERNAME` — ohrsa.net 로그인 아이디 (mb_id)
+  - `OHRSA_PASSWORD` — ohrsa.net 로그인 비밀번호 (mb_password)
+- 수동 실행: Actions 탭 → "ohrsa.net 펫 도감 자동 스크랩" → Run workflow.
+- 알려진 리스크: petinfo는 로그인 필수 + Cloudflare가 걸려 있어, GitHub Actions의
+  공용 IP에서 로그인/접근이 막히거나 챌린지가 뜰 수 있다(사람이 브라우저로 직접
+  들어갈 때와 다름). 또한 petinfo 페이지의 실제 마크업(페이지네이션/무한스크롤
+  여부 등)을 로그인 없이는 확인할 수 없어 `scrape-ohrsa.console.js`와 동일 로직을
+  그대로 재사용했을 뿐, 이 저장소 안에서 실제로 검증된 적은 없다. 처음 도입 시
+  스케줄이 아니라 workflow_dispatch로 최소 한 번 수동 실행해서 정상 동작(로그인
+  성공 → petinfo 진입 → 카드 수집)하는지 Actions 로그로 확인할 것. 실패하면
+  스케줄 실행도 계속 조용히 실패만 하고 아무 일도 안 일어난다(= 안전하게 no-op).
+
 ## 배포
 
 정적 호스팅에 루트로 올리면 된다. Vercel 기준 별도 빌드 설정 불필요.
