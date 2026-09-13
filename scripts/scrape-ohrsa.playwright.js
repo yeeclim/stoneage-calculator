@@ -103,9 +103,35 @@ async function autoScroll(page) {
     await page.waitForTimeout(1500);
     await autoScroll(page);
 
+    const diag = await page.evaluate(() => ({
+      url: location.href,
+      title: document.title,
+      bodyLen: document.body ? document.body.innerHTML.length : 0,
+      iframeCount: document.querySelectorAll('iframe').length,
+      obtainMatches: (document.body.textContent.match(/획득\s*[:：]/g) || []).length,
+      sellMatches: (document.body.textContent.match(/판매\s*[:：]/g) || []).length,
+      tableCount: document.querySelectorAll('table').length,
+      // 세션/쿠키 등이 섞일 수 있는 마크업 원문 대신, 본문 "텍스트"만 짧게 남긴다
+      // (CI 로그에만 남고 파일/아티팩트로는 저장하지 않음).
+      bodyTextPreview: (document.body.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 1500)
+    }));
+    console.log('진단 정보:', JSON.stringify(diag, null, 2));
+
     const out = await page.evaluate(scrapePage);
     if (!Array.isArray(out) || out.length === 0) {
-      throw new Error('스크랩 결과가 비어있음 - 페이지 구조가 바뀌었을 수 있음');
+      // iframe 안에 실제 콘텐츠가 있을 수 있으니 각 프레임에서도 시도해본다.
+      for (const frame of page.frames()) {
+        if (frame === page.mainFrame()) continue;
+        try {
+          const frameOut = await frame.evaluate(scrapePage);
+          if (Array.isArray(frameOut) && frameOut.length > 0) {
+            fs.writeFileSync(OUT, JSON.stringify(frameOut, null, 2), 'utf8');
+            console.log(`(iframe에서 발견) 스크랩 완료: ${frameOut.length}건 -> ${OUT}`);
+            return;
+          }
+        } catch (_) { /* cross-origin 등으로 실패할 수 있음, 무시 */ }
+      }
+      throw new Error('스크랩 결과가 비어있음 - 페이지 구조가 바뀌었을 수 있음 (위 진단 정보 참고)');
     }
 
     fs.writeFileSync(OUT, JSON.stringify(out, null, 2), 'utf8');
