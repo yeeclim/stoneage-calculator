@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
   ohrsa.net petinfo 주1회 자동 스크랩을 Windows 작업 스케줄러에 등록한다.
 

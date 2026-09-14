@@ -1,4 +1,4 @@
-# ohrsa.net petinfo 자동 스크랩 - 로컬(Windows 작업 스케줄러)용 오케스트레이션 스크립트.
+﻿# ohrsa.net petinfo 자동 스크랩 - 로컬(Windows 작업 스케줄러)용 오케스트레이션 스크립트.
 #
 # GitHub Actions(클라우드 IP)는 Cloudflare 봇 차단에 걸려서 못 씀 - 항상 켜두는
 # 개인 PC에서 Windows 작업 스케줄러로 이 스크립트를 주1회 실행하는 방식으로 대체.
@@ -39,6 +39,29 @@ function Log($msg) {
   Add-Content -Path $logFile -Value $line -Encoding UTF8
 }
 
+# node/git 는 UTF-8로 출력하는데 Windows PowerShell 5.1은 자식 프로세스 stdout을
+# 콘솔 코드페이지(CP949)로 읽는다 -> 한글이 깨져서 로그도 못 읽고 문자열 매칭도 실패한다.
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# git/node 는 정상 동작 중에도 stderr에 진행 상황을 쓴다 (예: git push의 "To https://...").
+# $ErrorActionPreference='Stop' 상태에서 2>&1 로 합치면 그 줄이 ErrorRecord가 되어
+# 종료 예외로 바뀐다 -> 성공한 push가 실패로 보고되던 문제. 네이티브 호출 동안만 Continue.
+function Invoke-Logged {
+  param(
+    [Parameter(Mandatory)][string]$Exe,
+    [Parameter(ValueFromRemainingArguments)][string[]]$CmdArgs
+  )
+  $prev = $ErrorActionPreference
+  $ErrorActionPreference = 'Continue'
+  try {
+    $out = & $Exe @CmdArgs 2>&1 | ForEach-Object { "$_" }
+    $script:LastNativeExit = $LASTEXITCODE
+    $out | ForEach-Object { Log $_ }
+    return $out
+  }
+  finally { $ErrorActionPreference = $prev }
+}
+
 $envFile = Join-Path $PSScriptRoot 'ohrsa.local.env'
 if (-not (Test-Path $envFile)) {
   Log "오류: $envFile 없음. OHRSA_USERNAME/OHRSA_PASSWORD 를 담은 파일을 먼저 만들어야 함."
@@ -57,7 +80,7 @@ Log "=== 실행 시작 ==="
 
 try {
   # 로컬에 커밋 안 된 변경이 있으면 pull --ff-only 가 깨지므로 먼저 확인하고 중단.
-  $dirty = git status --porcelain -- index.html
+  $dirty = & git status --porcelain -- index.html
   if ($dirty) {
     Log "중단: index.html 에 커밋되지 않은 로컬 변경이 있음. 수동 정리 후 다시 실행할 것."
     Log $dirty
@@ -65,25 +88,23 @@ try {
   }
 
   Log "git pull..."
-  git pull --ff-only 2>&1 | ForEach-Object { Log $_ }
-  if ($LASTEXITCODE -ne 0) {
-    Log "git pull 실패 (exit $LASTEXITCODE) - 종료. (로컬/원격 이력이 갈라졌거나 인증 만료)"
+  Invoke-Logged git pull --ff-only | Out-Null
+  if ($script:LastNativeExit -ne 0) {
+    Log "git pull 실패 (exit $script:LastNativeExit) - 종료. (로컬/원격 이력이 갈라졌거나 인증 만료)"
     exit 1
   }
 
   Log "스크랩 실행..."
-  $scrapeOut = node scripts/scrape-ohrsa.playwright.js 2>&1
-  $scrapeOut | ForEach-Object { Log $_ }
-  if ($LASTEXITCODE -ne 0) {
-    Log "스크랩 실패 (exit $LASTEXITCODE) - 종료."
+  Invoke-Logged node scripts/scrape-ohrsa.playwright.js | Out-Null
+  if ($script:LastNativeExit -ne 0) {
+    Log "스크랩 실패 (exit $script:LastNativeExit) - 종료."
     exit 1
   }
 
   Log "병합 실행..."
-  $mergeOut = node scripts/merge-auto-scrape.js 2>&1
-  $mergeOut | ForEach-Object { Log $_ }
-  if ($LASTEXITCODE -ne 0) {
-    Log "병합 실패 (exit $LASTEXITCODE) - 종료."
+  $mergeOut = Invoke-Logged node scripts/merge-auto-scrape.js
+  if ($script:LastNativeExit -ne 0) {
+    Log "병합 실패 (exit $script:LastNativeExit) - 종료."
     exit 1
   }
 
@@ -91,16 +112,17 @@ try {
     $addedLine = ($mergeOut | Where-Object { $_ -match '^추가된 펫:' })
     Log "변경 감지 -> 커밋/푸시 진행. $addedLine"
 
-    git add index.html
-    git commit -m "ohrsa.net 도감 자동 스크랩(로컬): 신규 펫 추가" 2>&1 | ForEach-Object { Log $_ }
-    if ($LASTEXITCODE -ne 0) {
-      Log "커밋 실패 (exit $LASTEXITCODE) - 푸시 생략하고 종료."
+    Invoke-Logged git add index.html | Out-Null
+
+    Invoke-Logged git commit -m "ohrsa.net 도감 자동 스크랩(로컬): 신규 펫 추가" | Out-Null
+    if ($script:LastNativeExit -ne 0) {
+      Log "커밋 실패 (exit $script:LastNativeExit) - 푸시 생략하고 종료."
       exit 1
     }
 
-    git push 2>&1 | ForEach-Object { Log $_ }
-    if ($LASTEXITCODE -ne 0) {
-      Log "푸시 실패 (exit $LASTEXITCODE). 커밋은 로컬에 남아있음 - 인증 상태 확인 후 수동 push 필요."
+    Invoke-Logged git push | Out-Null
+    if ($script:LastNativeExit -ne 0) {
+      Log "푸시 실패 (exit $script:LastNativeExit). 커밋은 로컬에 남아있음 - 인증 상태 확인 후 수동 push 필요."
       exit 1
     }
     Log "푸시 완료."
