@@ -18,6 +18,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { solve } = require('./solve-origin-k');
 
 const root = path.resolve(__dirname, '..');
 const scrapedPath = path.join(__dirname, 'ohrsa_pets_auto.json');
@@ -44,16 +45,22 @@ function mapExtra(e) {
   const initFromAlt = Array.isArray(e.init_내공방순) ? e.init_내공방순 : (Array.isArray(e.initS) ? e.initS : (Array.isArray(e.초기치_공방순내) ? [e.초기치_공방순내[3], e.초기치_공방순내[0], e.초기치_공방순내[1], e.초기치_공방순내[2]] : null));
   const initFinal = initFromAlt || e.init_내공방순 || e.initS || [0, 0, 0, 0];
   const growth = e.growth_내공방순 || e.growthS || e.growth || [];
+  // 표기 초기치·성장률에서 origin/k 를 역산한다. 예전에는 origin:null, approx:true 로
+  // 하드코딩해서 새 펫이 전부 "근사 추정" 상태로 들어왔다 - 그래서 카르곤이 계산 불가
+  // 개체로 추가됐었다. 해가 나오면 정확 개체로, 안 나오면 그때만 approx 로 둔다.
+  const sol = solve(growth, initFinal)[0] || null;
+  if (!sol) console.log(`  ! ${e.name || '<무명>'}: origin/k 역산 실패 -> approx 처리`);
+
   return {
     id: id,
     name: e.name || '',
     attr: attr,
     attrs: attrs,
     obtain: e.obtain || e['획득'] || '',
-    origin: e.origin || null,
-    k: e.k || null,
-    ok: !!e.ok,
-    approx: true,
+    origin: sol ? sol.origin : (e.origin || null),
+    k: sol ? sol.k : (e.k || null),
+    ok: !!sol,
+    approx: !sol,
     initS: initFinal,
     growthS: growth,
     img: e.img || ''
