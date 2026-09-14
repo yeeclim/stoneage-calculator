@@ -80,6 +80,24 @@ Get-Content scripts\ohrsa-scrape.log -Tail 40                                 # 
 Unregister-ScheduledTask -TaskName "ohrsa-petinfo-scrape" -Confirm:$false     # 삭제
 ```
 
+## 주의: PowerShell 스크립트 인코딩
+
+이 폴더의 `.ps1` 파일은 반드시 **UTF-8 + BOM** 으로 저장해야 한다.
+
+작업 스케줄러가 쓰는 `powershell.exe` 는 Windows PowerShell 5.1이고, BOM이 없으면
+`.ps1` 을 시스템 코드페이지(한국어 Windows = CP949)로 읽는다. 그러면 스크립트 안의
+한글 문자열이 전부 깨지고, 깨진 `'^추가된 펫:'` 같은 정규식은 "중첩 수량자" 오류로
+실행이 죽는다. (실제로 첫 실행에서 이걸로 커밋 직전에 실패했다.)
+
+같은 이유로 스크립트 상단에서 `[Console]::OutputEncoding` 을 UTF-8로 고정한다 —
+이게 없으면 node가 UTF-8로 찍은 출력을 PowerShell이 CP949로 읽어 로그가 깨지고
+문자열 매칭도 실패한다.
+
+또 하나: git은 정상 동작 중에도 진행 상황을 **stderr** 에 쓴다(`To https://...`,
+`Everything up-to-date`). `$ErrorActionPreference='Stop'` 상태에서 `2>&1` 로 합치면
+그 줄이 ErrorRecord가 되어 종료 예외로 바뀐다 — 성공한 push가 실패로 보고된다.
+그래서 네이티브 명령은 `Invoke-Logged` 헬퍼를 통해 호출한다 (호출 동안만 `Continue`).
+
 ## 참고
 
 - `scripts/scrape-ohrsa.playwright.js` — 로그인 후 petinfo를 열어
