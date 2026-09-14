@@ -45,30 +45,39 @@ powershell -ExecutionPolicy Bypass -File scripts\run-ohrsa-scrape-local.ps1
 `scripts\ohrsa-scrape.log` 에 실행 로그가 쌓인다. 로그인 성공 → petinfo 진입 →
 카드 수집 → (신규 있으면) 커밋/푸시까지 확인할 것.
 
-## 5. Windows 작업 스케줄러 등록
+## 5. Windows 작업 스케줄러 등록 (주1회)
 
-관리자 권한 PowerShell에서 (경로는 실제 클론 위치에 맞게 수정):
+등록 스크립트를 쓰면 된다. **관리자 권한 불필요** (본인 계정 작업으로 등록됨).
 
 ```powershell
-$action = New-ScheduledTaskAction -Execute 'powershell.exe' `
-  -Argument '-ExecutionPolicy Bypass -File "C:\경로\stoneage-calculator\scripts\run-ohrsa-scrape-local.ps1"'
-$trigger = New-ScheduledTaskTrigger -Daily -At 9:00AM
-$settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopOnIdleEnd
-Register-ScheduledTask -TaskName "ohrsa-petinfo-scrape" `
-  -Action $action -Trigger $trigger -Settings $settings `
-  -Description "ohrsa.net petinfo 자동 스크랩 -> stoneage-calculator 반영"
+powershell -ExecutionPolicy Bypass -File scripts\register-scrape-task.ps1
 ```
 
-- `-StartWhenAvailable`: PC가 그 시간에 꺼져있었어도 켜지면 놓친 실행을 바로 수행.
-- 로그인 세션이 필요한 작업(브라우저 실행)이라 "사용자가 로그온했을 때만 실행"이
-  기본값이면 충분함 — 노트북을 항상 켜두고 로그인 상태로 둔다면 문제 없음.
+기본값은 **매주 일요일 10:00**. 다른 요일/시각으로 바꾸려면:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\register-scrape-task.ps1 -DayOfWeek Monday -At 21:30
+```
+
+이미 같은 이름의 작업이 있으면 지우고 다시 등록하므로, 주기만 바꿀 때도 그냥 다시 실행하면 된다.
+
+### 등록되는 설정과 그 이유
+
+| 설정 | 이유 |
+| --- | --- |
+| `-StartWhenAvailable` | 그 시각에 PC가 꺼져 있었어도 다음에 켜지면 놓친 실행을 따라잡음 |
+| 로그온 중일 때만 실행 (`Interactive`) | Git Credential Manager 토큰이 DPAPI로 사용자 세션에 묶여 있음. 로그오프 상태(S4U)로 돌리면 `git push` 인증이 깨질 수 있음 |
+| `-ExecutionTimeLimit 1시간` | 한 번 멈춘 실행이 영구히 남아 다음 주 실행을 막는 것 방지 |
+| `-MultipleInstances IgnoreNew` | 이전 실행이 아직 돌고 있으면 새 실행을 건너뜀 |
+| `-RestartCount 2` | 일시적 네트워크 실패 시 30분 간격으로 2회 재시도 |
 
 ## 6. 등록 확인 / 수동 실행 / 삭제
 
 ```powershell
-Get-ScheduledTask -TaskName "ohrsa-petinfo-scrape"
-Start-ScheduledTask -TaskName "ohrsa-petinfo-scrape"   # 즉시 한번 실행해보기
-Unregister-ScheduledTask -TaskName "ohrsa-petinfo-scrape" -Confirm:$false  # 삭제
+Get-ScheduledTask -TaskName "ohrsa-petinfo-scrape" | Get-ScheduledTaskInfo   # 다음/마지막 실행 시각
+Start-ScheduledTask -TaskName "ohrsa-petinfo-scrape"                          # 즉시 한번 실행
+Get-Content scripts\ohrsa-scrape.log -Tail 40                                 # 실행 로그 확인
+Unregister-ScheduledTask -TaskName "ohrsa-petinfo-scrape" -Confirm:$false     # 삭제
 ```
 
 ## 참고
@@ -79,4 +88,5 @@ Unregister-ScheduledTask -TaskName "ohrsa-petinfo-scrape" -Confirm:$false  # 삭
 - `scripts/merge-auto-scrape.js` — 그 결과 중 `pet-data`(base)와 기존 `pet-data-extra`
   양쪽 모두에 없는 진짜 신규 펫만 골라 기존 `pet-data-extra` 뒤에 이어붙인다
   (기존 수동 등록 개체를 절대 지우지 않음).
-- 둘 다 실패해도 index.html은 안 건드리므로 매일 조용히 실패만 해도 안전(no-op).
+- 둘 다 실패해도 index.html은 안 건드리므로 주1회 조용히 실패만 해도 안전(no-op).
+- `scripts/register-scrape-task.ps1` — 위 주1회 작업 스케줄러 등록/재등록 스크립트.
