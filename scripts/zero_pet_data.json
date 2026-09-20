@@ -7672,5 +7672,46 @@
     "ride": "탑승불가",
     "grade": "일반등급",
     "totalGrowth": "5.07"
+  },
+  {
+    "id": "zero_manual_shout",
+    "name": "샤우트",
+    "attr": "지풍",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "obtain": "",
+    "origin": [
+      40,
+      32,
+      34,
+      7
+    ],
+    "k": 26,
+    "ok": true,
+    "approx": false,
+    "initS": [
+      68,
+      11,
+      12,
+      2
+    ],
+    "growthS": [
+      12.56,
+      2.16,
+      2.24,
+      0.55
+    ],
+    "img": "https://pooyas.com/files/extravar_upload/109631/411/177/2d3aac32f68b6eb9bfef30ce1fe65ff4.gif",
+    "ride": "",
+    "grade": "",
+    "totalGrowth": null
   }
 ]
