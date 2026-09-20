@@ -21,6 +21,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { solve } = require('./solve-origin-k.js');
 
 const SRC = path.join(__dirname, 'zero_board23_pets.json');
 const OUT = path.join(__dirname, 'zero_pet_data.json');
@@ -109,6 +110,25 @@ function makeId(no) {
   return id;
 }
 
+// origin/k 결정: 성장률 표기값까지 쓰는 정밀 솔버(solve-origin-k.js)를 우선 쓴다.
+// 성장률 4개는 초기치 1개보다 정보가 훨씬 많아서 origin을 사실상 유일하게 확정한다.
+// 1순위 후보가 2순위보다 반올림 잔차가 3배 이상 작으면 확정(approx:false),
+// 아니면 후보는 쓰되 approx:true 로 경고를 남긴다. 솔버가 해를 못 찾는 개체만
+// 예전 방식(초기치 1개 기반 근사 추정, k=25 고정)으로 폴백한다.
+function resolveOriginK(initS, growthS) {
+  const rs = solve(growthS, initS);
+  if (rs.length) {
+    const best = rs[0];
+    const ambiguous = rs.length > 1 && rs[1].resid < best.resid * 3;
+    // 잔차가 0.3을 넘으면 성장률이 정수 원본계수에 깔끔히 안 떨어지는 것이고,
+    // 표기 초기치가 계산기 조합(보너스 정수분배)으로 재현되지 않으면 계산기에서
+    // "일치하는 조합 없음"이 뜬다 — 둘 다 확정으로 보지 않는다.
+    const unclean = best.resid > 0.3 || !existsExactMatchAtTop(best.origin, best.k, initS);
+    return { origin: best.origin, k: best.k, approx: ambiguous || unclean };
+  }
+  return { origin: estimateOrigin(initS), k: K_ASSUMED, approx: true };
+}
+
 const out = raw.map(p => {
   const attrs = (p.elements || [])
     .filter(e => e.attr)
@@ -132,7 +152,7 @@ const out = raw.map(p => {
     num(p.growth?.['순발력']),
   ];
 
-  const origin = hasRealInit ? estimateOrigin(initS) : null;
+  const ok = resolveOriginK(initS, growthS);
 
   return {
     id: makeId(p.no),
@@ -140,10 +160,10 @@ const out = raw.map(p => {
     attr,
     attrs,
     obtain: p.route || '',
-    origin,
-    k: hasRealInit ? K_ASSUMED : null,
+    origin: hasRealInit ? ok.origin : null,
+    k: hasRealInit ? ok.k : null,
     ok: hasRealInit,
-    approx: true,
+    approx: hasRealInit ? ok.approx : true,
     initS,
     growthS,
     img: p.img || '',
@@ -152,6 +172,33 @@ const out = raw.map(p => {
     totalGrowth: p.totalGrowth || null,
   };
 });
+
+// 게시판 스크랩에 없는 개체(다른 사이트 출처)는 zero_manual_pets.json 에 적어두면
+// 재스크랩 후 이 스크립트를 다시 돌려도 사라지지 않고 같은 방식으로 origin/k 가 역산된다.
+const MANUAL = path.join(__dirname, 'zero_manual_pets.json');
+if (fs.existsSync(MANUAL)) {
+  for (const m of JSON.parse(fs.readFileSync(MANUAL, 'utf8'))) {
+    const r = resolveOriginK(m.initS, m.growthS);
+    out.push({
+      id: `zero_manual_${m.key}`,
+      name: m.name,
+      attr: m.attrs.map(a => a[0]).join(''),
+      attrs: m.attrs,
+      obtain: m.obtain || '',
+      origin: r.origin,
+      k: r.k,
+      ok: true,
+      approx: r.approx,
+      initS: m.initS,
+      growthS: m.growthS,
+      img: m.img,
+      ride: '',
+      grade: '',
+      totalGrowth: null,
+    });
+    console.log('수동 추가:', m.name);
+  }
+}
 
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2), 'utf8');
 console.log('변환 완료:', out.length, '마리 ->', OUT);

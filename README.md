@@ -8,7 +8,7 @@
   - `<script id="pet-data">` — 원본계수·k 역산이 끝난 정밀/근사 지원 개체(현재 142마리). `img` 필드는 접두어 없는 raw base64 webp.
   - `<script id="pet-data-extra">` — 아직 역산 전인 "근사 추정" 개체(현재 23마리, `approx:true`, `ok:false`). `img` 필드는 ohrsa.net 원격 URL.
   - `<script id="rank-compare-data">` — RANK 1~6 표기값 대 계산값 비교용 데이터.
-  - `<script id="pet-data-zero">` — 스톤에이지 제로(별개 게임) "제로" 탭용 도감. sathezero.com board23 "페트정보" 게시판 전체(183마리)를 스크랩한 것으로, 종당 실측 표본이 아니라 S급 표기 개체 1마리뿐이라 `origin`/`k`는 그 표기 초기치를 "오프셋 전부 +2·보너스 평균 2.5" 개체로 가정해 역산한 근사치(`k=25` 고정, `approx:true`)다. 등급 확률 계산 자체는 `pet-data`/`pet-data-extra`와 동일한 로직을 그대로 타지만 정확도가 낮으니 참고용. 원본 사이트에 초기치가 아예 없는 환생 최상위체 3마리만 `ok:false`. `img`는 sathezero.com 원격 URL. 상단 탭이 `calc`/`compare`가 아니라 `zero`일 때 `ACTIVE_PETS`가 이 배열로 바뀐다.
+  - `<script id="pet-data-zero">` — 스톤에이지 제로(별개 게임) "제로" 탭용 도감. sathezero.com board23 "페트정보" 게시판 전체(183마리)를 스크랩한 것으로, `origin`/`k`는 게시판 표기 초기치·성장률을 `scripts/solve-origin-k.js` 로 역산한 값이다(대부분 `approx:false`). 솔버가 해를 못 찾거나(약 20마리) 역산이 깔끔하지 않은 개체는 `approx:true` — 이 중 해가 없는 개체는 예전 방식(표기 초기치 1개를 "오프셋 전부 +2"로 가정, `k=25` 고정)으로 폴백하므로 자기 초기치를 넣으면 등급이 한 값으로 100% 쏠린다. 실측 포획으로 검증된 값은 아니므로 등급 확률은 참고용. 등급 확률 계산 자체는 `pet-data`/`pet-data-extra`와 동일한 로직을 그대로 타지만 정확도가 낮으니 참고용. 원본 사이트에 초기치가 아예 없는 환생 최상위체 3마리만 `ok:false`. `img`는 sathezero.com 원격 URL. 상단 탭이 `calc`/`compare`가 아니라 `zero`일 때 `ACTIVE_PETS`가 이 배열로 바뀐다.
   - 렌더링은 항상 `imgSrc(p)` 헬퍼를 거친다: `img` 가 `http`로 시작하면 그대로, 아니면 `data:image/webp;base64,` 를 붙여서 사용한다. **`images/` 폴더는 index.html 이 전혀 참조하지 않는다** — 아래 참고용 데이터 전용이다.
 - `ohrsa_pets.json` (루트) — 예전 ohrsa.net 크롤링 결과, 참고용. `img` 필드가 `images/0000.gif` 처럼 로컬 상대경로로 되어 있다(외부 링크 차단 대비, commit c6e043a). index.html 과는 별개의 데이터셋이며 이름은 대부분 겹치지만 id·필드 구조가 다르다.
 - `images/` — 루트 `ohrsa_pets.json` 이 참조하는 펫 이미지 로컬 사본(파일명은 그 파일의 `i` 값을 0-padding, 예: `0000.gif`). `scripts/ohrsa_pets.json` 로 새로 추가되는 "근사 추정" 개체 이미지도 여기 펫 이름으로 저장된다(예: `고루루.gif`). 둘 다 index.html 실행에는 불필요한, 순수 참고/캐시 자산.
@@ -21,6 +21,7 @@
 - `scripts/debug-dump-page.console.js` — 목록 마크업이 예상과 달라서 스크레이퍼가 0건을 수집할 때, 현재 페이지 HTML을 통째로 파일로 저장해 실제 구조를 확인하기 위한 진단용 콘솔 스크립트.
 - `scripts/zero_board23_pets.json` — 위 스크레이퍼의 원시 스크랩 결과(12페이지, 183건). 다운로드된 파일을 이 이름으로 저장하고 커밋.
 - `scripts/build-zero-pet-data.js` (`node scripts/build-zero-pet-data.js`) — `zero_board23_pets.json` 을 `pet-data-zero` 스키마로 변환(`origin`/`k` 근사 역산 포함)해 `scripts/zero_pet_data.json` 을 만든다.
+- `scripts/zero_manual_pets.json` — 게시판 스크랩에 없는 개체(다른 사이트 출처, 예: 샤우트)를 수동으로 적어두는 파일. `build-zero-pet-data.js` 가 스크랩 결과 뒤에 붙이고 같은 방식으로 `origin`/`k` 를 역산하므로 재스크랩해도 사라지지 않는다.
 - `scripts/inject-zero-pet-data.js` (`node scripts/inject-zero-pet-data.js`) — `zero_pet_data.json` 을 minify해서 `index.html` 의 `pet-data-zero` 블록에 통째로 주입(교체)한다.
 
 ## 데이터 갱신 (근사 추정 개체 추가)
