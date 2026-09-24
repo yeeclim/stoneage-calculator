@@ -9,9 +9,9 @@
   - `<script id="pet-data-extra">` — 아직 역산 전인 "근사 추정" 개체(현재 23마리, `approx:true`, `ok:false`). `img` 필드는 ohrsa.net 원격 URL.
   - `<script id="rank-compare-data">` — RANK 1~6 표기값 대 계산값 비교용 데이터.
   - `<script id="pet-data-zero">` — 스톤에이지 제로(별개 게임) "제로" 탭용 도감. sathezero.com board23 "페트정보" 게시판 전체(183마리)를 스크랩한 것으로, `origin`/`k`는 게시판 표기 초기치·성장률을 `scripts/solve-origin-k.js` 로 역산한 값이다(대부분 `approx:false`). 솔버가 해를 못 찾거나(약 20마리) 역산이 깔끔하지 않은 개체는 `approx:true` — 이 중 해가 없는 개체는 예전 방식(표기 초기치 1개를 "오프셋 전부 +2"로 가정, `k=25` 고정)으로 폴백하므로 자기 초기치를 넣으면 등급이 한 값으로 100% 쏠린다. 실측 포획으로 검증된 값은 아니므로 등급 확률은 참고용. 등급 확률 계산 자체는 `pet-data`/`pet-data-extra`와 동일한 로직을 그대로 타지만 정확도가 낮으니 참고용. 원본 사이트에 초기치가 아예 없는 환생 최상위체 3마리만 `ok:false`. `img`는 sathezero.com 원격 URL. 상단 탭이 `calc`/`compare`가 아니라 `zero`일 때 `ACTIVE_PETS`가 이 배열로 바뀐다.
-  - 렌더링은 항상 `imgSrc(p)` 헬퍼를 거친다: `img` 가 `http`로 시작하면 그대로, 아니면 `data:image/webp;base64,` 를 붙여서 사용한다. **`images/` 폴더는 index.html 이 전혀 참조하지 않는다** — 아래 참고용 데이터 전용이다.
-- `ohrsa_pets.json` (루트) — 예전 ohrsa.net 크롤링 결과, 참고용. `img` 필드가 `images/0000.gif` 처럼 로컬 상대경로로 되어 있다(외부 링크 차단 대비, commit c6e043a). index.html 과는 별개의 데이터셋이며 이름은 대부분 겹치지만 id·필드 구조가 다르다.
-- `images/` — 루트 `ohrsa_pets.json` 이 참조하는 펫 이미지 로컬 사본(파일명은 그 파일의 `i` 값을 0-padding, 예: `0000.gif`). `scripts/ohrsa_pets.json` 로 새로 추가되는 "근사 추정" 개체 이미지도 여기 펫 이름으로 저장된다(예: `고루루.gif`). 둘 다 index.html 실행에는 불필요한, 순수 참고/캐시 자산.
+  - 렌더링은 항상 `imgSrc(p)` 헬퍼를 거친다: `img` 가 `http` 또는 `images/`로 시작하면 그대로, 아니면 `data:image/webp;base64,` 를 붙여서 사용한다. 오르(`pet-data-extra`)·제로(`pet-data-zero`) 이미지는 `images/pets/<id>.<ext>` 로컬 파일이며, 스크랩/머지/inject 후엔 `npm run localize:images` 로 다시 내려받아 경로를 치환해야 한다.
+- `ohrsa_pets.json` (루트) — 예전 ohrsa.net 크롤링 결과, 참고용. `img` 필드는 삭제된 `images/0000.gif` 등을 가리키므로 현재 깨져 있다. index.html 과는 별개의 데이터셋이며 이름은 대부분 겹치지만 id·필드 구조가 다르다.
+- `images/pets/` — 오르·제로 펫 이미지(`<id>.<ext>`). `scripts/localize-images.js` 가 채운다. (`download-ohrsa-images.ps1` 이 쓰는 `images/<펫이름>` 캐시는 index.html 과 무관.)
 - `scripts/scrape-ohrsa.console.js` — ohrsa.net 도감을 긁어 `{i, name, attrs, obtain, sell, 기술창, 탑승, 성장률표기, init_내공방순, growth_내공방순, img, raw}` 형태 JSON을 만드는 브라우저 콘솔 스크립트.
 - `scripts/ohrsa_pets.json` — 위 스크레이퍼로 새로 뽑은 원시 스크랩 결과(주로 아직 `pet-data`/`pet-data-extra` 에 없는 신규 개체). git에 커밋하지 않고 매번 새로 스크랩해 써도 된다.
 - `scripts/add-validate-merge.js` (`node scripts/add-validate-merge.js`) — `scripts/ohrsa_pets.json` 을 읽어 `index.html` 의 기존 `pet-data` 와 이름이 겹치지 않는 항목만 골라 `initS/growthS/attr` 등을 정규화한 뒤 `pet-data-extra` 블록을 통째로 교체한다. 원본계수 역산은 하지 않으므로 결과는 전부 `approx:true`.
@@ -34,7 +34,7 @@
 
 ## 데이터 갱신 (스톤에이지 제로 도감)
 
-1. `https://sathezero.com/bbs/board.php?bo_table=board23` 에 로그인 후 콘솔에서 `scripts/scrape-zero-board23.console.js` 실행 → 다운로드된 파일을 `scripts/zero_board23_pets.json` 으로 저장.
+1. `scripts/sathezero.local.env` 에 `SATHEZERO_USERNAME`/`SATHEZERO_PASSWORD` 를 적고 `npm run scrape:zero` → `scripts/zero_board23_pets.json` 생성. (사이트 개편으로 board23 은 `pet_info.php` 로 이동, 예전 `scrape-zero-board23.console.js` 는 더 이상 동작하지 않음. 새 목록에 없는 예전 개체 39마리는 `scripts/zero_legacy_board23_pets.json` 에서 유지된다.)
 2. `node scripts/build-zero-pet-data.js` → `scripts/zero_pet_data.json` 생성.
 3. `node scripts/inject-zero-pet-data.js` → `index.html` 의 `pet-data-zero` 블록 갱신.
 4. `git push` → Vercel 자동 재배포.

@@ -5,7 +5,9 @@
   "description": "스톤에이지 환각 계산기 - 정적 페이지 + 데이터 갱신 스크립트",
   "scripts": {
     "scrape:ohrsa": "node scripts/scrape-ohrsa.playwright.js",
-    "merge:auto": "node scripts/merge-auto-scrape.js"
+    "scrape:zero": "node scripts/scrape-zero-board23.playwright.js",
+    "merge:auto": "node scripts/merge-auto-scrape.js",
+    "localize:images": "node scripts/localize-images.js"
   },
   "devDependencies": {
     "playwright": "^1.47.0"

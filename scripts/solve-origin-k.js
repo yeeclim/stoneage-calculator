@@ -56,8 +56,8 @@ function solveM(rhs) {
 }
 
 // 표기 초기치를 정확히 재현하는 k 를 전부 찾는다 (1~80).
-function allK(origin, initS) {
-  const v = origin.map(o => o + GRADE_OFF + BONUS);
+function allK(origin, initS, off = GRADE_OFF) {
+  const v = origin.map(o => o + off + BONUS);
   const hits = [];
   for (let k = 1; k <= 80; k++) {
     const d = disp(v.map(x => k * x / 100)).map(x => Math.floor(x + EPS));
@@ -67,7 +67,7 @@ function allK(origin, initS) {
 }
 
 /** 후보들을 반올림 잔차 오름차순으로 반환. 첫 원소가 채택해, 빈 배열이면 해 없음. */
-function solve(growthS, initS) {
+function solve(growthS, initS, off = GRADE_OFF) {
   if (!Array.isArray(growthS) || growthS.length !== 4) return [];
   if (!Array.isArray(initS) || initS.length !== 4) return [];
   if (growthS.some(x => typeof x !== 'number' || !isFinite(x))) return [];
@@ -77,14 +77,14 @@ function solve(growthS, initS) {
   for (const band of RANKS) {
     const B = (band.Blo + band.Bhi) / 2;
     const v = g.map(x => x * 10000 / B);
-    const origin = v.map(x => Math.round(x - GRADE_OFF - BONUS));
+    const origin = v.map(x => Math.round(x - off - BONUS));
     if (origin.some(o => o < 0)) continue;
     const sum = origin.reduce((a, b) => a + b, 0);
-    if (bandOf(sum) !== band) continue;                                        // 밴드 자기일관성
-    const ks = allK(origin, initS);
+    if (bandOf(sum - 4 * (GRADE_OFF - off)) !== band) continue;   // RANK 구간표는 오프셋 +2 기준 origin 합으로 정의됨 -> 환산                                        // 밴드 자기일관성
+    const ks = allK(origin, initS, off);
     if (!ks.length) continue;                                                  // 초기치 재현 k 필수
-    const resid = Math.max(...v.map((x, i) => Math.abs(x - GRADE_OFF - BONUS - origin[i])));
-    const gg = origin.map(o => (o + GRADE_OFF + BONUS) * B / 10000);
+    const resid = Math.max(...v.map((x, i) => Math.abs(x - off - BONUS - origin[i])));
+    const gg = origin.map(o => (o + off + BONUS) * B / 10000);
     const back = disp(gg).map(x => +x.toFixed(3));
     const err = Math.max(...back.map((x, i) => Math.abs(x - growthS[i])));
     cands.push({ origin, sum, B, k: ks[0], ks, resid, err, back });

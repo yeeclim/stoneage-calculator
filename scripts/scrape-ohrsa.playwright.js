@@ -22,6 +22,14 @@ const OUT = path.join(__dirname, 'ohrsa_pets_auto.json');
 const LOGIN_URL = 'https://ohrsa.net/bbs/login.php';
 const PETINFO_URL = 'https://ohrsa.net/petinfo';
 
+// ohrsa.net 이 간헐적으로 응답이 멈추므로(Cloudflare 뒤) 타임아웃을 늘리고 재시도한다.
+async function gotoRetry(page, url, tries = 4) {
+  for (let i = 1; ; i++) {
+    try { return await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 }); }
+    catch (e) { if (i >= tries) throw e; console.warn(`goto 재시도 ${i}/${tries - 1}: ${url}`); }
+  }
+}
+
 // scripts/scrape-ohrsa.console.js 의 IIFE 본문과 동일한 로직 (return 값만 다름).
 function scrapePage() {
   const norm = s => (s || '').replace(/\s+/g, ' ').trim();
@@ -88,7 +96,7 @@ async function autoScroll(page) {
   const page = await context.newPage();
 
   try {
-    await page.goto(LOGIN_URL, { waitUntil: 'domcontentloaded' });
+    await gotoRetry(page, LOGIN_URL);
     await page.fill('input[name="mb_id"]', OHRSA_USERNAME);
     await page.fill('input[name="mb_password"]', OHRSA_PASSWORD);
     await Promise.all([
@@ -96,11 +104,13 @@ async function autoScroll(page) {
       page.click('form[name="flogin"] button, form[name="flogin"] input[type="submit"]').catch(() => page.evaluate(() => document.forms['flogin'].submit()))
     ]);
 
-    await page.goto(PETINFO_URL, { waitUntil: 'domcontentloaded' });
+    await gotoRetry(page, PETINFO_URL);
     if (/login\.php/.test(page.url())) {
       throw new Error('로그인 실패 - petinfo 접근 시 로그인 페이지로 리다이렉트됨 (계정 정보 확인 필요)');
     }
-    await page.waitForTimeout(1500);
+    await page.waitForLoadState('load').catch(() => {});
+    await page.waitForTimeout(3000);
+    console.log('petinfo 진입 URL:', page.url());
     await autoScroll(page);
 
     const diag = await page.evaluate(() => ({

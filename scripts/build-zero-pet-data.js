@@ -26,7 +26,17 @@ const { solve } = require('./solve-origin-k.js');
 const SRC = path.join(__dirname, 'zero_board23_pets.json');
 const OUT = path.join(__dirname, 'zero_pet_data.json');
 
-const raw = JSON.parse(fs.readFileSync(SRC, 'utf8'));
+const scraped = JSON.parse(fs.readFileSync(SRC, 'utf8'));
+
+// 사이트 개편(pet_info.php) 이전 board23 스크랩(zero_legacy_board23_pets.json). 새 목록에 없는
+// 예전 개체는 삭제 여부를 알 수 없어서 그대로 유지하고(id: zero_legacy_<번호>), 새 목록에서
+// 이미지가 비어 있는 개체는 예전 이미지를 이름으로 찾아 채운다.
+const LEGACY = path.join(__dirname, 'zero_legacy_board23_pets.json');
+const legacy = fs.existsSync(LEGACY) ? JSON.parse(fs.readFileSync(LEGACY, 'utf8')) : [];
+const legacyByName = new Map(legacy.map(p => [p.name, p]));
+const scrapedNames = new Set(scraped.map(p => p.name));
+const raw = scraped.map(p => (!p.img && legacyByName.get(p.name)?.img) ? { ...p, img: legacyByName.get(p.name).img } : p)
+  .concat(legacy.filter(p => !scrapedNames.has(p.name)).map(p => ({ ...p, no: `legacy_${p.no}` })));
 
 const num = s => {
   const n = parseFloat(s);
@@ -41,6 +51,9 @@ const num = s => {
 // 정밀 개체들의 실측 범위(23~28)의 중간값 25로 고정해두고 origin만 역산한다.
 // -> 실측 표본이 아니라 단일 S급 표기값 기반 추정치이므로 부정확할 수 있음.
 const K_ASSUMED = 25;
+
+// 표기 초기치는 S급(등급 오프셋 +2) 개체의 값이다 (표기값 = origin + 2 + 보너스). index.html 은 p.gradeOff 를 읽는다.
+const ZERO_OFF = 2;
 
 function solveA(S) {
   // S = [내구,공격,방어,순발] (표기 초기치, 정수) -> a0~a3 역산 (floor로 인한 오차 있음)
@@ -65,7 +78,7 @@ for (let a = 0; a <= 10; a++) for (let b = 0; b <= 10 - a; b++) for (let c = 0; 
 
 function existsExactMatchAtTop(origin, k, target) {
   for (const D of Ds) {
-    const v0 = origin[0] + 2 + D[0], v1 = origin[1] + 2 + D[1], v2 = origin[2] + 2 + D[2], v3 = origin[3] + 2 + D[3];
+    const v0 = origin[0] + ZERO_OFF + D[0], v1 = origin[1] + ZERO_OFF + D[1], v2 = origin[2] + ZERO_OFF + D[2], v3 = origin[3] + ZERO_OFF + D[3];
     const a0 = (k * v0) / 100, a1 = (k * v1) / 100, a2 = (k * v2) / 100, a3 = (k * v3) / 100;
     if (Math.floor(a3) !== target[3]) continue;
     if (Math.floor(0.1 * a0 + a1 + 0.1 * a2 + 0.05 * a3) !== target[1]) continue;
@@ -79,7 +92,7 @@ function existsExactMatchAtTop(origin, k, target) {
 function estimateOrigin(initS) {
   const a = solveA(initS);
   // a_i = k*(origin_i + 2 + 2.5)/100  ->  origin_i = 100*a_i/k - 4.5 (연속 근사치)
-  const base = a.map(ai => Math.max(0, Math.round((100 * ai) / K_ASSUMED - 4.5)));
+  const base = a.map(ai => Math.max(0, Math.round((100 * ai) / K_ASSUMED - ZERO_OFF - 2.5)));
 
   // solveA는 initS가 이미 내림된 정수라 소수부 정보를 잃은 채로 역산해서, base를
   // 그대로 쓰면 178,750가지 조합(오프셋×보너스분배) 중 단 하나도 표기 초기치를
@@ -115,10 +128,32 @@ function makeId(no) {
 // 1순위 후보가 2순위보다 반올림 잔차가 3배 이상 작으면 확정(approx:false),
 // 아니면 후보는 쓰되 approx:true 로 경고를 남긴다. 솔버가 해를 못 찾는 개체만
 // 예전 방식(초기치 1개 기반 근사 추정, k=25 고정)으로 폴백한다.
+function pickK(origin, initS, kSolver) {
+  const O = [-2, -1, 0, 1, 2];
+  const match = (off, D, k) => {
+    const a = origin.map((o, i) => (k * (o + off[i] + D[i])) / 100);
+    const r = [4 * a[0] + a[1] + a[2] + a[3], 0.1 * a[0] + a[1] + 0.1 * a[2] + 0.05 * a[3], 0.1 * a[0] + 0.1 * a[1] + a[2] + 0.05 * a[3], a[3]];
+    return r.every((x, i) => Math.floor(x + 1e-9) === initS[i]);
+  };
+  let bestK = kSolver, bestN = -1;
+  for (let k = 1; k <= 80; k++) {
+    if (!Ds.some(D => match([2, 2, 2, 2], D, k))) continue;   // 표기값은 S급 개체 값 -> S급 재현 필수
+    let n = 0;
+    for (const a of O) for (const b of O) for (const c of O) for (const d of O) for (const D of Ds) if (match([a, b, c, d], D, k)) n++;
+    if (n > bestN || (n === bestN && Math.abs(k - kSolver) < Math.abs(bestK - kSolver))) { bestN = n; bestK = k; }
+  }
+  return bestN > 0 ? bestK : kSolver;
+}
+
 function resolveOriginK(initS, growthS) {
-  const rs = solve(growthS, initS);
+  const rs = solve(growthS, initS, ZERO_OFF);
   if (rs.length) {
     const best = rs[0];
+    // 성장률은 k 와 무관하게 origin 을 정하지만 k 는 여러 값이 가능하다. 솔버는 "보너스 평균 2.5 로
+    // 정확히 재현되는 k" 만 인정해서 종종 S급 조합 1개만 남기고(=등급 100% 쏠림) 나머지 k 를 버린다.
+    // 표기값은 실제 S급 개체 하나의 값이므로, S급 재현이 가능한 k 중 표기값을 만드는 (오프셋×보너스)
+    // 전체 조합이 가장 많은 k 를 고른다(=그 표기값이 가장 흔한 k, 동률이면 솔버 k 에 가까운 쪽). S 조합 1개만 남는 100% 쏠림 방지.
+    best.k = pickK(best.origin, initS, best.k);
     const ambiguous = rs.length > 1 && rs[1].resid < best.resid * 3;
     // 잔차가 0.3을 넘으면 성장률이 정수 원본계수에 깔끔히 안 떨어지는 것이고,
     // 표기 초기치가 계산기 조합(보너스 정수분배)으로 재현되지 않으면 계산기에서
@@ -167,6 +202,7 @@ const out = raw.map(p => {
     initS,
     growthS,
     img: p.img || '',
+    gradeOff: ZERO_OFF,
     ride: p.ride || '',
     grade: p.grade || '',
     totalGrowth: p.totalGrowth || null,
@@ -192,6 +228,7 @@ if (fs.existsSync(MANUAL)) {
       initS: m.initS,
       growthS: m.growthS,
       img: m.img,
+      gradeOff: ZERO_OFF,
       ride: '',
       grade: '',
       totalGrowth: null,

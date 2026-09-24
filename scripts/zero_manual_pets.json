@@ -1,11 +1,1 @@
-[
-  {
-    "key": "shout",
-    "name": "샤우트",
-    "attrs": [["지", 5], ["풍", 5]],
-    "obtain": "",
-    "initS": [68, 11, 12, 2],
-    "growthS": [12.56, 2.16, 2.24, 0.55],
-    "img": "https://pooyas.com/files/extravar_upload/109631/411/177/2d3aac32f68b6eb9bfef30ce1fe65ff4.gif"
-  }
-]
+[]

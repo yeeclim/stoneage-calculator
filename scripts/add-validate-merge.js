@@ -26,7 +26,8 @@ function extractScriptContent(html, id) {
 }
 
 function mapExtra(e) {
-  const id = e.id !== undefined ? String(e.id) : (e.i !== undefined ? 'ohrsa_' + String(e.i) : 'ohrsa_' + Math.random().toString(36).slice(2,8));
+  // 스크랩의 i 는 매 스크랩마다 바뀌는 페이지 내 순번이라 기존 pet-data id(ohrsa_N)와 충돌한다 -> 이름 해시로 고정 id 생성.
+  const id = 'ohrsa_' + require('crypto').createHash('sha1').update(String(e.name || '')).digest('hex').slice(0, 8);
   const attrs = e.attrs || [];
   const attr = (attrs.map(a=>a[0]||'').join('')) || (e.attr||'');
   const initFromAlt = Array.isArray(e.init_내공방순) ? e.init_내공방순 : (Array.isArray(e.initS) ? e.initS : (Array.isArray(e.초기치_공방순내) ? [e.초기치_공방순내[3], e.초기치_공방순내[0], e.초기치_공방순내[1], e.초기치_공방순내[2]] : null));
