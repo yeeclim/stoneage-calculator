@@ -38,6 +38,11 @@ const scrapedNames = new Set(scraped.map(p => p.name));
 const raw = scraped.map(p => (!p.img && legacyByName.get(p.name)?.img) ? { ...p, img: legacyByName.get(p.name).img } : p)
   .concat(legacy.filter(p => !scrapedNames.has(p.name)).map(p => ({ ...p, no: `legacy_${p.no}` })));
 
+// 게시판 성장률 표기가 틀렸거나 반올림이 거친 개체는 zero_growth_overrides.json 에 번호(no)로
+// 정확한 성장률을 적어두면 재스크랩 후에도 그 값으로 origin/k 를 역산한다.
+const OVERRIDES = path.join(__dirname, 'zero_growth_overrides.json');
+const growthOverride = fs.existsSync(OVERRIDES) ? JSON.parse(fs.readFileSync(OVERRIDES, 'utf8')) : {};
+
 const num = s => {
   const n = parseFloat(s);
   return Number.isFinite(n) ? n : 0;
@@ -180,7 +185,7 @@ const out = raw.map(p => {
     num(p.init?.['방어력']),
     num(p.init?.['순발력']),
   ];
-  const growthS = [
+  const growthS = growthOverride[p.no]?.growthS || [
     num(p.growth?.['내구력']),
     num(p.growth?.['공격력']),
     num(p.growth?.['방어력']),

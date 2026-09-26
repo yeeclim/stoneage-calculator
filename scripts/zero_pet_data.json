@@ -4810,7 +4810,7 @@
       26,
       36,
       16,
-      26
+      25
     ],
     "k": 26,
     "ok": true,
@@ -4822,10 +4822,10 @@
       7
     ],
     "growthS": [
-      10.14,
-      2.24,
-      1.38,
-      1.45
+      10.094,
+      2.236,
+      1.381,
+      1.401
     ],
     "img": "https://sathezero.com/data/file/board23/216_copy_300_d987b7b86375d9ee27eadcee550742df_8RTrte3c_52e18c1dc5ba940cc08f44968737488e4522edb6.gif",
     "gradeOff": 2,

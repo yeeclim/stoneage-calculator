@@ -22,6 +22,7 @@
 - `scripts/zero_board23_pets.json` — 위 스크레이퍼의 원시 스크랩 결과(12페이지, 183건). 다운로드된 파일을 이 이름으로 저장하고 커밋.
 - `scripts/build-zero-pet-data.js` (`node scripts/build-zero-pet-data.js`) — `zero_board23_pets.json` 을 `pet-data-zero` 스키마로 변환(`origin`/`k` 근사 역산 포함)해 `scripts/zero_pet_data.json` 을 만든다.
 - `scripts/zero_manual_pets.json` — 게시판 스크랩에 없는 개체(다른 사이트 출처, 예: 샤우트)를 수동으로 적어두는 파일. `build-zero-pet-data.js` 가 스크랩 결과 뒤에 붙이고 같은 방식으로 `origin`/`k` 를 역산하므로 재스크랩해도 사라지지 않는다.
+- `scripts/zero_growth_overrides.json` — 게시판 성장률 표기가 틀린 개체의 정확한 성장률을 번호(`no`)별로 적어두는 파일. `build-zero-pet-data.js` 가 스크랩 값 대신 이 값으로 `origin`/`k` 를 역산한다(예: 노르곤 순발 1.45→1.401).
 - `scripts/inject-zero-pet-data.js` (`node scripts/inject-zero-pet-data.js`) — `zero_pet_data.json` 을 minify해서 `index.html` 의 `pet-data-zero` 블록에 통째로 주입(교체)한다.
 
 ## 데이터 갱신 (근사 추정 개체 추가)
