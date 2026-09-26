@@ -80,8 +80,13 @@ try {
     valid.push(mapExtra(item));
   }
 
-  // prepare new pet-data-extra JSON
-  const extraJson = JSON.stringify(valid, null, 2);
+  // 기존 pet-data-extra 는 지우지 않고, 아직 없는 이름만 뒤에 추가한다 (스크랩 목록에서 빠진 개체도 유지).
+  const extraContent = extractScriptContent(indexHtml, 'pet-data-extra');
+  const existingExtras = extraContent ? JSON.parse(extraContent) : [];
+  const extraNames = new Set(existingExtras.map(p => p.name));
+  const added = valid.filter(p => !extraNames.has(p.name) && extraNames.add(p.name));
+  console.log('추가:', added.length, added.map(p => p.name).join(', '));
+  const extraJson = JSON.stringify(existingExtras.concat(added), null, 2);
 
   let newHtml;
   if (extractScriptContent(indexHtml, 'pet-data-extra') !== null) {

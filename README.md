@@ -14,7 +14,7 @@
 - `images/pets/` — 오르·제로 펫 이미지(`<id>.<ext>`). `scripts/localize-images.js` 가 채운다. (`download-ohrsa-images.ps1` 이 쓰는 `images/<펫이름>` 캐시는 index.html 과 무관.)
 - `scripts/scrape-ohrsa.console.js` — ohrsa.net 도감을 긁어 `{i, name, attrs, obtain, sell, 기술창, 탑승, 성장률표기, init_내공방순, growth_내공방순, img, raw}` 형태 JSON을 만드는 브라우저 콘솔 스크립트.
 - `scripts/ohrsa_pets.json` — 위 스크레이퍼로 새로 뽑은 원시 스크랩 결과(주로 아직 `pet-data`/`pet-data-extra` 에 없는 신규 개체). git에 커밋하지 않고 매번 새로 스크랩해 써도 된다.
-- `scripts/add-validate-merge.js` (`node scripts/add-validate-merge.js`) — `scripts/ohrsa_pets.json` 을 읽어 `index.html` 의 기존 `pet-data` 와 이름이 겹치지 않는 항목만 골라 `initS/growthS/attr` 등을 정규화한 뒤 `pet-data-extra` 블록을 통째로 교체한다. 원본계수 역산은 하지 않으므로 결과는 전부 `approx:true`.
+- `scripts/add-validate-merge.js` (`node scripts/add-validate-merge.js`) — `scripts/ohrsa_pets.json` 을 읽어 `index.html` 의 기존 `pet-data` 와 이름이 겹치지 않는 항목만 골라 `initS/growthS/attr` 등을 정규화한 뒤 `pet-data-extra` 에 아직 없는 이름만 뒤에 추가한다(기존 항목은 삭제하지 않음). 원본계수 역산은 하지 않으므로 결과는 전부 `approx:true`.
 - `scripts/download-ohrsa-images.ps1` — `scripts/ohrsa_pets.json` 에 나온 이미지 URL을 `images/<펫이름>.<확장자>` 로 내려받는다(이미 있으면 skip). index.html 은 이 파일들을 읽지 않으며, 순수 로컬 캐시/오프라인 참고용이다.
 - `scripts/check-missing-images.js` (`node scripts/check-missing-images.js`) — `scripts/ohrsa_pets.json` 과 `index.html` 의 `pet-data-extra` 에 나오는 펫 이름 기준으로 `images/` 에 대응 파일이 있는지 점검한다.
 - `scripts/scrape-zero-board23.console.js` — sathezero.com(스톤에이지 제로) board23 "페트정보" 게시판을 로그인 세션으로 12페이지 전체 fetch 해서 `.pet_card` 마크업(이름/이미지/획득처/속성·Lv/초기치/성장률/탑승여부/판매등급)을 파싱, `zero_board23_pets.json` 을 자동 다운로드하는 브라우저 콘솔 스크립트. board23은 비회원이면 "목록을 볼 권한이 없습니다" 오류가 뜨니 로그인 필수.
