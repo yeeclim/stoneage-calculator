@@ -55,8 +55,10 @@ GitHub Actions(클라우드 IP)에서는 `Just a moment...` 챌린지 페이지�
   양쪽 모두에 없는, **진짜 신규 펫만** 골라 기존 `pet-data-extra` 뒤에 이어붙인다.
   `add-validate-merge.js` 와 달리 기존 `pet-data-extra` 내용(예: 도감에 없는 퀘스트
   보상 펫처럼 수동으로 추가한 항목)을 절대 지우지 않는다 — 항상 추가만 한다.
-- `scripts/run-ohrsa-scrape-local.ps1` — 위 둘을 순서대로 돌리고, 신규 펫이 있으면
-  `index.html` 을 바로 `main` 에 커밋·푸시까지 하는 오케스트레이션 스크립트
+- `scripts/run-ohrsa-scrape-local.ps1` — 위 둘을 순서대로 돌린 뒤 제로 도감도 같이 갱신한다
+  (`scrape-zero-board23.playwright.js` → `build-zero-pet-data.js` → `inject-zero-pet-data.js`,
+  `sathezero.local.env` 없거나 실패하면 제로만 건너뜀). 마지막에 `localize-images.js` 로 새 이미지를
+  `images/pets` 에 받고, `index.html` 이 바뀌었으면 바로 `main` 에 커밋·푸시까지 하는 오케스트레이션 스크립트
   (사람 개입 없음 → 리뷰 없이 바로 배포됨에 유의). `scripts/ohrsa-scrape.log` 에
   실행 로그를 남긴다.
 - petinfo 페이지의 실제 마크업(페이지네이션/무한스크롤 여부 등)을 검증 안 된
