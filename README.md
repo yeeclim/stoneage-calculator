@@ -20,7 +20,7 @@
 - `scripts/scrape-zero-board23.console.js` — sathezero.com(스톤에이지 제로) board23 "페트정보" 게시판을 로그인 세션으로 12페이지 전체 fetch 해서 `.pet_card` 마크업(이름/이미지/획득처/속성·Lv/초기치/성장률/탑승여부/판매등급)을 파싱, `zero_board23_pets.json` 을 자동 다운로드하는 브라우저 콘솔 스크립트. board23은 비회원이면 "목록을 볼 권한이 없습니다" 오류가 뜨니 로그인 필수.
 - `scripts/debug-dump-page.console.js` — 목록 마크업이 예상과 달라서 스크레이퍼가 0건을 수집할 때, 현재 페이지 HTML을 통째로 파일로 저장해 실제 구조를 확인하기 위한 진단용 콘솔 스크립트.
 - `scripts/zero_board23_pets.json` — 위 스크레이퍼의 원시 스크랩 결과(12페이지, 183건). 다운로드된 파일을 이 이름으로 저장하고 커밋.
-- `scripts/build-zero-pet-data.js` (`node scripts/build-zero-pet-data.js`) — `zero_board23_pets.json` 을 `pet-data-zero` 스키마로 변환(`origin`/`k` 근사 역산 포함)해 `scripts/zero_pet_data.json` 을 만든다.
+- `scripts/build-zero-pet-data.js` (`node scripts/build-zero-pet-data.js`) — `zero_board23_pets.json` 을 `pet-data-zero` 스키마로 변환(`origin`/`k` 근사 역산 포함)해 `scripts/zero_pet_data.json` 을 만든다. 새 목록에서 빠진 개체는 삭제하지 않고 직전 `zero_pet_data.json` 값을 그대로 유지한다(추가만 반영).
 - `scripts/zero_manual_pets.json` — 게시판 스크랩에 없는 개체(다른 사이트 출처, 예: 샤우트)를 수동으로 적어두는 파일. `build-zero-pet-data.js` 가 스크랩 결과 뒤에 붙이고 같은 방식으로 `origin`/`k` 를 역산하므로 재스크랩해도 사라지지 않는다.
 - `scripts/zero_growth_overrides.json` — 게시판 성장률 표기가 틀린 개체의 정확한 성장률을 번호(`no`)별로 적어두는 파일. `build-zero-pet-data.js` 가 스크랩 값 대신 이 값으로 `origin`/`k` 를 역산한다(예: 노르곤 순발 1.45→1.401).
 - `scripts/inject-zero-pet-data.js` (`node scripts/inject-zero-pet-data.js`) — `zero_pet_data.json` 을 minify해서 `index.html` 의 `pet-data-zero` 블록에 통째로 주입(교체)한다.
