@@ -2738,43 +2738,6 @@
     "grade": ""
   },
   {
-    "no": "251",
-    "name": "다이노",
-    "img": "https://sathezero.com/data/file/board23/f8b30a222a69712b0975b56bbdb63d69_bdEWDnlm_4466457f312a4e82e6d4ce2e94a59477a8522fbb.gif",
-    "route": "퀘스트: 자판기 · 후암산 3층 (20,58)",
-    "routes": [
-      "퀘스트: 자판기 · 후암산 3층 (20,58)"
-    ],
-    "categories": "quest",
-    "elements": [
-      {
-        "raw": "지 9",
-        "attr": "지",
-        "level": 9
-      },
-      {
-        "raw": "수 1",
-        "attr": "수",
-        "level": 1
-      }
-    ],
-    "init": {
-      "내구력": "60",
-      "공격력": "10",
-      "방어력": "11",
-      "순발력": "2"
-    },
-    "growth": {
-      "내구력": "11.46",
-      "공격력": "2.00",
-      "방어력": "2.13",
-      "순발력": "0.47"
-    },
-    "ride": "",
-    "totalGrowth": "4.60",
-    "grade": ""
-  },
-  {
     "no": "252",
     "name": "다이노스",
     "img": "https://sathezero.com/data/file/board23/205a490ff4a44ce63b72a4333a302f5c_2CDGMcab_aec1b6a735ecfcff993d5216ecb968a88bb219af.gif",
@@ -4229,43 +4192,6 @@
     "grade": ""
   },
   {
-    "no": "1055",
-    "name": "발로스",
-    "img": "https://sathezero.com/data/file/board23/243_copy_445_e269d12f90f288ca5b6f46894576df11_0f8OAJpF_13b56a7b5818101dce0142e119301faac81e34e0.gif",
-    "route": "퀘스트: 자판기 · 후암산 3층 (20,58)",
-    "routes": [
-      "퀘스트: 자판기 · 후암산 3층 (20,58)"
-    ],
-    "categories": "quest",
-    "elements": [
-      {
-        "raw": "지 8",
-        "attr": "지",
-        "level": 8
-      },
-      {
-        "raw": "풍 2",
-        "attr": "풍",
-        "level": 2
-      }
-    ],
-    "init": {
-      "내구력": "49",
-      "공격력": "11",
-      "방어력": "6",
-      "순발력": "7"
-    },
-    "growth": {
-      "내구력": "9.71",
-      "공격력": "2.20",
-      "방어력": "1.28",
-      "순발력": "1.47"
-    },
-    "ride": "",
-    "totalGrowth": "4.95",
-    "grade": ""
-  },
-  {
     "no": "1056",
     "name": "데블로스",
     "img": "https://sathezero.com/data/file/board23/85c8dc6606360553fba12333e21ddaa5_p09OEMlA_1eb23b39f09df014cebabe4b746de794715c35a9.gif",
@@ -4300,43 +4226,6 @@
     },
     "ride": "",
     "totalGrowth": "5.05",
-    "grade": ""
-  },
-  {
-    "no": "1060",
-    "name": "페르페",
-    "img": "https://sathezero.com/data/file/board23/be97a635efd34b36ca78db120d4e3010_XZPHpDcK_09d941684da8af45af02ecc7a5b4c1900d612816.gif",
-    "route": "퀘스트: 만석 · 스라인 마을 (141,112)",
-    "routes": [
-      "퀘스트: 만석 · 스라인 마을 (141,112)"
-    ],
-    "categories": "quest",
-    "elements": [
-      {
-        "raw": "수 6",
-        "attr": "수",
-        "level": 6
-      },
-      {
-        "raw": "화 4",
-        "attr": "화",
-        "level": 4
-      }
-    ],
-    "init": {
-      "내구력": "45",
-      "공격력": "8",
-      "방어력": "5",
-      "순발력": "7"
-    },
-    "growth": {
-      "내구력": "10.18",
-      "공격력": "1.95",
-      "방어력": "1.26",
-      "순발력": "1.58"
-    },
-    "ride": "",
-    "totalGrowth": "4.79",
     "grade": ""
   },
   {
@@ -4803,43 +4692,6 @@
     },
     "ride": "",
     "totalGrowth": "5.02",
-    "grade": ""
-  },
-  {
-    "no": "1062",
-    "name": "토우트",
-    "img": "https://sathezero.com/data/file/board23/b782975ca245bd28e1a379b6492d35a8_GlJ7rHUx_0a847c4c906b88e903e2a5d9f779467b9a57f547.gif",
-    "route": "퀘스트: 자판기 · 후암산 3층 (20,58)",
-    "routes": [
-      "퀘스트: 자판기 · 후암산 3층 (20,58)"
-    ],
-    "categories": "quest",
-    "elements": [
-      {
-        "raw": "지 1",
-        "attr": "지",
-        "level": 1
-      },
-      {
-        "raw": "수 9",
-        "attr": "수",
-        "level": 9
-      }
-    ],
-    "init": {
-      "내구력": "74",
-      "공격력": "12",
-      "방어력": "12",
-      "순발력": "2"
-    },
-    "growth": {
-      "내구력": "12.56",
-      "공격력": "2.10",
-      "방어력": "2.14",
-      "순발력": "0.50"
-    },
-    "ride": "",
-    "totalGrowth": "4.74",
     "grade": ""
   },
   {
@@ -5979,6 +5831,43 @@
       "공격력": "2.10",
       "방어력": "1.42",
       "순발력": "1.50"
+    },
+    "ride": "",
+    "totalGrowth": "5.02",
+    "grade": ""
+  },
+  {
+    "no": "1057",
+    "name": "델푸스",
+    "img": "https://sathezero.com/data/file/board23/b782975ca245bd28e1a379b6492d35a8_voezWXHS_647e09aff27d006e3fb4d1ec2eac7541b1237663.gif",
+    "route": "퀘스트: 다섯 석상을 찾아 비밀을 풀어라 · 후암산 3층 자판기 (20,58)",
+    "routes": [
+      "퀘스트: 다섯 석상을 찾아 비밀을 풀어라 · 후암산 3층 자판기 (20,58)"
+    ],
+    "categories": "quest",
+    "elements": [
+      {
+        "raw": "지 7",
+        "attr": "지",
+        "level": 7
+      },
+      {
+        "raw": "수 3",
+        "attr": "수",
+        "level": 3
+      }
+    ],
+    "init": {
+      "내구력": "47",
+      "공격력": "10",
+      "방어력": "5",
+      "순발력": "7"
+    },
+    "growth": {
+      "내구력": "10.17",
+      "공격력": "2.24",
+      "방어력": "1.27",
+      "순발력": "1.52"
     },
     "ride": "",
     "totalGrowth": "5.02",
