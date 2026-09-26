@@ -1,4 +1,4 @@
-﻿# ohrsa.net petinfo 자동 스크랩 - 로컬(Windows 작업 스케줄러)용 오케스트레이션 스크립트.
+﻿# ohrsa.net petinfo + sathezero.com(제로) 도감 자동 스크랩 - 로컬(Windows 작업 스케줄러)용 오케스트레이션 스크립트.
 #
 # GitHub Actions(클라우드 IP)는 Cloudflare 봇 차단에 걸려서 못 씀 - 항상 켜두는
 # 개인 PC에서 Windows 작업 스케줄러로 이 스크립트를 주1회 실행하는 방식으로 대체.
@@ -80,7 +80,7 @@ Log "=== 실행 시작 ==="
 
 try {
   # 로컬에 커밋 안 된 변경이 있으면 pull --ff-only 가 깨지므로 먼저 확인하고 중단.
-  $dirty = & git status --porcelain -- index.html
+  $dirty = & git status --porcelain -- index.html scripts/zero_board23_pets.json scripts/zero_pet_data.json
   if ($dirty) {
     Log "중단: index.html 에 커밋되지 않은 로컬 변경이 있음. 수동 정리 후 다시 실행할 것."
     Log $dirty
@@ -108,13 +108,42 @@ try {
     exit 1
   }
 
-  if ($mergeOut -match '^CHANGED$') {
-    $addedLine = ($mergeOut | Where-Object { $_ -match '^추가된 펫:' })
-    Log "변경 감지 -> 커밋/푸시 진행. $addedLine"
+  $addedLine = ($mergeOut | Where-Object { $_ -match '^추가된 펫:' })
+  if ($mergeOut -match '^CHANGED$') { Log "오르 신규 감지. $addedLine" } else { Log "오르 신규 펫 없음." }
 
-    Invoke-Logged git add index.html | Out-Null
+  # 제로(sathezero.com) 도감도 같이 갱신한다. 실패해도 오르 결과는 커밋할 수 있게 경고만 남기고 넘어간다.
+  $zeroFiles = @('scripts/zero_board23_pets.json', 'scripts/zero_pet_data.json')
+  if (Test-Path (Join-Path $PSScriptRoot 'sathezero.local.env')) {
+    Log "제로 스크랩 실행..."
+    Invoke-Logged node scripts/scrape-zero-board23.playwright.js | Out-Null
+    if ($script:LastNativeExit -ne 0) {
+      Log "제로 스크랩 실패 (exit $script:LastNativeExit) - 제로는 건너뜀."
+      Invoke-Logged git checkout -- @zeroFiles | Out-Null
+    } else {
+      Invoke-Logged node scripts/build-zero-pet-data.js | Out-Null
+      if ($script:LastNativeExit -eq 0) { Invoke-Logged node scripts/inject-zero-pet-data.js | Out-Null }
+      if ($script:LastNativeExit -ne 0) {
+        Log "제로 빌드/주입 실패 (exit $script:LastNativeExit) - 제로 변경 되돌림."
+        Invoke-Logged git checkout -- @zeroFiles | Out-Null
+      }
+    }
+  } else {
+    Log "sathezero.local.env 없음 - 제로는 건너뜀."
+  }
 
-    Invoke-Logged git commit -m "ohrsa.net 도감 자동 스크랩(로컬): 신규 펫 추가" | Out-Null
+  # 스크랩/주입 결과의 외부 이미지 URL 을 images/pets 로컬 파일로 치환 (오르·제로 공통).
+  Log "이미지 로컬화..."
+  Invoke-Logged node scripts/localize-images.js | Out-Null
+
+  $htmlChanged = & git status --porcelain -- index.html
+  if ($htmlChanged) {
+    $msg = "도감 자동 스크랩(로컬): 오르·제로 갱신"
+    if ($addedLine) { $msg = "$msg ($addedLine)" }
+    Log "변경 감지 -> 커밋/푸시 진행."
+
+    Invoke-Logged git add index.html images/pets @zeroFiles | Out-Null
+
+    Invoke-Logged git commit -m $msg | Out-Null
     if ($script:LastNativeExit -ne 0) {
       Log "커밋 실패 (exit $script:LastNativeExit) - 푸시 생략하고 종료."
       exit 1
@@ -127,7 +156,9 @@ try {
     }
     Log "푸시 완료."
   } else {
-    Log "신규 펫 없음 - 변경 없음."
+    # index.html 이 그대로면 스크랩 원본만 순서 등으로 바뀐 것 - 다음 pull 을 막지 않게 되돌린다.
+    Invoke-Logged git checkout -- @zeroFiles | Out-Null
+    Log "변경 없음."
   }
 }
 catch {
