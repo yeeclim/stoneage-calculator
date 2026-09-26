@@ -242,5 +242,18 @@ if (fs.existsSync(MANUAL)) {
   }
 }
 
+// 새 스크랩 목록에서 빠진 개체는 지우지 않는다. 직전 빌드 결과(OUT)에 있던 항목을 그대로 유지하고
+// (legacy 폴백보다 우선 - 직전 값이 더 최신), 스크랩이 일부 누락돼도 데이터가 줄지 않게 한다.
+if (fs.existsSync(OUT)) {
+  const prev = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+  const kept = [];
+  for (const p of prev) {
+    if (scrapedNames.has(p.name)) continue;
+    const i = out.findIndex(q => q.name === p.name);
+    if (i >= 0) out[i] = p; else { out.push(p); kept.push(p.name); }
+  }
+  if (kept.length) console.log('목록에서 빠졌지만 유지:', kept.join(', '));
+}
+
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2), 'utf8');
 console.log('변환 완료:', out.length, '마리 ->', OUT);

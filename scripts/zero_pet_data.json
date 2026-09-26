@@ -7070,7 +7070,7 @@
     "totalGrowth": "4.96"
   },
   {
-    "id": "zero_legacy_090",
+    "id": "zero_251",
     "name": "다이노",
     "attr": "지수",
     "attrs": [
@@ -7083,7 +7083,7 @@
         1
       ]
     ],
-    "obtain": "다섯 석상을 찾아 비밀을 풀어라",
+    "obtain": "퀘스트: 자판기 · 후암산 3층 (20,58)",
     "origin": [
       34,
       28,
@@ -7107,8 +7107,8 @@
     ],
     "img": "https://sathezero.com/data/file/board23/f8b30a222a69712b0975b56bbdb63d69_bdEWDnlm_4466457f312a4e82e6d4ce2e94a59477a8522fbb.gif",
     "gradeOff": 2,
-    "ride": "-",
-    "grade": "일반등급",
+    "ride": "",
+    "grade": "",
     "totalGrowth": "4.60"
   },
   {
@@ -8329,7 +8329,7 @@
     "totalGrowth": "5.12"
   },
   {
-    "id": "zero_legacy_3214",
+    "id": "zero_1055",
     "name": "발로스",
     "attr": "지풍",
     "attrs": [
@@ -8342,7 +8342,7 @@
         2
       ]
     ],
-    "obtain": "Lv.120 이상 발로스 환생",
+    "obtain": "퀘스트: 자판기 · 후암산 3층 (20,58)",
     "origin": [
       21,
       31,
@@ -8364,10 +8364,10 @@
       1.28,
       1.47
     ],
-    "img": "https://sathezero.com/data/file/board23/40ab6dab13d9bf3ca40cfbeb9caedb7b_1ltXMIVm_37dce9a9ceb0752dc8d3cdd16db4e5b53d4eb43a.gif",
+    "img": "https://sathezero.com/data/file/board23/243_copy_445_e269d12f90f288ca5b6f46894576df11_0f8OAJpF_13b56a7b5818101dce0142e119301faac81e34e0.gif",
     "gradeOff": 2,
-    "ride": "탑승불가",
-    "grade": "일반등급",
+    "ride": "",
+    "grade": "",
     "totalGrowth": "4.95"
   },
   {
@@ -8487,7 +8487,7 @@
     "totalGrowth": "5.20"
   },
   {
-    "id": "zero_legacy_3232",
+    "id": "zero_1060",
     "name": "페르페",
     "attr": "수화",
     "attrs": [
@@ -8500,7 +8500,7 @@
         4
       ]
     ],
-    "obtain": "미선의 편지 퀘스트 랜덤 보상",
+    "obtain": "퀘스트: 만석 · 스라인 마을 (141,112)",
     "origin": [
       23,
       25,
@@ -8524,8 +8524,8 @@
     ],
     "img": "https://sathezero.com/data/file/board23/be97a635efd34b36ca78db120d4e3010_XZPHpDcK_09d941684da8af45af02ecc7a5b4c1900d612816.gif",
     "gradeOff": 2,
-    "ride": "탑승불가",
-    "grade": "일반등급",
+    "ride": "",
+    "grade": "",
     "totalGrowth": "4.79"
   },
   {
@@ -8611,5 +8611,47 @@
     "ride": "탑승가능",
     "grade": "일반등급",
     "totalGrowth": "5.05"
+  },
+  {
+    "id": "zero_1062",
+    "name": "토우트",
+    "attr": "지수",
+    "attrs": [
+      [
+        "지",
+        1
+      ],
+      [
+        "수",
+        9
+      ]
+    ],
+    "obtain": "퀘스트: 자판기 · 후암산 3층 (20,58)",
+    "origin": [
+      41,
+      31,
+      32,
+      6
+    ],
+    "k": 28,
+    "ok": true,
+    "approx": false,
+    "initS": [
+      74,
+      12,
+      12,
+      2
+    ],
+    "growthS": [
+      12.56,
+      2.1,
+      2.14,
+      0.5
+    ],
+    "img": "https://sathezero.com/data/file/board23/b782975ca245bd28e1a379b6492d35a8_GlJ7rHUx_0a847c4c906b88e903e2a5d9f779467b9a57f547.gif",
+    "gradeOff": 2,
+    "ride": "",
+    "grade": "",
+    "totalGrowth": "4.74"
   }
 ]
