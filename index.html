@@ -1356,7 +1356,7 @@ h1,h2,h3,.display{
           </div>
         </td>
         <td>${initCalcHtml}</td>
-        <td class="mono">${r.k ?? '—'}${r.k!=null?(r.k_exact?'':' (근사)'):''}</td>
+        <td class="mono">${r.k ?? '—'}</td>
       </tr>`;
     }).join('');
 
@@ -1723,7 +1723,7 @@ h1,h2,h3,.display{
     els.detail.innerHTML = `
       <div class="empty-state" style="padding:36px 10px;">
         왼쪽 목록에서 펫을 검색하거나 골라주세요.<br>
-        <span style="font-size:12px;">전체 ${ACTIVE_PETS.length}마리 · 원본계수 정밀 확정 ${preciseCount}마리 · 근사 추정 ${approxCount}마리</span>
+        <span style="font-size:12px;">전체 ${ACTIVE_PETS.length}마리 · 원본계수 정밀 확정 ${preciseCount}마리${approxCount ? ` · 근사 추정 ${approxCount}마리` : ''}</span>
       </div>`;
     els.results.innerHTML = `<div class="empty-state">펫을 선택하면 178,750가지 조합을 대조한 등급 확률이 여기 표시됩니다.</div>`;
     els.compare.innerHTML = `<div class="empty-state">펫을 선택하면 RANK 1~6 전체의 표기값 대 계산값을 비교해서 보여줍니다.</div>`;
