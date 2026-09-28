@@ -1519,7 +1519,12 @@ h1,h2,h3,.display{
     }
     const topGrade = GRADES.find(g=>counts[g]);
     const eightPct = ((counts[8]||0)/total*100);
-    const fun = funMessage(eightPct, topGrade);
+    // wtotal = 이 초기치가 나올 확률(균등 오프셋 x 다항 보너스). 정석이 1/800보다 드문 종은
+    // 정석 자체가 천장이라 정석이 나오면 고등급이 거의 확정이다.
+    const isCeiling = statVals.every((v,i)=>v===p.initS[i]) && wtotal < 1/800;
+    const fun = isCeiling
+      ? {emoji:'🦄', text:'이 녀석한테 정석은 천장이에요. 정석만 나와도 로또 1등!'}
+      : funMessage(eightPct, topGrade);
 
     const showField = wtotal > 0;
     const fieldPct = g => (wcounts[g]||0)/wtotal*100;
