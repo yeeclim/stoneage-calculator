@@ -66,6 +66,16 @@ GitHub Actions(클라우드 IP)에서는 `Just a moment...` 챌린지 페이지�
   반드시 수동으로 한 번 돌려서 정상 동작하는지 확인할 것. 실패해도 index.html은
   안 건드리므로 매일 조용히 실패만 해도 안전(no-op).
 
+## 실측 포획 데이터 누적 (오토파일럿 로그)
+
+계산기 "실측" 확률은 직접 포획한 개체로 검증한 모델(보너스 10포인트 다항분포 + 등급오프셋 균등)을 쓴다.
+
+1. 오토파일럿 로그(`autopilot_gui.log`, `autopilot_detail.log`)를 `log/` 에 넣는다. `log/` 는 git 에 올리지 않는다(.gitignore).
+2. `npm run ingest:logs` — 로그에서 고유 개체를 뽑아 `data/field-samples.json` 에 **추가만** 한다(기존 개체 삭제·리셋 없음, 같은 로그를 다시 넣어도 중복 안 됨).
+3. `npm run check:field` — 누적 개체로 origin·k 재현성, 모델 로그우도, 상위 꼬리(정석 대비 편차)를 재검증한다(읽기 전용, 약 2분).
+
+`data/field-samples.json` 의 `legacyCounts` 는 원본 로그가 남아있지 않은 초기 보정 표본(732마리)의 종별 수 기록이다(개체 데이터 없음, 삭제 금지).
+
 ## 배포
 
 정적 호스팅에 루트로 올리면 된다. Vercel 기준 별도 빌드 설정 불필요.

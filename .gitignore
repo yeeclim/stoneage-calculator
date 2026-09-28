@@ -4,3 +4,4 @@ scripts/ohrsa.local.env
 scripts/ohrsa-scrape.log
 scripts/ohrsa_pets_auto.json
 scripts/sathezero.local.env
+log/

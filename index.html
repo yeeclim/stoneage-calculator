@@ -148,14 +148,6 @@ h1,h2,h3,.display{
 }
 
 /* 실측 보정 표시 */
-.field-note{
-  margin:12px 0 0; padding:10px 12px; border-radius:10px; font-size:12.5px; line-height:1.65;
-  background:var(--surface-2); color:var(--text-muted); border:1px solid var(--border);
-}
-.field-note b{ color:var(--text); }
-.field-note-own{ display:block; }
-.field-note-own.warn{ color:var(--danger); }
-.field-note-own.warn b{ color:var(--danger); }
 /* 세로 마커 - 트랙과 등급색 양쪽 위에서 보이도록 후광을 준다 */
 .gfield-mark{
   position:absolute; inset:0 auto 0 0; box-sizing:border-box; pointer-events:none;
@@ -1123,22 +1115,16 @@ h1,h2,h3,.display{
     Ds.push([a,b,c,d]);
   }
 
-  // 등급오프셋(-2~+2)의 실제 출현 분포. 균등(0.2씩)이 아니라는 것을 직접 포획한 개체
-  // 표본으로 추정한 값이다. 등급 굴림은 종과 무관해 보여 모든 펫에 같은 값을 쓴다.
-  // 2026-09 오토파일럿 포획 로그(4종, 732마리, 그린고르/가가로스/반기노/기라노)로
-  // computeGradeDist와 같은 매칭 로직 위에서 EM(최대우도) 재적합한 값. 이전 407마리
-  // 추정치(반기노 편중)보다 표본이 크고 종이 다양해 이 값으로 교체했다.
-  const FIELD_W = [0.087318, 0.226101, 0.419270, 0.076997, 0.190313];
-  const FIELD_OWN = { '112':514, '148':133, '97':75, '132':10 }; // pet id -> 실측 표본 수
-  const FIELD_N = 732;
+  // 실측 보정 모델. log/autopilot_gui.log 포획 개체 1,280마리(고르고르 810, 반기노 361,
+  // 기라노 46, 보크곤 41 외)로 검증했다 - 전원 현재 origin·k 로 재현됨.
+  // 보너스 10포인트는 286가지 분배가 균등한 게 아니라 1포인트씩 4스탯에 독립 무작위로
+  // 배분된다(다항분포, [10,0,0,0] 같은 쏠림은 드묾). 이렇게 두면 등급오프셋은 균등(0.2씩)이
+  // 최적이고, 균등 분배+오프셋 재적합(예전 FIELD_W 이봉형)보다 로그우도가 +266 높다(종별로도
+  // 전부 개선). 예전 FIELD_W 는 틀린 보너스 가정을 오프셋 쪽이 흡수한 결과였다.
+  const FIELD_W = [0.2, 0.2, 0.2, 0.2, 0.2];
+  const FACT = [1,1,2,6,24,120,720,5040,40320,362880,3628800];
+  const BONUS_W = Ds.map(D => FACT[10] / (FACT[D[0]]*FACT[D[1]]*FACT[D[2]]*FACT[D[3]]) / Math.pow(4,10));
 
-  // 위 4종의 실제 포획 개체 초기치 분포(오토파일럿 로그 실측, 참고용 표시 전용).
-  const REAL_RANGE = {
-    '112': { n:514, min:[43,8,8,0],  max:[52,10,11,2] }, // 그린고르
-    '148': { n:133, min:[52,9,9,2],  max:[61,12,11,5] }, // 가가로스
-    '97':  { n:75,  min:[45,10,5,4], max:[52,13,8,7]  }, // 반기노
-    '132': { n:10,  min:[57,13,7,6], max:[63,14,8,7]  }, // 기라노
-  };
 
   function computeGradeDist(origin, k, target){
     const counts = {};
@@ -1175,9 +1161,10 @@ h1,h2,h3,.display{
               const p2 = Math.floor(raw2);
               if(p2!==target[2]) continue;
               counts[grade] = (counts[grade]||0)+1;
-              wcounts[grade] = (wcounts[grade]||0)+w;
+              const wb = w*BONUS_W[i];
+              wcounts[grade] = (wcounts[grade]||0)+wb;
               total++;
-              wtotal += w;
+              wtotal += wb;
               (matches[grade] = matches[grade]||[]).push({
                 offset:[d0,d1,d2,d3], bonus:D, raw:[raw0,raw1,raw2,raw3]
               });
@@ -1441,7 +1428,6 @@ h1,h2,h3,.display{
         <button class="reset-btn" id="resetBtn" type="button" ${p.ok?'':'disabled'} title="스탯을 S급 참고 초기치로 되돌립니다">↺ 초기화</button>
         <span class="calc-note">S급 참고 초기치: <span class="mono">${p.initS[0]}/${p.initS[1]}/${p.initS[2]}/${p.initS[3]}</span> (내구/공격/방어/순발)${p.ok ? ` · 계산값 <span class="mono">${calcSGradeInitDecimal(p).map(v=>v.toFixed(2)).join('/')}</span>` : ''}</span>
       </div>
-      ${REAL_RANGE[p.id] ? (rr=>`<p class="calc-note">✅ 실측 초기치 범위(직접 포획 <b>${rr.n}</b>마리): <span class="mono">${rr.min[0]}~${rr.max[0]} / ${rr.min[1]}~${rr.max[1]} / ${rr.min[2]}~${rr.max[2]} / ${rr.min[3]}~${rr.max[3]}</span> (내구/공격/방어/순발)</p>`)(REAL_RANGE[p.id]) : ''}
     `;
     const grid = document.getElementById('statGrid');
     grid.innerHTML = STAT_LABELS.map((lbl,i)=>`
@@ -1535,8 +1521,6 @@ h1,h2,h3,.display{
     const eightPct = ((counts[8]||0)/total*100);
     const fun = funMessage(eightPct, topGrade);
 
-    // 보정은 전 종에 적용하고, 직접 포획 표본이 있는 펫은 그 사실을 따로 밝힌다.
-    const ownN = FIELD_OWN[p.id] || 0;
     const showField = wtotal > 0;
     const fieldPct = g => (wcounts[g]||0)/wtotal*100;
     const eightField = showField ? fieldPct(8) : null;
@@ -1570,10 +1554,6 @@ h1,h2,h3,.display{
         <div class="rs-item"><div class="rv mono" style="color:var(--accent)">${topGrade}등급</div><div class="rl">최고 등급</div></div>
         <div class="rs-item"><div class="rv mono">${eightPct.toFixed(2)}%${showField?`<span class="rv-field"><i>/</i>${eightField.toFixed(2)}%</span>`:''}</div><div class="rl">+8등급(환각) 확률${showField?' <em>이론 / 실측</em>':''}</div></div>
       </div>
-      ${showField?`<div class="field-note">
-        ${ownN ? `<span class="field-note-own">✅ 이 펫 직접 포획 표본 <b>${(ownN>=100?Math.floor(ownN/100)*100:Math.floor(ownN/10)*10).toLocaleString()}마리</b></span>`
-                : `<span class="field-note-own warn">⚠ 이 펫 포획 표본은 없음 — 다른 종 분포를 대신 적용</span>`}
-      </div>`:''}
       <div class="fun-banner">
         <span class="fun-emoji">${fun.emoji}</span>
         <span class="fun-text">${fun.text}</span>
