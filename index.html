@@ -166,6 +166,14 @@ h1,h2,h3,.display{
 }
 .result-summary .rs-item .rl em{ font-style:normal; opacity:.75; text-transform:none; letter-spacing:0; }
 
+/* 맹독 데미지 기준 */
+.poison-box{ margin-top:14px; padding:10px 12px; border-radius:10px; background:var(--surface-2); border:1px solid var(--border); font-size:12.5px; line-height:1.6; }
+.poison-box .pz-head{ font-weight:700; }
+.poison-box .pz-head b{ color:var(--accent); font-family:"JetBrains Mono",monospace; }
+.poison-box .pz-rows{ display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.poison-box .pz-rows .tag{ background:var(--surface); color:var(--text); }
+.poison-box .pz-sub{ color:var(--text-muted); font-size:11.5px; margin-top:4px; }
+
 .attr-gauge-wrap{ display:flex; flex-direction:column; gap:6px; margin-top:14px; }
 .attr-row{ display:grid; grid-template-columns:22px 1fr 44px; align-items:center; gap:10px; }
 .attr-label{ font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:700; text-align:center; }
@@ -1403,6 +1411,46 @@ h1,h2,h3,.display{
     return `<div class="attr-gauge-wrap">${rows}</div>`;
   }
 
+  // 맹독의 정령 데미지 (서버 소스 battle.c): down = (Σ(내구+공격+방어+순발 원값)/100 - 20)/4, 1 미만이면 1.
+  // 원값 = k*(origin+오프셋+보너스) 이고 보너스 합은 항상 10이라 데미지는 등급(오프셋 합)만으로 정해진다.
+  // 레벨업하면 원값이 커지므로 Lv1 개체에만 유효하다.
+  function poisonDamage(p, grade){
+    const s = p.k*(p.origin[0]+p.origin[1]+p.origin[2]+p.origin[3]+grade+10);
+    const d = Math.trunc((Math.trunc(s/100)-20)/4);
+    return d<1 ? 1 : d;
+  }
+  // 등급(오프셋 합)별 경우의 수 - 오프셋 -2~+2 네 개, 총 625가지 (실측상 균등)
+  const GRADE_WAYS = (()=>{
+    const w = {};
+    for(const a of OFFSETS) for(const b of OFFSETS) for(const c of OFFSETS) for(const d of OFFSETS){
+      const g=a+b+c+d; w[g]=(w[g]||0)+1;
+    }
+    return w;
+  })();
+  function renderPoison(p){
+    if(!p.ok || !p.origin || !p.k) return '';
+    const groups = []; // 높은 데미지부터 {dmg, lo, hi}
+    for(let g=8; g>=-8; g--){
+      const dmg = poisonDamage(p, g);
+      const last = groups[groups.length-1];
+      if(last && last.dmg===dmg) last.lo = g; else groups.push({dmg, lo:g, hi:g});
+    }
+    const fmtG = g => (g>0?'+':'')+g;
+    const top = groups[0];
+    if(groups.length===1){
+      return `<div class="poison-box"><div class="pz-head">🧪 맹독 데미지: 모든 등급 <b>${top.dmg}</b></div>
+        <div class="pz-sub">등급과 무관하게 같아서 맹독으로는 거를 수 없습니다. (Lv1 기준)</div></div>`;
+    }
+    let ways = 0;
+    for(let g=top.lo; g<=8; g++) ways += GRADE_WAYS[g]||0;
+    const rows = groups.map(gr=>`<span class="tag">${gr.dmg} → ${gr.lo===gr.hi?fmtG(gr.lo):fmtG(gr.lo)+'~'+fmtG(gr.hi)}등급</span>`).join('');
+    return `<div class="poison-box">
+      <div class="pz-head">🧪 맹독 데미지 <b>${top.dmg}</b> 이상만 포획</div>
+      <div class="pz-rows">${rows}</div>
+      <div class="pz-sub">${ways===1 ? `맹독 ${top.dmg} 이상이면 8등급 확정.` : `맹독 ${top.dmg} 이상이면 8등급 확률 0.16% → ${(100/ways).toFixed(2)}%.`} Lv1 개체 기준.</div>
+    </div>`;
+  }
+
   function renderDetail(p){
     const rankNote = p.ok ? `<span class="tag mono">추정 원본계수 ${p.origin.join('/')} · k=${p.k}</span>` : '';
     els.detail.innerHTML = `
@@ -1418,6 +1466,7 @@ h1,h2,h3,.display{
         </div>
       </div>
       ${renderAttrGauge(p)}
+      ${renderPoison(p)}
       ${p.approx && p.origin ? `<p class="approx-note">⚠ 이 펫은 성장률 역산 결과가 다른 펫만큼 깔끔한 정수로 떨어지지 않았습니다. 원본계수(${p.origin.join('/')})는 초기치를 가장 근접하게 재현하는 값으로 추정한 것이라, 등급 확률은 참고용으로만 봐주세요.</p>` : ''}
       ${p.approx && !p.origin ? `<p class="approx-note">⚠ 아직 원본계수·k 역산 전인 미확인 개체입니다. 등급 계산을 지원하지 않으며, 초기치·성장률은 ${p.id.startsWith('zero_') ? '스톤에이지 제로 "페트정보" 게시판' : 'ohrsa.net'} 표기값 그대로입니다.</p>` : ''}
       <div style="height:18px"></div>
