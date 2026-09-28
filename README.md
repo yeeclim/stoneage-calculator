@@ -5,8 +5,8 @@
 ## 구성
 
 - `index.html` — 계산기 본체. 펫 데이터와 이미지가 전부 파일 안에 내장되어 있어 외부 의존성은 Google Fonts뿐이다.
-  - `<script id="pet-data">` — 원본계수·k 역산이 끝난 정밀/근사 지원 개체(현재 142마리). `img` 필드는 접두어 없는 raw base64 webp.
-  - `<script id="pet-data-extra">` — 아직 역산 전인 "근사 추정" 개체(현재 23마리, `approx:true`, `ok:false`). `img` 필드는 ohrsa.net 원격 URL.
+  - `<script id="pet-data">` — 원본계수·k 역산이 끝난 정밀 지원 개체(현재 165마리, 전부 `approx:false`). `img` 필드는 접두어 없는 raw base64 webp 또는 `images/pets/` 로컬 경로.
+  - `<script id="pet-data-extra">` — ohrsa.net 스크랩으로 추가된 개체(현재 19마리). 역산 완료로 전부 `ok:true`, `approx:false`. 새로 머지된 항목은 역산 전까지 `approx:true` 로 들어온다.
   - `<script id="rank-compare-data">` — RANK 1~6 표기값 대 계산값 비교용 데이터.
   - `<script id="pet-data-zero">` — 스톤에이지 제로(별개 게임) "제로" 탭용 도감. sathezero.com board23 "페트정보" 게시판 전체(183마리)를 스크랩한 것으로, `origin`/`k`는 게시판 표기 초기치·성장률을 `scripts/solve-origin-k.js` 로 역산한 값이다(대부분 `approx:false`). 솔버가 해를 못 찾거나(약 20마리) 역산이 깔끔하지 않은 개체는 `approx:true` — 이 중 해가 없는 개체는 예전 방식(표기 초기치 1개를 "오프셋 전부 +2"로 가정, `k=25` 고정)으로 폴백하므로 자기 초기치를 넣으면 등급이 한 값으로 100% 쏠린다. 실측 포획으로 검증된 값은 아니므로 등급 확률은 참고용. 등급 확률 계산 자체는 `pet-data`/`pet-data-extra`와 동일한 로직을 그대로 타지만 정확도가 낮으니 참고용. 원본 사이트에 초기치가 아예 없는 환생 최상위체 3마리만 `ok:false`. `img`는 sathezero.com 원격 URL. 상단 탭이 `calc`/`compare`가 아니라 `zero`일 때 `ACTIVE_PETS`가 이 배열로 바뀐다.
   - 렌더링은 항상 `imgSrc(p)` 헬퍼를 거친다: `img` 가 `http` 또는 `images/`로 시작하면 그대로, 아니면 `data:image/webp;base64,` 를 붙여서 사용한다. 오르(`pet-data-extra`)·제로(`pet-data-zero`) 이미지는 `images/pets/<id>.<ext>` 로컬 파일이며, 스크랩/머지/inject 후엔 `npm run localize:images` 로 다시 내려받아 경로를 치환해야 한다.
