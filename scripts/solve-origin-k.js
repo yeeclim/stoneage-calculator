@@ -10,7 +10,7 @@
  *   표기 초기치는 여기에 floor 적용.
  *
  * 절차: 성장률 4개로 M을 역행렬 풀이해 v 를 얻고, 밴드별 B 로 origin 후보를 만든 뒤
- *       (1) 밴드 자기일관성 (2) 초기치를 재현하는 k 존재 를 요구하고,
+ *       (1) 밴드 자기일관성 (2) 초기치를 재현하는 k 존재(정석 +8 재현 필수, allK 참고) 를 요구하고,
  *       반올림 잔차가 가장 작은 해를 채택한다.
  *
  * 기존 165마리 중 162마리를 origin·k 까지 정확 재현(origin 불일치 0건, 해없음 0건).
@@ -55,7 +55,29 @@ function solveM(rhs) {
   return A.map(r => r[4]);
 }
 
-// 표기 초기치를 정확히 재현하는 k 를 전부 찾는다 (1~80).
+// 표기 스탯 [내구,공격,방어,순발]. 서버(gmsv char.c CHAR_complianceParameter)와 같은
+// 연산 순서로 계산한다 - 원값 r = k*work(정수), 표기 = (int)(r*0.01*계수 합). 순서가 다르면
+// 부동소수 오차로 내림 결과가 갈린다(펫 432마리 중 69마리 정석 일치 건수가 달랐음).
+// v = origin+오프셋+보너스(정수).
+function stats(k, v) {
+  const r = v.map(x => k * x);
+  return [
+    Math.trunc((r[0] * 4 + r[1] * 1 + r[2] * 1 + r[3] * 1) * 0.01),
+    Math.trunc(r[1] * 0.01 * 1.0 + r[2] * 0.01 * 0.1 + r[0] * 0.01 * 0.1 + r[3] * 0.01 * 0.05),
+    Math.trunc(r[2] * 0.01 * 1.0 + r[1] * 0.01 * 0.1 + r[0] * 0.01 * 0.1 + r[3] * 0.01 * 0.05),
+    Math.trunc(r[3] * 0.01),
+  ];
+}
+
+// 보너스 10포인트의 정수 분배 286가지.
+const Ds = [];
+for (let a = 0; a <= 10; a++) for (let b = 0; b <= 10 - a; b++) for (let c = 0; c <= 10 - a - b; c++) Ds.push([a, b, c, 10 - a - b - c]);
+
+// 정석은 실제 개체로 반드시 나온다 -> 오프셋 전부 +2(최고등급)에서 정석을 만드는 보너스분배가 있어야 한다.
+const reachableAtTop = (origin, k, initS) =>
+  Ds.some(D => stats(k, origin.map((o, i) => o + GRADE_OFF + D[i])).every((x, i) => x === initS[i]));
+
+// 보너스 평균 2.5 로 표기 초기치를 재현하는 k 를 전부 찾는다 (1~80). origin 후보 선별은 이 기준.
 function allK(origin, initS, off = GRADE_OFF) {
   const v = origin.map(o => o + off + BONUS);
   const hits = [];
@@ -64,6 +86,16 @@ function allK(origin, initS, off = GRADE_OFF) {
     if (d.every((x, i) => x === initS[i])) hits.push(k);
   }
   return hits;
+}
+
+// 정석 +8 재현 k 로 보정. 2.5 기준 k 중 +8 재현되는 게 있으면 그것만, 없으면 같은 origin 에서
+// +8 재현되는 k 를 2.5 기준 k 에 가까운 순으로 쓴다(카타르카스 22->23, 베노노크 24->23, 후바바 22->21).
+function topKs(origin, initS, ks) {
+  const ok = ks.filter(k => reachableAtTop(origin, k, initS));
+  if (ok.length) return ok;
+  const reach = [];
+  for (let k = 1; k <= 80; k++) if (reachableAtTop(origin, k, initS)) reach.push(k);
+  return reach.sort((a, b) => Math.abs(a - ks[0]) - Math.abs(b - ks[0]));
 }
 
 /** 후보들을 반올림 잔차 오름차순으로 반환. 첫 원소가 채택해, 빈 배열이면 해 없음. */
@@ -81,8 +113,10 @@ function solve(growthS, initS, off = GRADE_OFF) {
     if (origin.some(o => o < 0)) continue;
     const sum = origin.reduce((a, b) => a + b, 0);
     if (bandOf(sum - 4 * (GRADE_OFF - off)) !== band) continue;   // RANK 구간표는 오프셋 +2 기준 origin 합으로 정의됨 -> 환산                                        // 밴드 자기일관성
-    const ks = allK(origin, initS, off);
-    if (!ks.length) continue;                                                  // 초기치 재현 k 필수
+    const ks25 = allK(origin, initS, off);
+    if (!ks25.length) continue;                                                // 초기치 재현 k 필수
+    const ks = topKs(origin, initS, ks25);
+    if (!ks.length) continue;                                                  // 정석 +8 재현 k 필수
     const resid = Math.max(...v.map((x, i) => Math.abs(x - off - BONUS - origin[i])));
     const gg = origin.map(o => (o + off + BONUS) * B / 10000);
     const back = disp(gg).map(x => +x.toFixed(3));
@@ -93,7 +127,7 @@ function solve(growthS, initS, off = GRADE_OFF) {
   return cands;
 }
 
-module.exports = { solve, allK, disp, RANKS, GRADE_OFF, BONUS };
+module.exports = { solve, allK, disp, stats, reachableAtTop, Ds, RANKS, GRADE_OFF, BONUS };
 
 // CLI: node scripts/solve-origin-k.js "51,10,6,9" "9.761,2.086,1.231,1.734"
 if (require.main === module) {

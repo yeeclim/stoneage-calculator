@@ -21,7 +21,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { solve } = require('./solve-origin-k.js');
+const { solve, stats } = require('./solve-origin-k.js');
 
 const SRC = path.join(__dirname, 'zero_board23_pets.json');
 const OUT = path.join(__dirname, 'zero_pet_data.json');
@@ -83,13 +83,7 @@ for (let a = 0; a <= 10; a++) for (let b = 0; b <= 10 - a; b++) for (let c = 0; 
 
 function existsExactMatchAtTop(origin, k, target) {
   for (const D of Ds) {
-    const v0 = origin[0] + ZERO_OFF + D[0], v1 = origin[1] + ZERO_OFF + D[1], v2 = origin[2] + ZERO_OFF + D[2], v3 = origin[3] + ZERO_OFF + D[3];
-    const a0 = (k * v0) / 100, a1 = (k * v1) / 100, a2 = (k * v2) / 100, a3 = (k * v3) / 100;
-    if (Math.floor(a3) !== target[3]) continue;
-    if (Math.floor(0.1 * a0 + a1 + 0.1 * a2 + 0.05 * a3) !== target[1]) continue;
-    if (Math.floor(0.1 * a0 + 0.1 * a1 + a2 + 0.05 * a3) !== target[2]) continue;
-    if (Math.floor(4 * a0 + a1 + a2 + a3) !== target[0]) continue;
-    return true;
+    if (stats(k, origin.map((o, i) => o + ZERO_OFF + D[i])).every((x, i) => x === target[i])) return true;
   }
   return false;
 }
@@ -136,9 +130,7 @@ function makeId(no) {
 function pickK(origin, initS, kSolver) {
   const O = [-2, -1, 0, 1, 2];
   const match = (off, D, k) => {
-    const a = origin.map((o, i) => (k * (o + off[i] + D[i])) / 100);
-    const r = [4 * a[0] + a[1] + a[2] + a[3], 0.1 * a[0] + a[1] + 0.1 * a[2] + 0.05 * a[3], 0.1 * a[0] + 0.1 * a[1] + a[2] + 0.05 * a[3], a[3]];
-    return r.every((x, i) => Math.floor(x + 1e-9) === initS[i]);
+    return stats(k, origin.map((o, i) => o + off[i] + D[i])).every((x, i) => x === initS[i]);
   };
   let bestK = kSolver, bestN = -1;
   for (let k = 1; k <= 80; k++) {
@@ -166,7 +158,10 @@ function resolveOriginK(initS, growthS) {
     const unclean = best.resid > 0.3 || !existsExactMatchAtTop(best.origin, best.k, initS);
     return { origin: best.origin, k: best.k, approx: ambiguous || unclean };
   }
-  return { origin: estimateOrigin(initS), k: K_ASSUMED, approx: true };
+  // k=25 고정으로 정석이 재현 안 되면(정석은 반드시 나옴) 재현되는 k 로 바꾼다 (타노프스 25->26).
+  const origin = estimateOrigin(initS);
+  const k = existsExactMatchAtTop(origin, K_ASSUMED, initS) ? K_ASSUMED : pickK(origin, initS, K_ASSUMED);
+  return { origin, k, approx: true };
 }
 
 const out = raw.map(p => {
