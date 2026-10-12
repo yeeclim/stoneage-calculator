@@ -11,6 +11,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { stats } = require('./solve-origin-k.js');
 
 const ROOT = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -25,10 +26,7 @@ const F = [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800];
 const BW = { 균등: Ds.map(() => 1 / Ds.length), 다항: Ds.map(D => F[10] / (F[D[0]] * F[D[1]] * F[D[2]] * F[D[3]]) / 4 ** 10) };
 const U = [0.2, 0.2, 0.2, 0.2, 0.2];
 
-const disp = (p, d, D) => {
-  const a = d.map((x, j) => p.k * (p.origin[j] + x + D[j]) / 100);
-  return [4 * a[0] + a[1] + a[2] + a[3], 0.1 * a[0] + a[1] + 0.1 * a[2] + 0.05 * a[3], 0.1 * a[0] + 0.1 * a[1] + a[2] + 0.05 * a[3], a[3]].map(Math.floor);
-};
+const disp = (p, d, D) => stats(p.k, d.map((x, j) => p.origin[j] + x + D[j]));
 const eachCombo = fn => { for (const d0 of OFF) for (const d1 of OFF) for (const d2 of OFF) for (const d3 of OFF) { const d = [d0, d1, d2, d3]; Ds.forEach((D, i) => fn(d, D, i)); } };
 const wp = (w, d) => w[d[0] + 2] * w[d[1] + 2] * w[d[2] + 2] * w[d[3] + 2];
 
