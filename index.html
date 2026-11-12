@@ -8273,6 +8273,7 @@ h1,h2,h3,.display{
   })();
   function renderPoison(p){
     if(!p.ok || !p.origin || !p.k) return '';
+    if(p.variant) return ''; // 환생·진화는 야생 포획 대상이 아님
     const groups = []; // 높은 데미지부터 {dmg, lo, hi}
     for(let g=8; g>=-8; g--){
       const dmg = poisonDamage(p, g);
