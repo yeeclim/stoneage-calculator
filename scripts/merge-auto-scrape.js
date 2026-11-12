@@ -18,7 +18,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { solve } = require('./solve-origin-k');
+const { solve, bandB } = require('./solve-origin-k');
 
 const root = path.resolve(__dirname, '..');
 const scrapedPath = path.join(__dirname, 'ohrsa_pets_auto.json');
@@ -44,7 +44,7 @@ function variantOf(e) {
   return m ? { variant: m[2], src: m[1] } : null;
 }
 
-function mapExtra(e, variant) {
+function mapExtra(e, variant, solveOpts = {}) {
   // 스크랩의 i 는 매 스크랩마다 바뀌는 페이지 내 순번이라 기존 pet-data id(ohrsa_N)와 충돌한다 -> 이름 해시로 고정 id 생성.
   // 환생·진화는 원본과 이름이 같으므로 형태까지 넣어 해시한다.
   const id = 'ohrsa_' + require('crypto').createHash('sha1').update(String(e.name || '') + (variant ? '|' + variant : '')).digest('hex').slice(0, 8);
@@ -56,7 +56,7 @@ function mapExtra(e, variant) {
   // 표기 초기치·성장률에서 origin/k 를 역산한다. 예전에는 origin:null, approx:true 로
   // 하드코딩해서 새 펫이 전부 "근사 추정" 상태로 들어왔다 - 그래서 카르곤이 계산 불가
   // 개체로 추가됐었다. 해가 나오면 정확 개체로, 안 나오면 그때만 approx 로 둔다.
-  const sol = solve(growth, initFinal)[0] || null;
+  const sol = solve(growth, initFinal, undefined, solveOpts)[0] || null;
   if (!sol) console.log(`  ! ${e.name || '<무명>'}: origin/k 역산 실패 -> approx 처리`);
 
   return {
@@ -69,11 +69,15 @@ function mapExtra(e, variant) {
     k: sol ? sol.k : (e.k || null),
     ok: !!sol,
     approx: !sol,
+    _resid: sol ? sol.resid : null,
     initS: initFinal,
     growthS: growth,
     img: e.img || ''
   };
 }
+
+// 환생·진화 역산 채택 한계. 원본 B 에서 정수해면 잔차 0.01 미만(88건 실측), 오타 데이터는 0.3 이상.
+const MAX_RESID = 0.05;
 
 function validateItem(raw) {
   const problems = [];
@@ -109,6 +113,9 @@ try {
   const nk = s => String(s).replace(/\s+/g, ''); // 사이트 획득 문구는 "어린흑룡", 데이터는 "어린 흑룡"
   for (const p of base) idByName.set(nk(p.name), String(p.id));
   for (const p of existingExtras) if (!p.variant) idByName.set(nk(p.name), String(p.id));
+  const petById = new Map([...base, ...existingExtras].map(p => [String(p.id), p]));
+  // 환생·진화는 원본 펫의 밴드 B 로 역산한다 (solve-origin-k.js opts.B 주석 참고).
+  const baseOpts = id => { const b = petById.get(String(id)); return b && b.origin ? { B: bandB(b.origin) } : {}; };
   const variantKeys = new Set(existingExtras.filter(p => p.variant).map(p => p.name + '|' + p.variant));
   const held = [];
   let linked = 0;
@@ -140,8 +147,9 @@ try {
       if (!baseId) { held.push(`${key}: 원본 '${baseName}' 없음`); continue; }
       const problems = validateItem(item);
       if (problems.length) { invalid.push({ name: key, problems }); continue; }
-      const m = mapExtra(item, v.variant);
-      if (!m.ok) { held.push(`${key}: origin/k 역산 실패 ${statKey(item)}`); continue; }
+      const m = mapExtra(item, v.variant, baseOpts(baseId));
+      if (!m.ok || m._resid > MAX_RESID) { held.push(`${key}: origin/k 정수해 없음 ${statKey(item)}`); continue; }
+      delete m._resid;
       m.variant = v.variant;
       m.baseId = baseId;
       if (v.variant === '환생') { m.imgOf = baseId; m.img = ''; }
@@ -151,8 +159,21 @@ try {
     if (baseNames.has(item.name) || extraNames.has(item.name)) continue;
     const problems = validateItem(item);
     if (problems.length) { invalid.push({ name: item.name, problems }); continue; }
-    added.push(mapExtra(item));
+    { const m = mapExtra(item); delete m._resid; added.push(m); }
     extraNames.add(item.name); // 스크랩 결과 안 중복 이름 대비
+  }
+
+  // 기존 환생·진화도 원본 B 기준으로 다시 역산 (해가 바뀐 것만 갱신, 실패하면 기존 값 유지).
+  let resolved = 0;
+  const dropIds = new Set();
+  for (const p of existingExtras) {
+    if (!p.variant || !p.baseId) continue;
+    const sol = solve(p.growthS, p.initS, undefined, baseOpts(p.baseId))[0];
+    if (!sol || sol.resid > MAX_RESID) { held.push(`${p.name}|${p.variant}: 원본 B 기준 정수해 없음 -> 데이터에서 제외`); dropIds.add(p.id); resolved++; continue; }
+    if (JSON.stringify(sol.origin) !== JSON.stringify(p.origin) || sol.k !== p.k || !p.ok) {
+      console.log(`  재역산 ${p.name}(${p.variant}): origin ${p.origin} k ${p.k} -> ${sol.origin} k ${sol.k}`);
+      p.origin = sol.origin; p.k = sol.k; p.ok = true; p.approx = false; resolved++;
+    }
   }
 
   console.log('신규 후보:', scraped.length, '| 이미 존재:', scraped.length - added.length - invalid.length, '| 무효:', invalid.length, '| 추가:', added.length);
@@ -160,12 +181,13 @@ try {
   if (linked) console.log('원본 연결(이름 바뀌는 진화):', linked);
   if (held.length) console.log('환생·진화 보류 ' + held.length + '건:\n  ' + held.join('\n  '));
 
-  if (added.length === 0 && linked === 0) {
+  if (resolved) console.log('원본 B 기준 재역산:', resolved);
+  if (added.length === 0 && linked === 0 && resolved === 0) {
     console.log('NO_CHANGE');
     process.exit(0);
   }
 
-  const merged = existingExtras.concat(added);
+  const merged = existingExtras.filter(p => !dropIds.has(p.id)).concat(added);
   const mergedJson = JSON.stringify(merged, null, 2);
   const newHtml = extraContent !== null
     ? indexHtml.replace(/<script[^>]+id="pet-data-extra"[^>]*>[\s\S]*?<\/script>/i,
