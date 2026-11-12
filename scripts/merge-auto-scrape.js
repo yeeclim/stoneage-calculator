@@ -18,7 +18,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { solve, bandB } = require('./solve-origin-k');
+const { solve, bandB, RANKS } = require('./solve-origin-k');
 
 const root = path.resolve(__dirname, '..');
 const scrapedPath = path.join(__dirname, 'ohrsa_pets_auto.json');
@@ -56,7 +56,7 @@ function mapExtra(e, variant, solveOpts = {}) {
   // 표기 초기치·성장률에서 origin/k 를 역산한다. 예전에는 origin:null, approx:true 로
   // 하드코딩해서 새 펫이 전부 "근사 추정" 상태로 들어왔다 - 그래서 카르곤이 계산 불가
   // 개체로 추가됐었다. 해가 나오면 정확 개체로, 안 나오면 그때만 approx 로 둔다.
-  const sol = solve(growth, initFinal, undefined, solveOpts)[0] || null;
+  const sol = (solveOpts.B != null ? solveVariant(growth, initFinal, solveOpts.B) : solve(growth, initFinal)[0]) || null;
   if (!sol) console.log(`  ! ${e.name || '<무명>'}: origin/k 역산 실패 -> approx 처리`);
 
   return {
@@ -79,6 +79,14 @@ function mapExtra(e, variant, solveOpts = {}) {
 // 환생·진화 역산 채택 한계. 원본 B 에서 정수해면 잔차 0.01 미만(88건 실측), 오타 데이터는 0.3 이상.
 const MAX_RESID = 0.05;
 
+// 원본 B 우선, 정수해가 없으면 다른 밴드의 정수해(프라키토스 환생: 원본 475 -> 495 에서 잔차 0.005, 게임 실측 일치).
+function solveVariant(growth, init, B) {
+  const first = solve(growth, init, undefined, { B })[0];
+  if (first && first.resid <= MAX_RESID) return first;
+  const all = RANKS.map(r => solve(growth, init, undefined, { B: (r.Blo + r.Bhi) / 2 })[0]).filter(Boolean).sort((a, b) => a.resid - b.resid);
+  return all[0] && all[0].resid <= MAX_RESID ? all[0] : null;
+}
+
 function validateItem(raw) {
   const problems = [];
   if (!raw.name || typeof raw.name !== 'string') problems.push('missing name');
@@ -93,6 +101,16 @@ function validateItem(raw) {
 try {
   if (!fs.existsSync(scrapedPath)) { console.error('Missing', scrapedPath); process.exit(1); }
   const scraped = JSON.parse(fs.readFileSync(scrapedPath, 'utf8'));
+  // 사이트 표기가 틀린 개체는 게임 실측값으로 덮는다. 키 = '이름|환생|진화' 또는 '이름'.
+  const overridesPath = path.join(__dirname, 'ohrsa_overrides.json');
+  const OVR = fs.existsSync(overridesPath) ? JSON.parse(fs.readFileSync(overridesPath, 'utf8')) : {};
+  for (const e of scraped) {
+    const v = variantOf(e);
+    const o = OVR[v ? `${e.name}|${v.variant}` : e.name];
+    if (!o) continue;
+    if (o.initS) e.init_내공방순 = o.initS;
+    if (o.growthS) e.growth_내공방순 = o.growthS;
+  }
   const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
   const baseContent = extractScriptContent(indexHtml, 'pet-data');
@@ -168,8 +186,11 @@ try {
   const dropIds = new Set();
   for (const p of existingExtras) {
     if (!p.variant || !p.baseId) continue;
-    const sol = solve(p.growthS, p.initS, undefined, baseOpts(p.baseId))[0];
-    if (!sol || sol.resid > MAX_RESID) { held.push(`${p.name}|${p.variant}: 원본 B 기준 정수해 없음 -> 데이터에서 제외`); dropIds.add(p.id); resolved++; continue; }
+    const o = OVR[`${p.name}|${p.variant}`];
+    if (o && o.initS && JSON.stringify(o.initS) !== JSON.stringify(p.initS)) { p.initS = o.initS; resolved++; }
+    if (o && o.growthS && JSON.stringify(o.growthS) !== JSON.stringify(p.growthS)) { p.growthS = o.growthS; resolved++; }
+    const sol = solveVariant(p.growthS, p.initS, baseOpts(p.baseId).B);
+    if (!sol) { held.push(`${p.name}|${p.variant}: 원본 B 기준 정수해 없음 -> 데이터에서 제외`); dropIds.add(p.id); resolved++; continue; }
     if (JSON.stringify(sol.origin) !== JSON.stringify(p.origin) || sol.k !== p.k || !p.ok) {
       console.log(`  재역산 ${p.name}(${p.variant}): origin ${p.origin} k ${p.k} -> ${sol.origin} k ${sol.k}`);
       p.origin = sol.origin; p.k = sol.k; p.ok = true; p.approx = false; resolved++;
