@@ -38,9 +38,16 @@ function extractScriptContent(html, id) {
   return html.slice(openEnd + 1, closeTag);
 }
 
-function mapExtra(e) {
+// 획득 문구 "Lv120이상 X 환생|진화" -> { variant, src: X }. 120/130/140 구간은 보상 차이뿐이라 구분 안 함.
+function variantOf(e) {
+  const m = String(e.obtain || '').match(/Lv\d+이상\s+(.+?)\s+(환생|진화)/);
+  return m ? { variant: m[2], src: m[1] } : null;
+}
+
+function mapExtra(e, variant) {
   // 스크랩의 i 는 매 스크랩마다 바뀌는 페이지 내 순번이라 기존 pet-data id(ohrsa_N)와 충돌한다 -> 이름 해시로 고정 id 생성.
-  const id = 'ohrsa_' + require('crypto').createHash('sha1').update(String(e.name || '')).digest('hex').slice(0, 8);
+  // 환생·진화는 원본과 이름이 같으므로 형태까지 넣어 해시한다.
+  const id = 'ohrsa_' + require('crypto').createHash('sha1').update(String(e.name || '') + (variant ? '|' + variant : '')).digest('hex').slice(0, 8);
   const attrs = e.attrs || [];
   const attr = (attrs.map(a => a[0] || '').join('')) || (e.attr || '');
   const initFromAlt = Array.isArray(e.init_내공방순) ? e.init_내공방순 : (Array.isArray(e.initS) ? e.initS : (Array.isArray(e.초기치_공방순내) ? [e.초기치_공방순내[3], e.초기치_공방순내[0], e.초기치_공방순내[1], e.초기치_공방순내[2]] : null));
@@ -93,9 +100,54 @@ try {
   const existingExtras = extraContent ? JSON.parse(extraContent) : [];
   const extraNames = new Set(existingExtras.map(p => p.name));
 
+  // ---- 환생·진화 개체 ----
+  // 사이트는 환생/진화 개체를 원본과 같은 이름으로 따로 올린다 (획득 "Lv120이상 X 환생|진화").
+  // 원본 = 같은 이름의 비(非)환생 항목, 없으면 획득 문구의 X (이름이 바뀌는 진화, 예: 토라 -> 베르푸스).
+  // 환생은 외형이 안 바뀌므로 GIF 는 원본 것을 쓴다(imgOf). 진화는 GIF 가 달라 따로 받는다.
+  const plainNames = new Set(scraped.filter(e => !variantOf(e)).map(e => e.name));
+  const idByName = new Map();
+  const nk = s => String(s).replace(/\s+/g, ''); // 사이트 획득 문구는 "어린흑룡", 데이터는 "어린 흑룡"
+  for (const p of base) idByName.set(nk(p.name), String(p.id));
+  for (const p of existingExtras) if (!p.variant) idByName.set(nk(p.name), String(p.id));
+  const variantKeys = new Set(existingExtras.filter(p => p.variant).map(p => p.name + '|' + p.variant));
+  const held = [];
+  let linked = 0;
+  const statKey = e => JSON.stringify([e.init_내공방순, e.growth_내공방순]);
+  const seenVariant = new Map();
+
   const added = [];
   const invalid = [];
   for (const item of scraped) {
+    const v = variantOf(item);
+    if (v) {
+      const baseName = plainNames.has(item.name) ? item.name : v.src;
+      const baseId = idByName.get(nk(baseName));
+      if (baseName !== item.name) {
+        // 이름이 바뀌는 진화: 이미 단독 개체로 들어와 있으면 원본에 연결만 한다.
+        const own = existingExtras.find(p => p.name === item.name && !p.variant);
+        if (own || baseNames.has(item.name)) {
+          if (own && baseId && !own.baseId) { own.variant = v.variant; own.baseId = baseId; linked++; }
+          continue;
+        }
+      }
+      const key = item.name + '|' + v.variant;
+      if (variantKeys.has(key)) continue;
+      if (seenVariant.has(key)) {
+        if (seenVariant.get(key) !== statKey(item)) held.push(`${key}: 같은 형태가 수치 다르게 중복`);
+        continue;
+      }
+      seenVariant.set(key, statKey(item));
+      if (!baseId) { held.push(`${key}: 원본 '${baseName}' 없음`); continue; }
+      const problems = validateItem(item);
+      if (problems.length) { invalid.push({ name: key, problems }); continue; }
+      const m = mapExtra(item, v.variant);
+      if (!m.ok) { held.push(`${key}: origin/k 역산 실패 ${statKey(item)}`); continue; }
+      m.variant = v.variant;
+      m.baseId = baseId;
+      if (v.variant === '환생') { m.imgOf = baseId; m.img = ''; }
+      added.push(m);
+      continue;
+    }
     if (baseNames.has(item.name) || extraNames.has(item.name)) continue;
     const problems = validateItem(item);
     if (problems.length) { invalid.push({ name: item.name, problems }); continue; }
@@ -105,8 +157,10 @@ try {
 
   console.log('신규 후보:', scraped.length, '| 이미 존재:', scraped.length - added.length - invalid.length, '| 무효:', invalid.length, '| 추가:', added.length);
   if (invalid.length) console.log('  무효 항목:', invalid.slice(0, 10).map(i => `${i.name || '<no-name>'}: ${i.problems.join(';')}`).join('\n  '));
+  if (linked) console.log('원본 연결(이름 바뀌는 진화):', linked);
+  if (held.length) console.log('환생·진화 보류 ' + held.length + '건:\n  ' + held.join('\n  '));
 
-  if (added.length === 0) {
+  if (added.length === 0 && linked === 0) {
     console.log('NO_CHANGE');
     process.exit(0);
   }
@@ -115,12 +169,12 @@ try {
   const mergedJson = JSON.stringify(merged, null, 2);
   const newHtml = extraContent !== null
     ? indexHtml.replace(/<script[^>]+id="pet-data-extra"[^>]*>[\s\S]*?<\/script>/i,
-        `<script type="application/json" id="pet-data-extra">${mergedJson}</script>`)
+        () => `<script type="application/json" id="pet-data-extra">${mergedJson}</script>`)
     : indexHtml.replace(/<\/body>/i, `<script type="application/json" id="pet-data-extra">${mergedJson}</script>\n</body>`);
 
   fs.writeFileSync(indexPath, newHtml, 'utf8');
   console.log('CHANGED');
-  console.log('추가된 펫:', added.map(a => a.name).join(', '));
+  console.log('추가된 펫:', added.map(a => a.variant ? `${a.name}(${a.variant})` : a.name).join(', '));
   process.exit(0);
 } catch (err) {
   console.error('Error:', err && err.message || err);
