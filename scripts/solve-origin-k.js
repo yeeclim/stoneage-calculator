@@ -99,7 +99,9 @@ function topKs(origin, initS, ks) {
 }
 
 /** 후보들을 반올림 잔차 오름차순으로 반환. 첫 원소가 채택해, 빈 배열이면 해 없음. */
-function solve(growthS, initS, off = GRADE_OFF) {
+// opts.B: 밴드 B 고정. 환생·진화는 origin 이 올라도 원본 펫의 B 를 그대로 쓴다
+// (환생·진화 88건 중 86건이 원본 B 에서 정수해, 예외는 사이트 오타 루이 등) -> 밴드 자기일관성 검사 생략.
+function solve(growthS, initS, off = GRADE_OFF, opts = {}) {
   if (!Array.isArray(growthS) || growthS.length !== 4) return [];
   if (!Array.isArray(initS) || initS.length !== 4) return [];
   if (growthS.some(x => typeof x !== 'number' || !isFinite(x))) return [];
@@ -108,11 +110,12 @@ function solve(growthS, initS, off = GRADE_OFF) {
   const cands = [];
   for (const band of RANKS) {
     const B = (band.Blo + band.Bhi) / 2;
+    if (opts.B != null && B !== opts.B) continue;
     const v = g.map(x => x * 10000 / B);
     const origin = v.map(x => Math.round(x - off - BONUS));
     if (origin.some(o => o < 0)) continue;
     const sum = origin.reduce((a, b) => a + b, 0);
-    if (bandOf(sum - 4 * (GRADE_OFF - off)) !== band) continue;   // RANK 구간표는 오프셋 +2 기준 origin 합으로 정의됨 -> 환산                                        // 밴드 자기일관성
+    if (opts.B == null && bandOf(sum - 4 * (GRADE_OFF - off)) !== band) continue;   // RANK 구간표는 오프셋 +2 기준 origin 합으로 정의됨 -> 환산                                        // 밴드 자기일관성
     const ks25 = allK(origin, initS, off);
     if (!ks25.length) continue;                                                // 초기치 재현 k 필수
     const ks = topKs(origin, initS, ks25);
@@ -127,7 +130,10 @@ function solve(growthS, initS, off = GRADE_OFF) {
   return cands;
 }
 
-module.exports = { solve, allK, disp, stats, reachableAtTop, Ds, RANKS, GRADE_OFF, BONUS };
+// origin 합 -> 그 밴드의 B (S급 = 오프셋 +2 기준 origin 합).
+const bandB = origin => { const b = bandOf(origin.reduce((a, c) => a + c, 0)); return (b.Blo + b.Bhi) / 2; };
+
+module.exports = { solve, allK, disp, stats, reachableAtTop, bandB, Ds, RANKS, GRADE_OFF, BONUS };
 
 // CLI: node scripts/solve-origin-k.js "51,10,6,9" "9.761,2.086,1.231,1.734"
 if (require.main === module) {
