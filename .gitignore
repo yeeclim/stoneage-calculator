@@ -5,3 +5,6 @@ scripts/ohrsa-scrape.log
 scripts/ohrsa_pets_auto.json
 scripts/sathezero.local.env
 log/
+data/
+scripts/ingest-log.js
+scripts/check-field-model.js
