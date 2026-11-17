@@ -8,3 +8,4 @@ log/
 data/
 scripts/ingest-log.js
 scripts/check-field-model.js
+scripts/README-local-scrape.md
