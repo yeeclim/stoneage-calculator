@@ -8369,7 +8369,12 @@ h1,h2,h3,.display{
     const prices = { C: enhPrices.C, B: enhPrices.B, item: itemPrice.get(it.id) };
     const rows = [];
     rows.push({ label:'보조제 없음', e: EnhanceCalc.expected(ENH.rates, 0, lv, 'none', prices) });
-    for(const g of ['C','B']) if(Number.isFinite(enhPrices[g])) rows.push({ label:`전부 ${g}급`, e: EnhanceCalc.expected(ENH.rates, 0, lv, g, prices) });
+    // 보조제는 파괴 구간(+5~)에서만 쓴다고 가정 — 파괴 없는 단계는 실패해도 강화비만 잃어 보조제가 손해
+    const firstDestroy = ENH.rates.findIndex(r=>r.destroy);
+    if(firstDestroy>=0 && firstDestroy<lv) for(const g of ['C','B']) if(Number.isFinite(enhPrices[g])){
+      const plan = ENH.rates.slice(0, lv).map(r=>r.destroy ? g : 'none');
+      rows.push({ label:`+${ENH.rates[firstDestroy].lv}부터 ${g}급`, e: EnhanceCalc.expected(ENH.rates, 0, lv, plan, prices) });
+    }
     const best = EnhanceCalc.optimal(ENH.rates, 0, lv, prices);
     const bestUsesAssist = best.plan.some(g=>g!=='none');
     if(bestUsesAssist) rows.push({ label:'최저 비용', e: best, best:true });
