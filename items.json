@@ -1,6 +1,6 @@
 {
  "source": "https://ohrsa.net/item",
- "scrapedAt": "2026-11-18T02:14:02.759Z",
+ "scrapedAt": "2026-11-18T02:54:05.256Z",
  "enhance": {
   "source": "https://ohrsa.net/update/7",
   "pct": [
@@ -232,6 +232,650 @@
     }
    ]
   }
+ },
+ "drops": {
+  "sources": [
+   {
+    "id": "raid:분노의 방",
+    "kind": "raid",
+    "name": "얼음성[분노의 방]",
+    "box": "헤티아 전리품",
+    "cond": "100레벨",
+    "limit": "주 15회",
+    "reset": "금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "레이드 포인트 1",
+      "pct": 93.4
+     },
+     {
+      "name": "페트병(어린백룡)",
+      "pct": 2.5
+     },
+     {
+      "name": "헤티아의 창",
+      "pct": 1.5,
+      "itemId": "106"
+     },
+     {
+      "name": "헤티아의 머리장식",
+      "pct": 1,
+      "itemId": "107"
+     },
+     {
+      "name": "강화 보조제(C급)",
+      "pct": 0.7,
+      "itemId": "98"
+     },
+     {
+      "name": "강화 보조제(B급)",
+      "pct": 0.5,
+      "itemId": "99"
+     },
+     {
+      "name": "삼위일체(眞)의 심장",
+      "pct": 0.4,
+      "itemId": "102"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:질투의 방",
+    "kind": "raid",
+    "name": "얼음성[질투의 방]",
+    "box": "언딘 전리품",
+    "cond": "100레벨",
+    "limit": "주15회",
+    "reset": "금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "레이드 포인트 1",
+      "pct": 93.5
+     },
+     {
+      "name": "페트병(어린흑룡)",
+      "pct": 2.5
+     },
+     {
+      "name": "냉동 황새치",
+      "pct": 1.5,
+      "itemId": "104"
+     },
+     {
+      "name": "검은불꽃 장궁",
+      "pct": 1,
+      "itemId": "105"
+     },
+     {
+      "name": "강화 보조제(C급)",
+      "pct": 0.6,
+      "itemId": "98"
+     },
+     {
+      "name": "삼위일체(改)의 구슬",
+      "pct": 0.5,
+      "itemId": "100"
+     },
+     {
+      "name": "강화 보조제(B급)",
+      "pct": 0.4,
+      "itemId": "99"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:나태의 방",
+    "kind": "raid",
+    "name": "얼음성[나태의 방]",
+    "box": "흑룡의 전리품",
+    "cond": "100레벨",
+    "limit": "주 15회",
+    "reset": "매주 금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "1 레이드 포인트",
+      "pct": 94.5
+     },
+     {
+      "name": "페트병(흑기린)",
+      "pct": 2.5
+     },
+     {
+      "name": "강화 보조제(C급)",
+      "pct": 0.8,
+      "itemId": "98"
+     },
+     {
+      "name": "바르의 바람",
+      "pct": 0.6,
+      "itemId": "95"
+     },
+     {
+      "name": "흑룡의 발톱",
+      "pct": 0.6,
+      "itemId": "96"
+     },
+     {
+      "name": "초신성 갑옷",
+      "pct": 1,
+      "itemId": "97"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:오만의 방",
+    "kind": "raid",
+    "name": "얼음성[오만의 방]",
+    "box": "흑기린의 전리품",
+    "cond": "100레벨",
+    "limit": "주 15회",
+    "reset": "매주 금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "1 레이드 포인트",
+      "pct": 97.5
+     },
+     {
+      "name": "얼음 투구",
+      "pct": 1,
+      "itemId": "86"
+     },
+     {
+      "name": "냉동 참다랑어",
+      "pct": 0.8,
+      "itemId": "85"
+     },
+     {
+      "name": "이라의 불꽃",
+      "pct": 0.6,
+      "itemId": "87"
+     },
+     {
+      "name": "삼위일체",
+      "pct": 0.1,
+      "itemId": "94"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:탐욕의 방",
+    "kind": "raid",
+    "name": "얼음성[탐욕의 방]",
+    "box": "메피노의 전리품",
+    "cond": "100레벨 이상",
+    "limit": "주 15회",
+    "reset": "매주 금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "1 레이드 포인트",
+      "pct": 97.4
+     },
+     {
+      "name": "열공의 도끼",
+      "pct": 1,
+      "itemId": "93"
+     },
+     {
+      "name": "머슬링 귀걸이",
+      "pct": 0.8,
+      "itemId": "89"
+     },
+     {
+      "name": "티아트의 대지",
+      "pct": 0.6,
+      "itemId": "88"
+     },
+     {
+      "name": "삼위일체",
+      "pct": 0.2,
+      "itemId": "94"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:교만의 방",
+    "kind": "raid",
+    "name": "얼음성[교만의 방]",
+    "box": "테로노돈의 전리품",
+    "cond": "100레벨 이상",
+    "limit": "주 15회",
+    "reset": "매주 금요일 00시",
+    "perPeriod": {
+     "n": 15,
+     "per": "주"
+    },
+    "url": "https://ohrsa.net/raid",
+    "entries": [
+     {
+      "name": "1 레이드 포인트",
+      "pct": 96
+     },
+     {
+      "name": "미라쥬",
+      "pct": 2,
+      "itemId": "91"
+     },
+     {
+      "name": "얼음옷",
+      "pct": 1,
+      "itemId": "92"
+     },
+     {
+      "name": "번개의 반지",
+      "pct": 0.8,
+      "itemId": "90"
+     },
+     {
+      "name": "삼위일체",
+      "pct": 0.2,
+      "itemId": "94"
+     }
+    ],
+    "history": []
+   },
+   {
+    "id": "raid:편견의 방",
+    "kind": "raid",
+    "name": "얼음성[편견의 방]",
+    "box": "크로아치의 전리품",
+    "cond": "100레벨 이상",
+    "limit": "1일 1회",
+    "reset": "매일 00시 초기화",
+    "perPeriod": {
+     "n": 1,
+     "per": "일"
+    },
+    "url": "https://ohrsa.net/update/11",
+    "entries": [
+     {
+      "name": "(1)레이드 포인트",
+      "pct": 42
+     },
+     {
+      "name": "5EP 교환권",
+      "pct": 19
+     },
+     {
+      "name": "초기화 구슬",
+      "pct": 14,
+      "delta": -5,
+      "itemId": "30"
+     },
+     {
+      "name": "[미완성]삼위일체",
+      "pct": 11
+     },
+     {
+      "name": "경험치 구슬 2시간",
+      "pct": 9,
+      "itemId": "29"
+     },
+     {
+      "name": "강화 보조제 D급",
+      "pct": 5,
+      "isNew": true,
+      "itemId": "112"
+     }
+    ],
+    "history": [
+     {
+      "patch": "261105 이전",
+      "entries": [
+       {
+        "name": "(1)레이드 포인트",
+        "pct": 42
+       },
+       {
+        "name": "5EP 교환권",
+        "pct": 19
+       },
+       {
+        "name": "초기화 구슬",
+        "pct": 19
+       },
+       {
+        "name": "[미완성]삼위일체",
+        "pct": 11
+       },
+       {
+        "name": "경험치 구슬 2시간",
+        "pct": 9
+       }
+      ]
+     }
+    ],
+    "patch": "261105"
+   },
+   {
+    "id": "raid:고대의 제단",
+    "kind": "raid",
+    "name": "고대의 제단",
+    "box": "고대의 제단 전리품",
+    "cond": "조건 없음",
+    "limit": "1일 1회",
+    "reset": "매일 오전 12시",
+    "perPeriod": {
+     "n": 1,
+     "per": "일"
+    },
+    "url": "https://ohrsa.net/update/11",
+    "patch": "261105",
+    "entries": [
+     {
+      "name": "경험치 구슬 1시간",
+      "pct": 30,
+      "delta": -10,
+      "itemId": "29"
+     },
+     {
+      "name": "초기화 구슬",
+      "pct": 25,
+      "itemId": "30"
+     },
+     {
+      "name": "경험치 구슬 2시간",
+      "pct": 15,
+      "itemId": "29"
+     },
+     {
+      "name": "강화석",
+      "pct": 10,
+      "isNew": true
+     },
+     {
+      "name": "자동회복고기 1만",
+      "pct": 10
+     },
+     {
+      "name": "경험치 구슬 3시간",
+      "pct": 5,
+      "itemId": "29"
+     },
+     {
+      "name": "5EP 교환권",
+      "pct": 4
+     },
+     {
+      "name": "도르도르 페트병",
+      "pct": 1
+     }
+    ],
+    "history": [
+     {
+      "patch": "261105 이전",
+      "entries": [
+       {
+        "name": "경험치 구슬 1시간",
+        "pct": 40
+       },
+       {
+        "name": "초기화 구슬",
+        "pct": 25
+       },
+       {
+        "name": "경험치 구슬 2시간",
+        "pct": 15
+       },
+       {
+        "name": "자동회복고기 1만",
+        "pct": 10
+       },
+       {
+        "name": "경험치 구슬 3시간",
+        "pct": 5
+       },
+       {
+        "name": "5EP 교환권",
+        "pct": 4
+       },
+       {
+        "name": "도르도르 페트병",
+        "pct": 1
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "field:기계군단",
+    "kind": "field",
+    "name": "필드 레이드 (기계군단)",
+    "box": "테이토스·테르가·테이노스 처치 전리품",
+    "note": "고유 보스 페트병은 처치한 보스의 페트병",
+    "url": "https://ohrsa.net/update/11",
+    "patch": "261105",
+    "entries": [
+     {
+      "name": "기계창",
+      "pct": 3,
+      "delta": 2,
+      "itemId": "119"
+     },
+     {
+      "name": "기계갑옷",
+      "pct": 3,
+      "delta": 2,
+      "itemId": "120"
+     },
+     {
+      "name": "기계투구",
+      "pct": 3,
+      "delta": 2,
+      "itemId": "121"
+     },
+     {
+      "name": "고유 보스 페트병 (테르가/테이노스/테이토스)",
+      "pct": 2
+     },
+     {
+      "name": "C급 보조제",
+      "pct": 5,
+      "itemId": "98"
+     },
+     {
+      "name": "부족경험치구슬 (30분)",
+      "pct": 15,
+      "itemId": "123"
+     },
+     {
+      "name": "3만 스톤",
+      "pct": 35
+     },
+     {
+      "name": "경험치 구슬 (1시간)",
+      "pct": 34,
+      "delta": -6,
+      "itemId": "29"
+     }
+    ],
+    "history": [
+     {
+      "patch": "261028",
+      "entries": [
+       {
+        "name": "기계창",
+        "pct": 1
+       },
+       {
+        "name": "기계갑옷",
+        "pct": 1
+       },
+       {
+        "name": "기계투구",
+        "pct": 1
+       },
+       {
+        "name": "고유 보스 페트병 (테르가/테이노스/테이토스)",
+        "pct": 2
+       },
+       {
+        "name": "C급 보조제",
+        "pct": 5
+       },
+       {
+        "name": "부족경험치구슬 (30분)",
+        "pct": 15
+       },
+       {
+        "name": "3만 스톤",
+        "pct": 35
+       },
+       {
+        "name": "경험치 구슬 (1시간)",
+        "pct": 40
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "box:은빛상자",
+    "kind": "box",
+    "name": "은빛상자",
+    "box": "RP 포인트 상점 · 5RP + 300,000 ST",
+    "url": "https://ohrsa.net/update/8",
+    "patch": "261008",
+    "entries": [
+     {
+      "name": "사냥꾼의 활",
+      "pct": 15,
+      "itemId": "113"
+     },
+     {
+      "name": "강화 보조제 (D급)",
+      "pct": 8,
+      "itemId": "112"
+     },
+     {
+      "name": "페트 코인",
+      "pct": 20,
+      "itemId": "114"
+     },
+     {
+      "name": "강화석",
+      "pct": 23
+     },
+     {
+      "name": "히든 초기화 구슬",
+      "pct": 14,
+      "itemId": "117"
+     },
+     {
+      "name": "10 EP 포인트",
+      "pct": 20
+     }
+    ]
+   },
+   {
+    "id": "box:페트 자판기",
+    "kind": "box",
+    "name": "페트 자판기",
+    "box": "제작공방 [동9 남16] · 페트 코인 1개",
+    "url": "https://ohrsa.net/update/8",
+    "patch": "261008",
+    "entries": [
+     {
+      "name": "핑코",
+      "pct": 13
+     },
+     {
+      "name": "차이혼 (상급돈펫)",
+      "pct": 10
+     },
+     {
+      "name": "봉봉",
+      "pct": 12
+     },
+     {
+      "name": "스피노",
+      "pct": 13
+     },
+     {
+      "name": "램가스",
+      "pct": 14
+     },
+     {
+      "name": "기린",
+      "pct": 12
+     },
+     {
+      "name": "칼로스",
+      "pct": 14
+     },
+     {
+      "name": "링코",
+      "pct": 12
+     }
+    ]
+   },
+   {
+    "id": "quest:의뢰소 보따리",
+    "kind": "box",
+    "name": "공룡 조사원의 보따리",
+    "box": "페트 의뢰소 일일 퀘스트 보상",
+    "perPeriod": {
+     "n": 1,
+     "per": "일"
+    },
+    "url": "https://ohrsa.net/quest",
+    "entries": [
+     {
+      "name": "경험치 구슬 1시간",
+      "pct": 52,
+      "itemId": "29"
+     },
+     {
+      "name": "경험치 구슬 2시간",
+      "pct": 17,
+      "itemId": "29"
+     },
+     {
+      "name": "경험치 구슬 3시간",
+      "pct": 5,
+      "itemId": "29"
+     },
+     {
+      "name": "초기화 구슬 1개",
+      "pct": 25.2,
+      "itemId": "30"
+     },
+     {
+      "name": "쿠보 페트병",
+      "pct": 0.8
+     }
+    ]
+   }
+  ]
  },
  "items": [
   {

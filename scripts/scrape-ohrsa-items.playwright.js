@@ -2,7 +2,7 @@
 /*
  * ohrsa.net 아이템 도감(/item) 스크레이퍼 (Playwright, 로그인 필요).
  *
- * 출력 (강화 단계별 능력치는 패치노트 260923 표에서 함께 수집 → items.json 의 enhance):
+ * 함께 수집: 강화 단계별 능력치·확률(패치노트 260923 → enhance), 레이드·상자 확률(→ drops, scripts/ohrsa-drops-scrape.js)
  * 출력:
  *   items.json            - 아이템 목록 (공홈 순서 = 최신순)
  *   images/items/<id>.png - 썸네일 (이미 받은 파일은 건너뜀)
@@ -15,6 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
+const { scrapeDrops } = require('./ohrsa-drops-scrape');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'items.json');
@@ -234,9 +235,13 @@ function parseEnhance(tables) {
     const enhance = parseEnhance(await page.evaluate(scrapeEnhanceTables));
     console.log(`강화 표: 무기 ${enhance.weapon.steps.length}단계, 방어구 ${enhance.armor.steps.length}단계 (누적 열 대조 통과)`);
 
+    const drops = await scrapeDrops(page, gotoRetry, items);
+    console.log(`확률표: ${drops.sources.length}곳 (모두 합 100% 확인), 아이템 연결 안 된 품목 ${drops.unmatched.length}개: ${drops.unmatched.join(', ')}`);
+    delete drops.unmatched;
+
     const removed = prev.filter(p => !ids.has(p.id)).map(p => p.name);
     const added = items.filter(i => !prev.some(p => p.id === i.id)).map(i => i.name);
-    fs.writeFileSync(OUT, JSON.stringify({ source: ITEM_URL, scrapedAt: new Date().toISOString(), enhance, items }, null, 1) + '\n', 'utf8');
+    fs.writeFileSync(OUT, JSON.stringify({ source: ITEM_URL, scrapedAt: new Date().toISOString(), enhance, drops, items }, null, 1) + '\n', 'utf8');
     console.log(`스크랩 완료: ${items.length}건 -> ${path.relative(ROOT, OUT)} (이미지 신규 ${got}, 실패 ${failed})`);
     if (added.length) console.log(`  추가: ${added.join(', ')}`);
     if (removed.length) console.log(`  공홈에서 사라짐: ${removed.join(', ')}`);

@@ -8,7 +8,8 @@
     "scrape:zero": "node scripts/scrape-zero-board23.playwright.js",
     "merge:auto": "node scripts/merge-auto-scrape.js",
     "localize:images": "node scripts/localize-images.js",
-    "scrape:items": "node scripts/scrape-ohrsa-items.playwright.js"
+    "scrape:items": "node scripts/scrape-ohrsa-items.playwright.js",
+    "test": "node scripts/test-enhance-calc.js && node scripts/test-ohrsa-drops-parse.js"
   },
   "devDependencies": {
     "playwright": "^1.47.0"

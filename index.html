@@ -334,7 +334,7 @@ h1,h2,h3,.display{
 .stat-pill.pos{ color:var(--accent2); }
 .stat-pill.neg{ color:var(--danger); }
 .stat-pill.hl{ border-color:var(--accent); }
-.enh-section{ margin-top:28px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:18px; }
+.enh-section{ margin-top:0; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:18px; }
 .enh-section > h2{ font-size:19px; margin:0 0 4px; }
 .enh-section > p{ margin:0 0 14px; font-size:12.5px; color:var(--text-muted); }
 .enh-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr)); gap:18px; }
@@ -378,6 +378,38 @@ h1,h2,h3,.display{
 .enh-price-row label{ display:flex; align-items:center; gap:6px; }
 .enh-price-label{ font-weight:700; }
 .ic-enh-exp-note{ margin-top:4px; font-size:10.5px; color:var(--text-muted); }
+.subnav{ display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+.subnav-btn{ padding:8px 14px; border-radius:100px; border:1px solid var(--border); background:var(--surface); color:var(--text-muted); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+.subnav-btn[aria-selected="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+.subnav-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.ic-drops{ font-size:12px; }
+.ic-drops-title{ font-size:11px; font-weight:700; color:var(--text-muted); margin-bottom:3px; }
+.ic-drops ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:3px; }
+.ic-drops li{ line-height:1.5; }
+.drop-alias{ color:var(--text-muted); }
+.drop-pct{ font-family:"JetBrains Mono",monospace; font-weight:800; color:var(--accent); margin-left:2px; }
+.drop-tries{ display:block; color:var(--text-muted); font-size:11px; font-family:"JetBrains Mono",monospace; }
+.drop-up{ color:var(--accent2); font-weight:800; font-size:10.5px; margin-left:4px; white-space:nowrap; }
+.drop-down{ color:var(--danger); font-weight:800; font-size:10.5px; margin-left:4px; white-space:nowrap; }
+.drop-new{ color:var(--accent); font-weight:800; font-size:10.5px; margin-left:4px; }
+.drop-lead{ font-size:12.5px; color:var(--text-muted); margin:0 0 6px; }
+.drop-group{ font-size:17px; margin:18px 0 10px; }
+.drop-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(360px,100%),1fr)); gap:12px; }
+.drop-card{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; min-width:0; }
+.drop-card h3{ font-size:15px; margin:0 0 3px; font-family:"Manrope",system-ui,sans-serif; font-weight:800; }
+.drop-meta{ font-size:11.5px; color:var(--text-muted); margin-bottom:8px; }
+.drop-table td{ white-space:nowrap; }
+.drop-table td:first-child{ white-space:normal; }
+.drop-per{ display:block; font-size:10.5px; color:var(--text-muted); }
+.drop-item{ background:none; border:none; padding:0; font:inherit; color:var(--accent); cursor:pointer; text-align:left; text-decoration:underline; text-underline-offset:2px; }
+.drop-note{ font-size:11.5px; color:var(--text-muted); margin-top:6px; }
+.drop-src{ font-size:11px; color:var(--text-muted); margin-top:6px; }
+.drop-src a{ color:inherit; }
+.drop-hist{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr)); gap:12px; }
+.drop-hist-item{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:12px 14px; font-size:12.5px; }
+.drop-hist-head{ font-weight:800; margin-bottom:4px; }
+.drop-hist-head .mono{ color:var(--accent); margin-right:6px; }
+.drop-hist-item ul{ margin:0; padding-left:18px; line-height:1.7; }
 .ic-cat-lv{ color:var(--accent); font-weight:800; }
 .item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
 
@@ -423,6 +455,12 @@ h1,h2,h3,.display{
   </div>
 
   <div id="itemsView" hidden>
+    <div class="subnav" role="tablist">
+      <button type="button" class="subnav-btn" data-sub="list" role="tab" aria-selected="true">아이템</button>
+      <button type="button" class="subnav-btn" data-sub="drops" role="tab" aria-selected="false">드롭·상자 확률</button>
+      <button type="button" class="subnav-btn" data-sub="enhance" role="tab" aria-selected="false">강화 표</button>
+    </div>
+    <div id="itemsListView">
     <div class="items-toolbar">
       <div class="row">
         <input id="itemSearch" class="search-input" type="text" placeholder="아이템 이름·획득처·설명 검색 (초성 가능)" autocomplete="off">
@@ -445,11 +483,15 @@ h1,h2,h3,.display{
       <div class="items-count" id="itemCount"></div>
     </div>
     <div class="item-grid" id="itemGrid"></div>
+    </div>
+    <div id="dropsView" hidden><div id="dropsBody"></div></div>
+    <div id="enhView" hidden>
     <section class="enh-section" id="enhanceSection" hidden>
       <h2>장비 강화</h2>
-      <p>오르 공홈 패치노트 260923 기준. 빨간 단계(+5 이상)는 실패하면 장비가 파괴됩니다. 무기·방어구 카드의 강화 버튼으로 단계별 능력치를 바로 볼 수 있습니다.</p>
+      <p>오르 공홈 패치노트 260923 기준. 빨간 단계(+5 이상)는 실패하면 장비가 파괴됩니다. 아이템 탭의 무기·방어구 카드에서 강화 단계를 고르면 능력치와 기대 비용을 바로 볼 수 있습니다.</p>
       <div class="enh-grid" id="enhanceTables"></div>
     </section>
+    </div>
   </div>
 
   <div class="modal-backdrop" id="growthModalBackdrop" hidden>
@@ -8240,7 +8282,9 @@ h1,h2,h3,.display{
       ITEMS = d.items.map((it,i)=>({...it, _i:i, _cho:chosung(it.name), _hay:(it.name+' '+it.obtain+' '+it.desc).toLowerCase()}));
       if(activeTab==='items') document.getElementById('methodBadge').textContent = `아이템 ${ITEMS.length}개`;
       ENH = d.enhance || null;
-      renderItemChips(); renderItems(); renderEnhance(d.enhance);
+      DROPS = d.drops || null;
+      if(DROPS) buildDropIndex();
+      renderItemChips(); renderItems(); renderEnhance(d.enhance); renderDrops();
     }).catch(()=>{
       itemsLoading = null;
       itemEls.grid.innerHTML = '<div class="empty-state">아이템 정보를 불러오지 못했습니다. 새로고침해 주세요.</div>';
@@ -8341,6 +8385,101 @@ h1,h2,h3,.display{
         </div>`;
   }
 
+  // ---- 드롭·상자 확률 (items.json 의 drops) ----
+  let DROPS = null;
+  const dropIndex = new Map(); // itemId → [{src, e}]
+  const DROP_KIND = { raid:'레이드', field:'필드 레이드', box:'상자·자판기·보따리', etc:'기타' };
+  // 확률 p(%)로 1개 얻을 때까지 평균 시도와 90% 확보 시도
+  function triesFor(pct){
+    const p = pct/100;
+    if(!(p>0)) return { mean: Infinity, p90: Infinity };
+    if(p>=1) return { mean: 1, p90: 1 };
+    return { mean: 1/p, p90: Math.ceil(Math.log(0.1)/Math.log(1-p)) };
+  }
+  const deltaHtml = e => e.isNew ? '<span class="drop-new">신규</span>' : e.delta ? `<span class="${e.delta>0?'drop-up':'drop-down'}">${e.delta>0?'▲':'▼'}${Math.abs(e.delta)}%p</span>` : '';
+  function periodText(src, n){
+    if(!src.perPeriod || !isFinite(n)) return '';
+    const units = n / src.perPeriod.n;
+    const r = src.perPeriod.per==='주' ? (units<10 ? Math.round(units*10)/10 : Math.round(units)) : Math.round(units);
+    return `약 ${Math.max(1, r)}${src.perPeriod.per}`;
+  }
+  function buildDropIndex(){
+    dropIndex.clear();
+    for(const src of DROPS.sources) for(const e of src.entries) if(e.itemId){
+      if(!dropIndex.has(e.itemId)) dropIndex.set(e.itemId, []);
+      dropIndex.get(e.itemId).push({ src, e });
+    }
+  }
+  function itemDropHtml(it){
+    const list = dropIndex.get(it.id);
+    if(!list || !list.length) return '';
+    const rows = [...list].sort((a,b)=>b.e.pct-a.e.pct).map(({src,e})=>{
+      const t = triesFor(e.pct);
+      const label = e.name.replace(/\s+/g,'')===it.name.replace(/\s+/g,'') ? '' : ` <span class="drop-alias">(${escHtml(e.name)})</span>`;
+      const per = periodText(src, t.mean);
+      return `<li><b>${escHtml(src.name)}</b>${label} <span class="drop-pct">${e.pct}%</span>${deltaHtml(e)}<span class="drop-tries">평균 ${fmtN(t.mean)}회${per?` (${per})`:''} · 90% ${t.p90.toLocaleString()}회</span></li>`;
+    }).join('');
+    return `<div class="ic-drops"><div class="ic-drops-title">획득 확률</div><ul>${rows}</ul></div>`;
+  }
+  function renderDrops(){
+    const body = document.getElementById('dropsBody');
+    if(!DROPS){ body.innerHTML = '<div class="empty-state">확률 정보를 불러오지 못했습니다.</div>'; return; }
+    const itemName = id => (ITEMS.find(x=>x.id===id)||{}).name;
+    const srcCard = src => {
+      const rows = src.entries.map(e=>{
+        const t = triesFor(e.pct), per = periodText(src, t.mean);
+        const name = e.itemId ? `<button type="button" class="drop-item" data-item="${escHtml(e.itemId)}">${escHtml(e.name)}</button>` : escHtml(e.name);
+        return `<tr><td>${name}</td><td class="mono">${e.pct}%${deltaHtml(e)}</td><td class="mono">${fmtN(t.mean)}회${per?`<span class="drop-per">${per}</span>`:''}</td><td class="mono">${t.p90.toLocaleString()}회</td></tr>`;
+      }).join('');
+      const meta = [src.box, src.cond, src.limit && `${src.limit}${src.reset?` (${src.reset} 초기화)`.replace(' 초기화 초기화',' 초기화'):''}`].filter(Boolean).map(escHtml).join(' · ');
+      const srcLabel = src.patch ? `패치노트 ${src.patch}` : '공홈 레이드정보';
+      return `<article class="drop-card" id="drop-${escHtml(src.id)}">
+        <h3>${escHtml(src.name)}</h3>
+        <div class="drop-meta">${meta}</div>
+        <div class="enh-scroll"><table class="enh-table drop-table"><thead><tr><th>품목</th><th>확률</th><th>평균</th><th>90% 확보</th></tr></thead><tbody>${rows}</tbody></table></div>
+        ${src.note ? `<div class="drop-note">${escHtml(src.note)}</div>` : ''}
+        <div class="drop-src">출처: <a href="${escHtml(src.url)}" target="_blank" rel="noopener">${srcLabel}</a></div>
+      </article>`;
+    };
+    const groups = Object.entries(DROP_KIND).map(([k,label])=>{
+      const list = DROPS.sources.filter(s=>s.kind===k);
+      return list.length ? `<h2 class="drop-group">${label}</h2><div class="drop-grid">${list.map(srcCard).join('')}</div>` : '';
+    }).join('');
+    // 변경 이력: 이전 표 → 현재 표 비교
+    const changes = [];
+    for(const src of DROPS.sources) for(const h of src.history || []){
+      const key = n => n.replace(/\s+/g,'');
+      const prev = new Map(h.entries.map(e=>[key(e.name), e.pct])), now = new Map(src.entries.map(e=>[key(e.name), e]));
+      const lines = [];
+      for(const e of src.entries){ const p = prev.get(key(e.name)); if(p===undefined) lines.push(`<li>${escHtml(e.name)} <span class="drop-new">신규</span> ${e.pct}%</li>`); else if(p!==e.pct) lines.push(`<li>${escHtml(e.name)} ${p}% → <b>${e.pct}%</b> <span class="${e.pct>p?'drop-up':'drop-down'}">${e.pct>p?'▲':'▼'}${Math.round(Math.abs(e.pct-p)*100)/100}%p</span></li>`); }
+      for(const e of h.entries) if(!now.has(key(e.name))) lines.push(`<li>${escHtml(e.name)} ${e.pct}% → <span class="drop-down">삭제</span></li>`);
+      if(lines.length) changes.push({ patch: src.patch || '', from: h.patch, name: src.name, lines });
+    }
+    changes.sort((a,b)=>String(b.patch).localeCompare(String(a.patch)));
+    const hist = changes.length ? `<h2 class="drop-group">확률 변경 이력</h2><div class="drop-hist">${changes.map(c=>`<div class="drop-hist-item"><div class="drop-hist-head"><span class="mono">${escHtml(c.patch)}</span> ${escHtml(c.name)}</div><ul>${c.lines.join('')}</ul></div>`).join('')}</div>` : '';
+    body.innerHTML = `<p class="drop-lead">각 칸의 평균은 1개 얻을 때까지 평균 시도 횟수, 90% 확보는 90% 확률로 1개 이상 얻는 시도 횟수입니다. 레이드는 입장 횟수 제한으로 기간을 환산했습니다.</p>${groups}${hist}`;
+  }
+
+  // ---- 하위 탭 (아이템 / 드롭·상자 확률 / 강화 표) ----
+  let itemSub = 'list';
+  function showItemSub(sub){
+    itemSub = sub;
+    document.querySelectorAll('.subnav-btn').forEach(b=>b.setAttribute('aria-selected', String(b.dataset.sub===sub)));
+    document.getElementById('itemsListView').hidden = sub!=='list';
+    document.getElementById('dropsView').hidden = sub!=='drops';
+    document.getElementById('enhView').hidden = sub!=='enhance';
+  }
+  document.querySelectorAll('.subnav-btn').forEach(b=>b.addEventListener('click', ()=>showItemSub(b.dataset.sub)));
+  document.getElementById('dropsBody').addEventListener('click', e=>{
+    const btn = e.target.closest('.drop-item'); if(!btn) return;
+    const it = ITEMS.find(x=>x.id===btn.dataset.item); if(!it) return;
+    itemCat = '전체';
+    itemEls.chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed', String(c.dataset.cat==='전체')));
+    itemEls.search.value = it.name;
+    showItemSub('list'); renderItems();
+    window.scrollTo({ top: document.getElementById('itemsView').offsetTop - 10, behavior: 'smooth' });
+  });
+
   function itemCardHtml(it){
     const sortKey = itemEls.sort.value;
     const lv = it.enh ? (itemLv.get(it.id) || 0) : 0;
@@ -8384,6 +8523,7 @@ h1,h2,h3,.display{
         </div>
         ${pills.length ? `<div class="ic-stats">${pills.join('')}</div>` : ''}
         ${enhRow}
+        ${itemDropHtml(it)}
         ${it.desc && it.desc!=='.' ? `<div class="ic-desc">${escHtml(it.desc)}</div>` : ''}
       </article>`;
   }
