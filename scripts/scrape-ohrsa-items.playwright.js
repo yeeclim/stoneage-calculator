@@ -2,6 +2,7 @@
 /*
  * ohrsa.net 아이템 도감(/item) 스크레이퍼 (Playwright, 로그인 필요).
  *
+ * 출력 (강화 단계별 능력치는 패치노트 260923 표에서 함께 수집 → items.json 의 enhance):
  * 출력:
  *   items.json            - 아이템 목록 (공홈 순서 = 최신순)
  *   images/items/<id>.png - 썸네일 (이미 받은 파일은 건너뜀)
@@ -20,6 +21,8 @@ const OUT = path.join(ROOT, 'items.json');
 const IMG_DIR = path.join(ROOT, 'images', 'items');
 const LOGIN_URL = 'https://ohrsa.net/bbs/login.php';
 const ITEM_URL = 'https://ohrsa.net/item';
+// 장비 강화 시스템 도입 공지 (패치노트 260923). 단계별 능력치 표는 여기에만 있다.
+const ENH_URL = 'https://ohrsa.net/update/7';
 
 function loadEnv() {
   const f = path.join(__dirname, 'ohrsa.local.env');
@@ -85,6 +88,61 @@ function normalize(c) {
   return { id: c.id, name: c.name, cat: c.cat, obtain: c.obtain, desc: c.desc, attr, s, n, pct, src: c.img };
 }
 
+// 브라우저 안에서 실행: "강화단계" 머리글로 시작하는 표들의 행 텍스트와 바로 앞 제목.
+function scrapeEnhanceTables() {
+  const norm = s => (s || '').replace(/\s+/g, ' ').trim();
+  return [...document.querySelectorAll('table')].map(t => {
+    const rows = [...t.querySelectorAll('tr')].map(tr => [...tr.children].map(c => norm(c.textContent)));
+    // 표 앞쪽 텍스트에서 "무기류 강화 능력치 (도끼, ...)" 같은 제목을 찾는다
+    let title = '', n = t;
+    while (n && !title) {
+      while (n && !n.previousElementSibling) n = n.parentElement;
+      if (!n) break;
+      n = n.previousElementSibling;
+      const m = norm(n.textContent).match(/(\S+류) 강화 능력치\s*\(([^)]*)\)\s*$/);
+      if (m) title = `${m[1]} (${m[2]})`;
+      else if (n.querySelector && n.querySelector('table')) break;
+    }
+    return { title, rows };
+  }).filter(t => t.rows[0] && t.rows[0][0] === '강화단계');
+}
+
+const ENH_KEYS = { '공격': 'atk', '방어': 'def', '순발': 'agi', '내': 'hp', '내구': 'hp', '명중': 'acc', '관통': 'pen', '쉴드': 'shld', '크리': 'crit', '회피': 'evas' };
+
+// "공격 +3, 관통 +5, 명중 +5%" → { atk:3, pen:5, acc:5 }
+function parseGain(text) {
+  const o = {};
+  for (const part of text.split(',')) {
+    const m = part.trim().match(/^(\S+)\s*([+-]\d+)%?$/);
+    if (!m || !ENH_KEYS[m[1]]) throw new Error(`강화 능력치 해석 실패: "${part}" in "${text}"`);
+    o[ENH_KEYS[m[1]]] = +m[2];
+  }
+  return o;
+}
+
+// 공지 표의 "누적" 열을 단계별 합과 대조해서 표 해석이 맞는지 확인한다.
+function parseEnhance(tables) {
+  const kinds = {};
+  for (const t of tables) {
+    const kind = /^무기/.test(t.title) ? 'weapon' : /^방어구/.test(t.title) ? 'armor' : null;
+    if (!kind) throw new Error(`강화 표 제목을 알 수 없음: "${t.title}"`);
+    const steps = [], acc = {};
+    for (const [lvRaw, gainRaw, cumRaw] of t.rows.slice(1)) {
+      const lv = +lvRaw.replace('+', '');
+      const gain = parseGain(gainRaw);
+      for (const k in gain) acc[k] = (acc[k] || 0) + gain[k];
+      const cum = parseGain(cumRaw);
+      const same = Object.keys({ ...acc, ...cum }).every(k => acc[k] === cum[k]);
+      if (!same) throw new Error(`${kind} +${lv} 누적 불일치: 합 ${JSON.stringify(acc)} vs 공지 ${cumRaw}`);
+      steps.push({ lv, gain });
+    }
+    if (steps.length !== 10 || steps.some((s, i) => s.lv !== i + 1)) throw new Error(`${kind} 강화 단계가 +1~+10 이 아님`);
+    kinds[kind] = { title: t.title, steps };
+  }
+  if (!kinds.weapon || !kinds.armor) throw new Error('무기/방어구 강화 표를 모두 찾지 못함');
+  return { source: ENH_URL, pct: ['acc'], ...kinds };
+}
+
 (async () => {
   loadEnv();
   const { OHRSA_USERNAME, OHRSA_PASSWORD } = process.env;
@@ -138,9 +196,13 @@ function normalize(c) {
       delete it.src;
     }
 
+    await gotoRetry(page, ENH_URL);
+    const enhance = parseEnhance(await page.evaluate(scrapeEnhanceTables));
+    console.log(`강화 표: 무기 ${enhance.weapon.steps.length}단계, 방어구 ${enhance.armor.steps.length}단계 (누적 열 대조 통과)`);
+
     const removed = prev.filter(p => !ids.has(p.id)).map(p => p.name);
     const added = items.filter(i => !prev.some(p => p.id === i.id)).map(i => i.name);
-    fs.writeFileSync(OUT, JSON.stringify({ source: ITEM_URL, scrapedAt: new Date().toISOString(), items }, null, 1) + '\n', 'utf8');
+    fs.writeFileSync(OUT, JSON.stringify({ source: ITEM_URL, scrapedAt: new Date().toISOString(), enhance, items }, null, 1) + '\n', 'utf8');
     console.log(`스크랩 완료: ${items.length}건 -> ${path.relative(ROOT, OUT)} (이미지 신규 ${got}, 실패 ${failed})`);
     if (added.length) console.log(`  추가: ${added.join(', ')}`);
     if (removed.length) console.log(`  공홈에서 사라짐: ${removed.join(', ')}`);

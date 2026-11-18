@@ -1,6 +1,156 @@
 {
  "source": "https://ohrsa.net/item",
- "scrapedAt": "2026-11-18T01:53:50.678Z",
+ "scrapedAt": "2026-11-18T02:08:46.588Z",
+ "enhance": {
+  "source": "https://ohrsa.net/update/7",
+  "pct": [
+   "acc"
+  ],
+  "weapon": {
+   "title": "무기류 (도끼, 곤봉, 창, 활)",
+   "steps": [
+    {
+     "lv": 1,
+     "gain": {
+      "atk": 1
+     }
+    },
+    {
+     "lv": 2,
+     "gain": {
+      "atk": 1
+     }
+    },
+    {
+     "lv": 3,
+     "gain": {
+      "atk": 1
+     }
+    },
+    {
+     "lv": 4,
+     "gain": {
+      "atk": 2
+     }
+    },
+    {
+     "lv": 5,
+     "gain": {
+      "atk": 2
+     }
+    },
+    {
+     "lv": 6,
+     "gain": {
+      "atk": 2,
+      "acc": 5
+     }
+    },
+    {
+     "lv": 7,
+     "gain": {
+      "atk": 3,
+      "pen": 3
+     }
+    },
+    {
+     "lv": 8,
+     "gain": {
+      "atk": 3,
+      "pen": 5,
+      "acc": 5
+     }
+    },
+    {
+     "lv": 9,
+     "gain": {
+      "atk": 5,
+      "pen": 8
+     }
+    },
+    {
+     "lv": 10,
+     "gain": {
+      "atk": 5,
+      "pen": 15,
+      "acc": 5
+     }
+    }
+   ]
+  },
+  "armor": {
+   "title": "방어구류 (투구, 갑옷)",
+   "steps": [
+    {
+     "lv": 1,
+     "gain": {
+      "def": 1
+     }
+    },
+    {
+     "lv": 2,
+     "gain": {
+      "def": 1
+     }
+    },
+    {
+     "lv": 3,
+     "gain": {
+      "def": 1
+     }
+    },
+    {
+     "lv": 4,
+     "gain": {
+      "def": 2
+     }
+    },
+    {
+     "lv": 5,
+     "gain": {
+      "def": 2
+     }
+    },
+    {
+     "lv": 6,
+     "gain": {
+      "def": 2,
+      "hp": 5
+     }
+    },
+    {
+     "lv": 7,
+     "gain": {
+      "def": 3,
+      "shld": 3
+     }
+    },
+    {
+     "lv": 8,
+     "gain": {
+      "def": 3,
+      "shld": 5,
+      "hp": 5
+     }
+    },
+    {
+     "lv": 9,
+     "gain": {
+      "def": 5,
+      "shld": 5
+     }
+    },
+    {
+     "lv": 10,
+     "gain": {
+      "def": 5,
+      "shld": 10,
+      "hp": 15
+     }
+    }
+   ]
+  }
+ },
  "items": [
   {
    "id": "123",

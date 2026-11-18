@@ -334,6 +334,20 @@ h1,h2,h3,.display{
 .stat-pill.pos{ color:var(--accent2); }
 .stat-pill.neg{ color:var(--danger); }
 .stat-pill.hl{ border-color:var(--accent); }
+.enh-section{ margin-top:28px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:18px; }
+.enh-section > h2{ font-size:19px; margin:0 0 4px; }
+.enh-section > p{ margin:0 0 14px; font-size:12.5px; color:var(--text-muted); }
+.enh-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr)); gap:18px; }
+.enh-block h3{ font-size:14px; margin:0 0 8px; font-family:"Manrope",system-ui,sans-serif; font-weight:800; }
+.enh-scroll{ overflow-x:auto; }
+.enh-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+.enh-table th{ text-align:left; font-size:11px; color:var(--text-muted); font-weight:700; padding:6px 8px; border-bottom:1px solid var(--border); white-space:nowrap; }
+.enh-table td{ padding:6px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+.enh-table tr:last-child td{ border-bottom:none; }
+.enh-table .enh-lv{ font-family:"JetBrains Mono",monospace; font-weight:700; color:var(--accent); white-space:nowrap; }
+.enh-table tr.enh-risk .enh-lv{ color:var(--danger); }
+.enh-stat{ display:inline-block; font-family:"JetBrains Mono",monospace; font-size:11.5px; margin:1px 8px 1px 0; white-space:nowrap; }
+.enh-stat b{ font-family:"Manrope",system-ui,sans-serif; font-weight:700; color:var(--text-muted); margin-right:3px; }
 .item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
 
 </style>
@@ -395,6 +409,11 @@ h1,h2,h3,.display{
       <div class="items-count" id="itemCount"></div>
     </div>
     <div class="item-grid" id="itemGrid"></div>
+    <section class="enh-section" id="enhanceSection" hidden>
+      <h2>강화 단계별 능력치</h2>
+      <p>오르 공홈 패치노트 260923 기준. 빨간 단계(+5 이상)는 실패하면 장비가 파괴됩니다.</p>
+      <div class="enh-grid" id="enhanceTables"></div>
+    </section>
   </div>
 
   <div class="modal-backdrop" id="growthModalBackdrop" hidden>
@@ -8183,12 +8202,32 @@ h1,h2,h3,.display{
     itemsLoading = fetch('items.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).then(d=>{
       ITEMS = d.items.map((it,i)=>({...it, _i:i, _cho:chosung(it.name), _hay:(it.name+' '+it.obtain+' '+it.desc).toLowerCase()}));
       if(activeTab==='items') document.getElementById('methodBadge').textContent = `아이템 ${ITEMS.length}개`;
-      renderItemChips(); renderItems();
+      renderItemChips(); renderItems(); renderEnhance(d.enhance);
     }).catch(()=>{
       itemsLoading = null;
       itemEls.grid.innerHTML = '<div class="empty-state">아이템 정보를 불러오지 못했습니다. 새로고침해 주세요.</div>';
     });
     return itemsLoading;
+  }
+
+  // ---- 강화 단계별 능력치 (items.json 의 enhance, 공홈 패치노트 260923) ----
+  const ENH_LABEL = { atk:'공격', def:'방어', agi:'순발', hp:'내구', acc:'명중', pen:'관통', shld:'쉴드', crit:'크리', evas:'회피' };
+  function renderEnhance(enh){
+    const sec = document.getElementById('enhanceSection');
+    if(!enh || !enh.weapon || !enh.armor){ sec.hidden = true; return; }
+    const pct = new Set(enh.pct || []);
+    const fmt = o => Object.entries(o).map(([k,v])=>`<span class="enh-stat"><b>${ENH_LABEL[k]||escHtml(k)}</b>${v>0?'+':''}${v}${pct.has(k)?'%':''}</span>`).join('');
+    const table = kind => {
+      const acc = {};
+      const rows = kind.steps.map(s=>{
+        for(const k in s.gain) acc[k] = (acc[k]||0) + s.gain[k];
+        return `<tr${s.lv>=5?' class="enh-risk"':''}><td class="enh-lv">+${s.lv}</td><td>${fmt(s.gain)}</td><td>${fmt({...acc})}</td></tr>`;
+      }).join('');
+      return `<div class="enh-block"><h3>${escHtml(kind.title)}</h3>
+        <div class="enh-scroll"><table class="enh-table"><thead><tr><th>단계</th><th>해당 단계 추가</th><th>누적</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+    };
+    document.getElementById('enhanceTables').innerHTML = table(enh.weapon) + table(enh.armor);
+    sec.hidden = false;
   }
 
   function renderItemChips(){
