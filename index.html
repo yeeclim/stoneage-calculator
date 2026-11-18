@@ -8810,7 +8810,7 @@ h1,h2,h3,.display{
             <span class="tag">${p.obtain}</span>
             ${p.ok ? '' : '<span class="tag warn">계산 미지원 개체</span>'}
             ${rankNote}
-            ${p.growthS && p.growthS.length===4 ? `<span class="tag mono">공방순 성장 ${(+p.growthS[1] + +p.growthS[2] + +p.growthS[3]).toFixed(2)}</span>` : ''}
+            ${p.growthS && p.growthS.length===4 ? `<span class="tag mono">공방순 성장 ${(+p.growthS[1] + +p.growthS[2] + +p.growthS[3]).toFixed(3)}</span>` : ''}
           </div>
         </div>
       </div>
@@ -8836,7 +8836,7 @@ h1,h2,h3,.display{
           <input type="number" inputmode="numeric" id="stat-${i}" value="${statVals[i]}" ${p.ok?'':'disabled'}>
           <button type="button" data-i="${i}" data-d="-1" aria-label="${lbl} 감소">−</button>
         </div>
-        <span class="sref">S급 ${p.initS[i]}${p.growthS!=null?` · 성장 ${(+p.growthS[i]).toFixed(2)}`:''}</span>
+        <span class="sref">S급 ${p.initS[i]}${p.growthS!=null?` · 성장 ${(+p.growthS[i]).toFixed(3)}`:''}</span>
       </div>`).join('');
 
     grid.addEventListener('click', (e)=>{
