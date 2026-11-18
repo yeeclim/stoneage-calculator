@@ -7,7 +7,8 @@
     "scrape:ohrsa": "node scripts/scrape-ohrsa.playwright.js",
     "scrape:zero": "node scripts/scrape-zero-board23.playwright.js",
     "merge:auto": "node scripts/merge-auto-scrape.js",
-    "localize:images": "node scripts/localize-images.js"
+    "localize:images": "node scripts/localize-images.js",
+    "scrape:items": "node scripts/scrape-ohrsa-items.playwright.js"
   },
   "devDependencies": {
     "playwright": "^1.47.0"

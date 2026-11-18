@@ -313,6 +313,29 @@ h1,h2,h3,.display{
 
 .empty-state{ color:var(--text-muted); font-size:13.5px; text-align:center; padding:30px 10px; }
 
+/* item encyclopedia */
+.items-toolbar{ background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:14px; display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+.items-toolbar .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.items-toolbar .search-input{ flex:1 1 240px; width:auto; }
+.items-sort{ padding:9px 10px; border-radius:10px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font:inherit; font-size:13px; }
+.items-count{ font-size:12px; color:var(--text-muted); font-family:"JetBrains Mono",monospace; }
+.chip .cnt{ opacity:.65; margin-left:4px; }
+.item-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr)); gap:12px; }
+.item-card{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+.item-card .ic-top{ display:flex; gap:12px; align-items:flex-start; }
+.item-card img{ width:52px; height:52px; object-fit:contain; flex:none; background:var(--surface-2); border-radius:10px; }
+.item-card .ic-head{ min-width:0; display:flex; flex-direction:column; gap:3px; }
+.item-card .ic-name{ font-weight:800; font-size:15px; overflow-wrap:anywhere; }
+.item-card .ic-cat{ align-self:flex-start; font-size:10.5px; padding:2px 8px; border-radius:100px; background:var(--surface-3); color:var(--text-muted); }
+.item-card .ic-obtain{ font-size:12px; color:var(--text-muted); overflow-wrap:anywhere; }
+.item-card .ic-stats{ display:flex; flex-wrap:wrap; gap:5px; }
+.stat-pill{ font-family:"JetBrains Mono",monospace; font-size:11.5px; padding:3px 8px; border-radius:8px; background:var(--surface-2); border:1px solid var(--border); white-space:nowrap; }
+.stat-pill b{ font-family:"Manrope",system-ui,sans-serif; font-weight:700; color:var(--text-muted); margin-right:4px; }
+.stat-pill.pos{ color:var(--accent2); }
+.stat-pill.neg{ color:var(--danger); }
+.stat-pill.hl{ border-color:var(--accent); }
+.item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
+
 </style>
 </head>
 <body>
@@ -330,6 +353,7 @@ h1,h2,h3,.display{
     <button type="button" class="tab-btn" data-tab="calc" role="tab" aria-selected="true">오르</button>
     <button type="button" class="tab-btn" data-tab="compare" role="tab" aria-selected="false" hidden>성장률·초기치 비교</button>
     <button type="button" class="tab-btn" data-tab="zero" role="tab" aria-selected="false">제로</button>
+    <button type="button" class="tab-btn" data-tab="items" role="tab" aria-selected="false">아이템</button>
   </div>
 
   <div class="layout">
@@ -351,6 +375,26 @@ h1,h2,h3,.display{
         <section class="card" id="compareCard"></section>
       </div>
     </main>
+  </div>
+
+  <div id="itemsView" hidden>
+    <div class="items-toolbar">
+      <div class="row">
+        <input id="itemSearch" class="search-input" type="text" placeholder="아이템 이름·획득처·설명 검색 (초성 가능)" autocomplete="off">
+        <select id="itemSort" class="items-sort" aria-label="정렬">
+          <option value="new">최신순</option>
+          <option value="atk">공격 높은순</option>
+          <option value="def">방어 높은순</option>
+          <option value="agi">순발 높은순</option>
+          <option value="hp">내구 높은순</option>
+          <option value="crit">크리 높은순</option>
+          <option value="name">이름순</option>
+        </select>
+      </div>
+      <div class="chips" id="itemCatChips"></div>
+      <div class="items-count" id="itemCount"></div>
+    </div>
+    <div class="item-grid" id="itemGrid"></div>
   </div>
 
   <div class="modal-backdrop" id="growthModalBackdrop" hidden>
@@ -8082,11 +8126,28 @@ h1,h2,h3,.display{
     }
   };
 
+  TAB_TEXT.items = {
+    title: '스톤에이지 오르 아이템 도감',
+    subtitle: '오르 공홈 아이템 정보 기준으로 능력치와 획득처를 찾아봅니다.',
+    badge: '아이템 도감'
+  };
+
   let activeTab = 'calc';
   document.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       activeTab = btn.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(b=>b.setAttribute('aria-selected', String(b===btn)));
+      const isItems = activeTab==='items';
+      document.querySelector('.layout').hidden = isItems;
+      document.getElementById('itemsView').hidden = !isItems;
+      if(isItems){
+        const t = TAB_TEXT.items;
+        document.getElementById('mainTitle').textContent = t.title;
+        document.getElementById('mainSubtitle').textContent = t.subtitle;
+        document.getElementById('methodBadge').textContent = ITEMS ? `아이템 ${ITEMS.length}개` : t.badge;
+        loadItems();
+        return;
+      }
       document.getElementById('calcView').hidden = activeTab==='compare';
       document.getElementById('compareView').hidden = activeTab!=='compare';
 
@@ -8103,6 +8164,81 @@ h1,h2,h3,.display{
       renderGrid();
       renderEmptyState();
     });
+  });
+
+  // ---- item encyclopedia (items.json, 탭을 처음 열 때 불러옴) ----
+  const ITEM_STATS = [['atk','공'],['def','방'],['agi','순'],['hp','내'],['crit','크리'],['evas','회피'],['acc','명중'],['pen','관통'],['shld','쉴드']];
+  const ITEM_CATS = ['무기','방어구','장신구','토템','보조','소모','캐릭터','초보자','기타'];
+  const HTML_ESC = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+  const escHtml = s => String(s ?? '').replace(/[&<>"']/g, c=>HTML_ESC[c]);
+  let ITEMS = null, itemsLoading = null, itemCat = '전체';
+  const itemEls = {
+    search: document.getElementById('itemSearch'), sort: document.getElementById('itemSort'),
+    chips: document.getElementById('itemCatChips'), count: document.getElementById('itemCount'), grid: document.getElementById('itemGrid'),
+  };
+
+  function loadItems(){
+    if(ITEMS || itemsLoading) return itemsLoading;
+    itemEls.grid.innerHTML = '<div class="empty-state">아이템 정보를 불러오는 중…</div>';
+    itemsLoading = fetch('items.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).then(d=>{
+      ITEMS = d.items.map((it,i)=>({...it, _i:i, _cho:chosung(it.name), _hay:(it.name+' '+it.obtain+' '+it.desc).toLowerCase()}));
+      if(activeTab==='items') document.getElementById('methodBadge').textContent = `아이템 ${ITEMS.length}개`;
+      renderItemChips(); renderItems();
+    }).catch(()=>{
+      itemsLoading = null;
+      itemEls.grid.innerHTML = '<div class="empty-state">아이템 정보를 불러오지 못했습니다. 새로고침해 주세요.</div>';
+    });
+    return itemsLoading;
+  }
+
+  function renderItemChips(){
+    const cnt = {}; for(const it of ITEMS) cnt[it.cat] = (cnt[it.cat]||0)+1;
+    const cats = ['전체', ...ITEM_CATS.filter(c=>cnt[c]), ...Object.keys(cnt).filter(c=>!ITEM_CATS.includes(c))];
+    itemEls.chips.innerHTML = cats.map(c=>`<button class="chip" type="button" data-cat="${escHtml(c)}" aria-pressed="${c===itemCat}">${escHtml(c)}<span class="cnt">${c==='전체'?ITEMS.length:cnt[c]}</span></button>`).join('');
+  }
+
+  function renderItems(){
+    if(!ITEMS) return;
+    const q = itemEls.search.value.trim().toLowerCase();
+    const qc = expandClusters(q);
+    const sortKey = itemEls.sort.value;
+    let list = ITEMS.filter(it=>(itemCat==='전체' || it.cat===itemCat) && (!q || it._hay.includes(q) || it._cho.includes(qc)));
+    if(sortKey==='name') list = [...list].sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+    else if(sortKey!=='new'){
+      // 범위 아이템은 최대치 기준. 해당 능력치가 없는 아이템은 정렬 대상에서 뺀다.
+      const v = it => it.n[sortKey][1];
+      list = list.filter(it=>it.n[sortKey]).sort((a,b)=>v(b)-v(a) || a._i-b._i);
+    }
+    itemEls.count.textContent = `전체 ${ITEMS.length}개 · ${list.length}개 표시`;
+    if(!list.length){ itemEls.grid.innerHTML = '<div class="empty-state">조건에 맞는 아이템이 없습니다.</div>'; return; }
+    itemEls.grid.innerHTML = list.map(it=>{
+      const pills = ITEM_STATS.filter(([k])=>it.s[k]).map(([k,ko])=>{
+        const n = it.n[k], cls = n ? (n[1]<0?'neg':n[0]>0?'pos':'') : '';
+        return `<span class="stat-pill ${cls}${k===sortKey?' hl':''}"><b>${ko}</b>${escHtml(it.s[k])}</span>`;
+      });
+      if(it.attr) pills.push(`<span class="stat-pill"><b>속성</b>${escHtml(it.attr)}</span>`);
+      return `<article class="item-card">
+        <div class="ic-top">
+          ${it.img ? `<img src="${escHtml(it.img)}" alt="" loading="lazy" width="52" height="52">` : ''}
+          <div class="ic-head">
+            <span class="ic-cat">${escHtml(it.cat)}</span>
+            <span class="ic-name">${escHtml(it.name)}</span>
+            ${it.obtain ? `<span class="ic-obtain">획득: ${escHtml(it.obtain)}</span>` : ''}
+          </div>
+        </div>
+        ${pills.length ? `<div class="ic-stats">${pills.join('')}</div>` : ''}
+        ${it.desc && it.desc!=='.' ? `<div class="ic-desc">${escHtml(it.desc)}</div>` : ''}
+      </article>`;
+    }).join('');
+  }
+
+  itemEls.search.addEventListener('input', renderItems);
+  itemEls.sort.addEventListener('change', renderItems);
+  itemEls.chips.addEventListener('click', e=>{
+    const btn = e.target.closest('.chip'); if(!btn) return;
+    itemCat = btn.dataset.cat;
+    itemEls.chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed', String(c===btn)));
+    renderItems();
   });
 
   // attribute chips
