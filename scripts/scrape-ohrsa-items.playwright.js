@@ -85,7 +85,10 @@ function normalize(c) {
   }
   const attr = c.stats['속성'] && c.stats['속성'] !== '-' ? c.stats['속성'] : '';
   if (unparsed.length) console.warn(`  수치 해석 실패 [${c.id} ${c.name}]: ${unparsed.join(', ')}`);
-  return { id: c.id, name: c.name, cat: c.cat, obtain: c.obtain, desc: c.desc, attr, s, n, pct, src: c.img };
+  const it = { id: c.id, name: c.name, cat: c.cat, obtain: c.obtain, desc: c.desc, attr, s, n, pct, src: c.img };
+  const enh = enhanceKind(it);
+  if (enh) it.enh = enh;
+  return it;
 }
 
 // 브라우저 안에서 실행: "강화단계" 머리글로 시작하는 표들의 행 텍스트와 바로 앞 제목.
@@ -104,7 +107,35 @@ function scrapeEnhanceTables() {
       else if (n.querySelector && n.querySelector('table')) break;
     }
     return { title, rows };
-  }).filter(t => t.rows[0] && t.rows[0][0] === '강화단계');
+  }).filter(t => t.rows[0] && (t.rows[0][0] === '강화단계' || t.rows[0][0] === '목표 강화'));
+}
+
+// 강화 가능 장비: 공지상 도끼·곤봉·창·활·투구·갑옷. 공홈 아이템엔 장비 종류 필드가 없어 분류로 판단한다.
+// 무기·방어구 분류는 전부 가능(물고기 무기, 머리장식·쓰개, 옷, 발톱 포함), 손톱·부메랑·스로잉 무기만 불가,
+// 초보자 장비는 아래 이름표대로 (2026-11-18 사용자 확인).
+const ENH_NO_WEAPON = /손톱|부메랑|스로잉/;
+const ENH_BEGINNER = { '모험가 모자': 'armor', '모험가 옷': 'armor', '모험가 장갑': 'weapon' };
+function enhanceKind(it) {
+  if (it.cat === '무기') return ENH_NO_WEAPON.test(it.name) ? null : 'weapon';
+  if (it.cat === '방어구') return 'armor';
+  if (it.cat === '초보자') return ENH_BEGINNER[it.name] || null;
+  return null;
+}
+
+// 목표 강화 | 기본 확률 | C급 사용 | B급 사용 | 강화비용(S) | 실패 시 페널티
+function parseRates(t) {
+  const head = t.rows[0].join('|');
+  if (head !== '목표 강화|기본 확률|C급 사용|B급 사용|강화비용(S)|실패 시 페널티') throw new Error(`강화 확률 표 머리글 변경: ${head}`);
+  const pct = s => { const m = s.match(/^(\d+)%$/); if (!m) throw new Error(`확률 해석 실패: ${s}`); return +m[1]; };
+  const rates = t.rows.slice(1).map(([lv, base, c, b, cost, fail]) => {
+    const r = { lv: +lv.replace('+', ''), base: pct(base), C: pct(c), B: pct(b), cost: +cost.replace(/[^\d]/g, ''), destroy: /파괴/.test(fail) };
+    // 공지 규칙(C급 +10%, B급 +15%, 최대 100%)과 표가 맞는지 대조
+    if (r.C !== Math.min(100, r.base + 10) || r.B !== Math.min(100, r.base + 15)) throw new Error(`+${r.lv} 보조제 확률이 규칙과 다름: ${[base, c, b]}`);
+    if (!/파괴|유지/.test(fail)) throw new Error(`실패 페널티 해석 실패: ${fail}`);
+    return r;
+  });
+  if (rates.length !== 10 || rates.some((r, i) => r.lv !== i + 1)) throw new Error('강화 확률 표가 +1~+10 이 아님');
+  return rates;
 }
 
 const ENH_KEYS = { '공격': 'atk', '방어': 'def', '순발': 'agi', '내': 'hp', '내구': 'hp', '명중': 'acc', '관통': 'pen', '쉴드': 'shld', '크리': 'crit', '회피': 'evas' };
@@ -123,7 +154,10 @@ function parseGain(text) {
 // 공지 표의 "누적" 열을 단계별 합과 대조해서 표 해석이 맞는지 확인한다.
 function parseEnhance(tables) {
   const kinds = {};
-  for (const t of tables) {
+  const rateTables = tables.filter(t => t.rows[0][0] === '목표 강화');
+  if (rateTables.length !== 1) throw new Error(`강화 확률 표 ${rateTables.length}개 (1개여야 함)`);
+  const rates = parseRates(rateTables[0]);
+  for (const t of tables.filter(t => t.rows[0][0] === '강화단계')) {
     const kind = /^무기/.test(t.title) ? 'weapon' : /^방어구/.test(t.title) ? 'armor' : null;
     if (!kind) throw new Error(`강화 표 제목을 알 수 없음: "${t.title}"`);
     const steps = [], acc = {};
@@ -140,7 +174,7 @@ function parseEnhance(tables) {
     kinds[kind] = { title: t.title, steps };
   }
   if (!kinds.weapon || !kinds.armor) throw new Error('무기/방어구 강화 표를 모두 찾지 못함');
-  return { source: ENH_URL, pct: ['acc'], ...kinds };
+  return { source: ENH_URL, pct: ['acc'], rates, ...kinds };
 }
 
 (async () => {

@@ -338,6 +338,7 @@ h1,h2,h3,.display{
 .enh-section > h2{ font-size:19px; margin:0 0 4px; }
 .enh-section > p{ margin:0 0 14px; font-size:12.5px; color:var(--text-muted); }
 .enh-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr)); gap:18px; }
+.enh-rates{ grid-column:1 / -1; }
 .enh-block h3{ font-size:14px; margin:0 0 8px; font-family:"Manrope",system-ui,sans-serif; font-weight:800; }
 .enh-scroll{ overflow-x:auto; }
 .enh-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
@@ -348,6 +349,20 @@ h1,h2,h3,.display{
 .enh-table tr.enh-risk .enh-lv{ color:var(--danger); }
 .enh-stat{ display:inline-block; font-family:"JetBrains Mono",monospace; font-size:11.5px; margin:1px 8px 1px 0; white-space:nowrap; }
 .enh-stat b{ font-family:"Manrope",system-ui,sans-serif; font-weight:700; color:var(--text-muted); margin-right:3px; }
+.ic-enh{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12px; padding-top:8px; border-top:1px dashed var(--border); }
+.ic-enh-label{ font-size:11px; font-weight:700; color:var(--text-muted); }
+.enh-btn{ width:26px; height:26px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font:inherit; font-weight:800; cursor:pointer; line-height:1; }
+.enh-btn:hover:not([disabled]){ border-color:var(--accent); color:var(--accent); }
+.enh-btn[disabled]{ opacity:.35; cursor:default; }
+.enh-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+.ic-enh-lv{ min-width:30px; text-align:center; font-family:"JetBrains Mono",monospace; font-weight:800; color:var(--text-muted); }
+.ic-enh-lv.on{ color:var(--accent); }
+.ic-enh-next{ color:var(--text-muted); font-size:11.5px; }
+.ic-enh-next b{ color:var(--text); }
+.enh-sub{ opacity:.8; }
+.enh-bad{ color:var(--danger); font-weight:700; }
+.enh-up{ font-style:normal; font-size:10px; color:var(--accent); margin-left:4px; }
+.ic-cat-lv{ color:var(--accent); font-weight:800; }
 .item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
 
 </style>
@@ -410,8 +425,8 @@ h1,h2,h3,.display{
     </div>
     <div class="item-grid" id="itemGrid"></div>
     <section class="enh-section" id="enhanceSection" hidden>
-      <h2>강화 단계별 능력치</h2>
-      <p>오르 공홈 패치노트 260923 기준. 빨간 단계(+5 이상)는 실패하면 장비가 파괴됩니다.</p>
+      <h2>장비 강화</h2>
+      <p>오르 공홈 패치노트 260923 기준. 빨간 단계(+5 이상)는 실패하면 장비가 파괴됩니다. 무기·방어구 카드의 강화 버튼으로 단계별 능력치를 바로 볼 수 있습니다.</p>
       <div class="enh-grid" id="enhanceTables"></div>
     </section>
   </div>
@@ -8202,6 +8217,7 @@ h1,h2,h3,.display{
     itemsLoading = fetch('items.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).then(d=>{
       ITEMS = d.items.map((it,i)=>({...it, _i:i, _cho:chosung(it.name), _hay:(it.name+' '+it.obtain+' '+it.desc).toLowerCase()}));
       if(activeTab==='items') document.getElementById('methodBadge').textContent = `아이템 ${ITEMS.length}개`;
+      ENH = d.enhance || null;
       renderItemChips(); renderItems(); renderEnhance(d.enhance);
     }).catch(()=>{
       itemsLoading = null;
@@ -8226,7 +8242,11 @@ h1,h2,h3,.display{
       return `<div class="enh-block"><h3>${escHtml(kind.title)}</h3>
         <div class="enh-scroll"><table class="enh-table"><thead><tr><th>단계</th><th>해당 단계 추가</th><th>누적</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
     };
-    document.getElementById('enhanceTables').innerHTML = table(enh.weapon) + table(enh.armor);
+    const rateTable = enh.rates ? `<div class="enh-block enh-rates"><h3>단계별 성공 확률·비용</h3>
+        <div class="enh-scroll"><table class="enh-table"><thead><tr><th>목표</th><th>기본</th><th>C급 보조제</th><th>B급 보조제</th><th>비용</th><th>실패 시</th></tr></thead><tbody>${
+          enh.rates.map(r=>`<tr${r.destroy?' class="enh-risk"':''}><td class="enh-lv">+${r.lv}</td><td class="mono">${r.base}%</td><td class="mono">${r.C}%</td><td class="mono">${r.B}%</td><td class="mono">${r.cost.toLocaleString()}S</td><td${r.destroy?' class="enh-bad"':''}>${r.destroy?'장비 파괴':'장비 유지'}</td></tr>`).join('')
+        }</tbody></table></div></div>` : '';
+    document.getElementById('enhanceTables').innerHTML = rateTable + table(enh.weapon) + table(enh.armor);
     sec.hidden = false;
   }
 
@@ -8235,6 +8255,74 @@ h1,h2,h3,.display{
     const cats = ['전체', ...ITEM_CATS.filter(c=>cnt[c]), ...Object.keys(cnt).filter(c=>!ITEM_CATS.includes(c))];
     itemEls.chips.innerHTML = cats.map(c=>`<button class="chip" type="button" data-cat="${escHtml(c)}" aria-pressed="${c===itemCat}">${escHtml(c)}<span class="cnt">${c==='전체'?ITEMS.length:cnt[c]}</span></button>`).join('');
   }
+
+  // ---- 아이템 카드 (+ 강화 단계 선택) ----
+  let ENH = null;
+  const itemLv = new Map(); // id → 선택한 강화 단계 (0~10)
+  const signed = v => (v > 0 ? '+' : '') + v;
+  function enhCum(kind, lv){
+    const o = {};
+    if(!ENH || !ENH[kind]) return o;
+    for(const s of ENH[kind].steps.slice(0, lv)) for(const k in s.gain) o[k] = (o[k]||0) + s.gain[k];
+    return o;
+  }
+  function itemCardHtml(it){
+    const sortKey = itemEls.sort.value;
+    const lv = it.enh ? (itemLv.get(it.id) || 0) : 0;
+    const add = lv ? enhCum(it.enh, lv) : {};
+    const enhPct = new Set(ENH ? ENH.pct || [] : []);
+    const pills = ITEM_STATS.filter(([k])=>it.s[k] || add[k]).map(([k,ko])=>{
+      const n = it.n[k], g = add[k] || 0;
+      let text, lo, hi;
+      if(!g){ text = escHtml(it.s[k]); [lo,hi] = n || [0,0]; }
+      else {
+        [lo,hi] = n ? [n[0]+g, n[1]+g] : [g,g];
+        const p = (it.pct.includes(k) || enhPct.has(k)) ? '%' : '';
+        text = (lo===hi ? signed(lo) : `${signed(lo)}~${signed(hi)}`) + p + `<i class="enh-up">▲${g}</i>`;
+      }
+      const cls = (n || g) ? (hi<0?'neg':lo>0?'pos':'') : '';
+      return `<span class="stat-pill ${cls}${k===sortKey?' hl':''}"><b>${ko}</b>${text}</span>`;
+    });
+    if(it.attr) pills.push(`<span class="stat-pill"><b>속성</b>${escHtml(it.attr)}</span>`);
+    let enhRow = '';
+    if(it.enh && ENH){
+      const next = ENH.rates && ENH.rates[lv];
+      const info = next
+        ? `+${next.lv} 도전 <b>${next.base}%</b> <span class="enh-sub">(C ${next.C}% · B ${next.B}%)</span> · ${next.cost.toLocaleString()}S · <span class="${next.destroy?'enh-bad':''}">실패 시 ${next.destroy?'파괴':'유지'}</span>`
+        : '최대 강화';
+      enhRow = `<div class="ic-enh">
+          <span class="ic-enh-label">강화</span>
+          <button type="button" class="enh-btn" data-id="${escHtml(it.id)}" data-d="-1" aria-label="강화 단계 내리기" ${lv<=0?'disabled':''}>−</button>
+          <span class="ic-enh-lv${lv?' on':''}">+${lv}</span>
+          <button type="button" class="enh-btn" data-id="${escHtml(it.id)}" data-d="1" aria-label="강화 단계 올리기" ${lv>=10?'disabled':''}>+</button>
+          <span class="ic-enh-next">${info}</span>
+        </div>`;
+    }
+    return `<article class="item-card" data-id="${escHtml(it.id)}">
+        <div class="ic-top">
+          ${it.img ? `<img src="${escHtml(it.img)}" alt="" loading="lazy" width="52" height="52">` : ''}
+          <div class="ic-head">
+            <span class="ic-cat">${escHtml(it.cat)}${lv?` <span class="ic-cat-lv">+${lv}</span>`:''}</span>
+            <span class="ic-name">${escHtml(it.name)}</span>
+            ${it.obtain ? `<span class="ic-obtain">획득: ${escHtml(it.obtain)}</span>` : ''}
+          </div>
+        </div>
+        ${pills.length ? `<div class="ic-stats">${pills.join('')}</div>` : ''}
+        ${enhRow}
+        ${it.desc && it.desc!=='.' ? `<div class="ic-desc">${escHtml(it.desc)}</div>` : ''}
+      </article>`;
+  }
+  itemEls.grid.addEventListener('click', e=>{
+    const btn = e.target.closest('.enh-btn'); if(!btn) return;
+    const it = ITEMS.find(x=>x.id===btn.dataset.id); if(!it) return;
+    const lv = Math.max(0, Math.min(10, (itemLv.get(it.id)||0) + Number(btn.dataset.d)));
+    itemLv.set(it.id, lv);
+    const card = btn.closest('.item-card');
+    const tmp = document.createElement('div'); tmp.innerHTML = itemCardHtml(it);
+    const fresh = tmp.firstElementChild;
+    card.replaceWith(fresh);
+    fresh.querySelector(`.enh-btn[data-d="${btn.dataset.d}"]:not([disabled])`)?.focus();
+  });
 
   function renderItems(){
     if(!ITEMS) return;
@@ -8250,25 +8338,7 @@ h1,h2,h3,.display{
     }
     itemEls.count.textContent = `전체 ${ITEMS.length}개 · ${list.length}개 표시`;
     if(!list.length){ itemEls.grid.innerHTML = '<div class="empty-state">조건에 맞는 아이템이 없습니다.</div>'; return; }
-    itemEls.grid.innerHTML = list.map(it=>{
-      const pills = ITEM_STATS.filter(([k])=>it.s[k]).map(([k,ko])=>{
-        const n = it.n[k], cls = n ? (n[1]<0?'neg':n[0]>0?'pos':'') : '';
-        return `<span class="stat-pill ${cls}${k===sortKey?' hl':''}"><b>${ko}</b>${escHtml(it.s[k])}</span>`;
-      });
-      if(it.attr) pills.push(`<span class="stat-pill"><b>속성</b>${escHtml(it.attr)}</span>`);
-      return `<article class="item-card">
-        <div class="ic-top">
-          ${it.img ? `<img src="${escHtml(it.img)}" alt="" loading="lazy" width="52" height="52">` : ''}
-          <div class="ic-head">
-            <span class="ic-cat">${escHtml(it.cat)}</span>
-            <span class="ic-name">${escHtml(it.name)}</span>
-            ${it.obtain ? `<span class="ic-obtain">획득: ${escHtml(it.obtain)}</span>` : ''}
-          </div>
-        </div>
-        ${pills.length ? `<div class="ic-stats">${pills.join('')}</div>` : ''}
-        ${it.desc && it.desc!=='.' ? `<div class="ic-desc">${escHtml(it.desc)}</div>` : ''}
-      </article>`;
-    }).join('');
+    itemEls.grid.innerHTML = list.map(itemCardHtml).join('');
   }
 
   itemEls.search.addEventListener('input', renderItems);

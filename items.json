@@ -1,10 +1,92 @@
 {
  "source": "https://ohrsa.net/item",
- "scrapedAt": "2026-11-18T02:08:46.588Z",
+ "scrapedAt": "2026-11-18T02:14:02.759Z",
  "enhance": {
   "source": "https://ohrsa.net/update/7",
   "pct": [
    "acc"
+  ],
+  "rates": [
+   {
+    "lv": 1,
+    "base": 100,
+    "C": 100,
+    "B": 100,
+    "cost": 10900,
+    "destroy": false
+   },
+   {
+    "lv": 2,
+    "base": 80,
+    "C": 90,
+    "B": 95,
+    "cost": 18950,
+    "destroy": false
+   },
+   {
+    "lv": 3,
+    "base": 60,
+    "C": 70,
+    "B": 75,
+    "cost": 28510,
+    "destroy": false
+   },
+   {
+    "lv": 4,
+    "base": 50,
+    "C": 60,
+    "B": 65,
+    "cost": 64040,
+    "destroy": false
+   },
+   {
+    "lv": 5,
+    "base": 40,
+    "C": 50,
+    "B": 55,
+    "cost": 84450,
+    "destroy": true
+   },
+   {
+    "lv": 6,
+    "base": 30,
+    "C": 40,
+    "B": 45,
+    "cost": 110410,
+    "destroy": true
+   },
+   {
+    "lv": 7,
+    "base": 30,
+    "C": 40,
+    "B": 45,
+    "cost": 142300,
+    "destroy": true
+   },
+   {
+    "lv": 8,
+    "base": 20,
+    "C": 30,
+    "B": 35,
+    "cost": 258400,
+    "destroy": true
+   },
+   {
+    "lv": 9,
+    "base": 20,
+    "C": 30,
+    "B": 35,
+    "cost": 385410,
+    "destroy": true
+   },
+   {
+    "lv": 10,
+    "base": 10,
+    "C": 20,
+    "B": 25,
+    "cost": 485445,
+    "destroy": true
+   }
   ],
   "weapon": {
    "title": "무기류 (도끼, 곤봉, 창, 활)",
@@ -198,6 +280,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/121.png"
   },
   {
@@ -222,6 +305,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/120.png"
   },
   {
@@ -251,6 +335,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/119.png"
   },
   {
@@ -282,6 +367,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/118.png"
   },
   {
@@ -354,6 +440,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/113.png"
   },
   {
@@ -443,6 +530,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/107.png"
   },
   {
@@ -484,6 +572,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/106.png"
   },
   {
@@ -508,6 +597,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/105.png"
   },
   {
@@ -539,6 +629,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/104.png"
   },
   {
@@ -679,6 +770,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/97.png"
   },
   {
@@ -703,6 +795,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/96.png"
   },
   {
@@ -792,6 +885,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/93.png"
   },
   {
@@ -821,6 +915,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/92.png"
   },
   {
@@ -964,6 +1059,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/86.png"
   },
   {
@@ -995,6 +1091,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/85.png"
   },
   {
@@ -1024,6 +1121,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/84.png"
   },
   {
@@ -1055,6 +1153,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/83.png"
   },
   {
@@ -1089,6 +1188,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/82.png"
   },
   {
@@ -1118,6 +1218,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/81.png"
   },
   {
@@ -1147,6 +1248,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/80.png"
   },
   {
@@ -1183,6 +1285,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/79.png"
   },
   {
@@ -1231,6 +1334,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/72.png"
   },
   {
@@ -1379,6 +1483,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/66.png"
   },
   {
@@ -1403,6 +1508,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/65.png"
   },
   {
@@ -1446,6 +1552,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/63.png"
   },
   {
@@ -1489,6 +1596,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/61.png"
   },
   {
@@ -1518,6 +1626,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/60.png"
   },
   {
@@ -1542,6 +1651,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/59.png"
   },
   {
@@ -1571,6 +1681,7 @@
     ]
    },
    "pct": [],
+   "enh": "weapon",
    "img": "images/items/58.png"
   },
   {
@@ -1830,6 +1941,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/37.png"
   },
   {
@@ -1859,6 +1971,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/36.png"
   },
   {
@@ -1888,6 +2001,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/35.png"
   },
   {
@@ -1924,6 +2038,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/34.png"
   },
   {
@@ -1953,6 +2068,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/33.png"
   },
   {
@@ -1984,6 +2100,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/32.png"
   },
   {
@@ -2013,6 +2130,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/31.png"
   },
   {
@@ -2068,6 +2186,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/27.png"
   },
   {
@@ -2094,6 +2213,7 @@
    "pct": [
     "crit"
    ],
+   "enh": "weapon",
    "img": "images/items/26.png"
   },
   {
@@ -2113,6 +2233,7 @@
     ]
    },
    "pct": [],
+   "enh": "armor",
    "img": "images/items/25.png"
   },
   {
