@@ -368,6 +368,15 @@ h1,h2,h3,.display{
 .ic-enh-exp th, .ic-enh-exp td{ padding:2px 4px; text-align:right; white-space:nowrap; }
 .ic-enh-exp thead th{ font-family:"Manrope",system-ui,sans-serif; font-size:10.5px; color:var(--text-muted); font-weight:700; }
 .ic-enh-exp tbody th{ text-align:left; font-family:"Manrope",system-ui,sans-serif; font-weight:700; color:var(--text-muted); }
+.ic-enh-exp tr.is-min th, .ic-enh-exp tr.is-min td{ color:var(--accent2); font-weight:800; }
+.ic-enh-best{ margin-top:5px; font-size:11.5px; }
+.ic-enh-best b{ color:var(--accent); }
+.ic-enh-item{ display:flex; align-items:center; gap:6px; margin-top:6px; font-size:11.5px; color:var(--text-muted); }
+.price-input, .item-price{ width:96px; padding:4px 8px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text); font:inherit; font-family:"JetBrains Mono",monospace; font-size:12px; }
+.price-input:focus, .item-price:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.enh-price-row{ font-size:12px; color:var(--text-muted); gap:12px; }
+.enh-price-row label{ display:flex; align-items:center; gap:6px; }
+.enh-price-label{ font-weight:700; }
 .ic-enh-exp-note{ margin-top:4px; font-size:10.5px; color:var(--text-muted); }
 .ic-cat-lv{ color:var(--accent); font-weight:800; }
 .item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
@@ -428,6 +437,11 @@ h1,h2,h3,.display{
         </select>
       </div>
       <div class="chips" id="itemCatChips"></div>
+      <div class="row enh-price-row">
+        <span class="enh-price-label">강화 보조제 시세</span>
+        <label>C급 <input type="text" inputmode="decimal" id="priceC" class="price-input" placeholder="미입력"> S</label>
+        <label>B급 <input type="text" inputmode="decimal" id="priceB" class="price-input" placeholder="미입력"> S</label>
+      </div>
       <div class="items-count" id="itemCount"></div>
     </div>
     <div class="item-grid" id="itemGrid"></div>
@@ -8282,18 +8296,51 @@ h1,h2,h3,.display{
     return Math.round(v).toLocaleString();
   }
   const fmtN = v => !isFinite(v) ? '∞' : v >= 100 ? Math.round(v).toLocaleString() : v >= 10 ? v.toFixed(1).replace(/\.0$/,'') : v.toFixed(2).replace(/\.?0+$/,'');
-  function enhExpectHtml(lv){
+  // ---- 강화 시세 (보조제 값은 공통, 장비 값은 카드별) ----
+  const PRICE_KEY = 'stonecal.enhPrices';
+  const enhPrices = { C: NaN, B: 7_000_000 };
+  try { const s = JSON.parse(localStorage.getItem(PRICE_KEY) || 'null'); if(s){ for(const g of ['C','B']) enhPrices[g] = s[g]==null ? NaN : Number(s[g]); } } catch(_){}
+  const itemPrice = new Map(); // id → 장비 1개 값
+  // "700만", "1.2억", "7,000,000" → 숫자. 빈 칸은 NaN(미입력)
+  function parsePrice(str){
+    const s = String(str||'').replace(/[,\sS스톤]/g,'');
+    if(!s) return NaN;
+    const m = s.match(/^(\d+(?:\.\d+)?)(억|만)?$/);
+    if(!m) return NaN;
+    return Math.round(Number(m[1]) * (m[2]==='억' ? 1e8 : m[2]==='만' ? 1e4 : 1));
+  }
+  const priceText = v => Number.isFinite(v) ? fmtS(v) : '';
+  function savePrices(){ try { localStorage.setItem(PRICE_KEY, JSON.stringify({ C: Number.isFinite(enhPrices.C)?enhPrices.C:null, B: Number.isFinite(enhPrices.B)?enhPrices.B:null })); } catch(_){} }
+
+  function planText(plan){
+    const runs = [];
+    plan.forEach((g,k)=>{ const last = runs[runs.length-1]; if(last && last.g===g) last.to = k+1; else runs.push({ g, from:k+1, to:k+1 }); });
+    const used = runs.filter(r=>r.g!=='none');
+    if(!used.length) return '보조제 안 씀';
+    return used.map(r=>`${r.from===r.to?`+${r.from}`:`+${r.from}~+${r.to}`} ${r.g}급`).join(' · ');
+  }
+
+  function enhExpectHtml(it, lv){
     if(!window.EnhanceCalc || !ENH || !ENH.rates) return '';
-    const rows = [['none','보조제 없음'],['C','C급'],['B','B급']].map(([g,label])=>{
-      const e = EnhanceCalc.expected(ENH.rates, 0, lv, g);
-      return `<tr><th>${label}</th><td>${fmtN(e.attempts)}회</td><td class="${e.destroys>0?'enh-bad':''}">${fmtN(e.destroys)}개</td><td>${fmtS(e.cost)}S</td></tr>`;
-    }).join('');
+    const prices = { C: enhPrices.C, B: enhPrices.B, item: itemPrice.get(it.id) };
+    const rows = [];
+    rows.push({ label:'보조제 없음', e: EnhanceCalc.expected(ENH.rates, 0, lv, 'none', prices) });
+    for(const g of ['C','B']) if(Number.isFinite(enhPrices[g])) rows.push({ label:`전부 ${g}급`, e: EnhanceCalc.expected(ENH.rates, 0, lv, g, prices) });
+    const best = EnhanceCalc.optimal(ENH.rates, 0, lv, prices);
+    const bestUsesAssist = best.plan.some(g=>g!=='none');
+    if(bestUsesAssist) rows.push({ label:'최저 비용', e: best, best:true });
+    const minTotal = Math.min(...rows.map(r=>r.e.total));
+    const tr = rows.map(r=>`<tr class="${r.e.total<=minTotal+1e-6?'is-min':''}"><th>${r.label}</th><td>${fmtN(r.e.attempts)}회</td><td class="${r.e.destroys>0?'enh-bad':''}">${fmtN(r.e.destroys)}개</td><td>${fmtS(r.e.total)}S</td></tr>`).join('');
+    const ip = itemPrice.get(it.id);
     return `<div class="ic-enh-exp">
           <div class="ic-enh-exp-title">+0 → +${lv} 평균 기대값</div>
-          <table><thead><tr><th></th><th>시도</th><th>장비 파괴</th><th>강화비</th></tr></thead><tbody>${rows}</tbody></table>
-          <div class="ic-enh-exp-note">파괴되면 새 장비 +0부터 다시 · 강화비에 장비·보조제 값 미포함</div>
+          <table><thead><tr><th></th><th>시도</th><th>장비 파괴</th><th>총비용</th></tr></thead><tbody>${tr}</tbody></table>
+          <div class="ic-enh-best">최저 비용 조합: <b>${planText(best.plan)}</b></div>
+          <label class="ic-enh-item">이 장비 1개 값 <input type="text" inputmode="decimal" class="item-price" data-id="${escHtml(it.id)}" value="${escHtml(priceText(ip))}" placeholder="예: 300만"> S</label>
+          <div class="ic-enh-exp-note">총비용 = 강화비 + 보조제 값 + 파괴된 장비 값 · 파괴되면 새 장비 +0부터 다시</div>
         </div>`;
   }
+
   function itemCardHtml(it){
     const sortKey = itemEls.sort.value;
     const lv = it.enh ? (itemLv.get(it.id) || 0) : 0;
@@ -8324,7 +8371,7 @@ h1,h2,h3,.display{
           <span class="ic-enh-lv${lv?' on':''}">+${lv}</span>
           <button type="button" class="enh-btn" data-id="${escHtml(it.id)}" data-d="1" aria-label="강화 단계 올리기" ${lv>=10?'disabled':''}>+</button>
           <span class="ic-enh-next">${info}</span>
-        </div>${lv ? enhExpectHtml(lv) : ''}`;
+        </div>${lv ? enhExpectHtml(it, lv) : ''}`;
     }
     return `<article class="item-card" data-id="${escHtml(it.id)}">
         <div class="ic-top">
@@ -8369,6 +8416,24 @@ h1,h2,h3,.display{
     itemEls.grid.innerHTML = list.map(itemCardHtml).join('');
   }
 
+  for(const g of ['C','B']){
+    const el = document.getElementById('price'+g);
+    el.value = priceText(enhPrices[g]);
+    el.addEventListener('change', ()=>{
+      enhPrices[g] = parsePrice(el.value);
+      el.value = priceText(enhPrices[g]);
+      savePrices(); renderItems();
+    });
+  }
+  itemEls.grid.addEventListener('change', e=>{
+    const inp = e.target.closest('.item-price'); if(!inp) return;
+    const it = ITEMS.find(x=>x.id===inp.dataset.id); if(!it) return;
+    const v = parsePrice(inp.value);
+    if(Number.isFinite(v)) itemPrice.set(it.id, v); else itemPrice.delete(it.id);
+    const card = inp.closest('.item-card');
+    const tmp = document.createElement('div'); tmp.innerHTML = itemCardHtml(it);
+    card.replaceWith(tmp.firstElementChild);
+  });
   itemEls.search.addEventListener('input', renderItems);
   itemEls.sort.addEventListener('change', renderItems);
   itemEls.chips.addEventListener('click', e=>{
