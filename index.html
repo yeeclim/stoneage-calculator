@@ -8342,7 +8342,7 @@ h1,h2,h3,.display{
   const fmtN = v => !isFinite(v) ? '∞' : v >= 100 ? Math.round(v).toLocaleString() : v >= 10 ? v.toFixed(1).replace(/\.0$/,'') : v.toFixed(2).replace(/\.?0+$/,'');
   // ---- 강화 시세 (보조제 값은 공통, 장비 값은 카드별) ----
   const PRICE_KEY = 'stonecal.enhPrices';
-  const enhPrices = { C: NaN, B: 7_000_000 };
+  const enhPrices = { C: 3_000_000, B: 7_000_000 };
   try { const s = JSON.parse(localStorage.getItem(PRICE_KEY) || 'null'); if(s){ for(const g of ['C','B']) enhPrices[g] = s[g]==null ? NaN : Number(s[g]); } } catch(_){}
   const itemPrice = new Map(); // id → 장비 1개 값
   // "700만", "1.2억", "7,000,000" → 숫자. 빈 칸은 NaN(미입력)
