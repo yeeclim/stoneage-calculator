@@ -115,6 +115,15 @@ h1,h2,h3,.display{
 }
 .chip[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
 .chip:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+.filter-row{ display:flex; align-items:flex-start; gap:8px; margin-top:8px; }
+.filter-label{ flex:none; font-size:11px; color:var(--text-muted); width:30px; line-height:26px; }
+.attr-ranges{ display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+.attr-range{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-muted); }
+.attr-range b{ width:30px; color:var(--text); font-weight:600; }
+.attr-range select{
+  padding:3px 6px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface-2); color:var(--text); font-size:12px; font-family:"JetBrains Mono",monospace;
+}
 .variant-tabs{ margin-bottom:14px; }
 
 .pet-count{ padding:8px 14px; font-size:11.5px; color:var(--text-muted); border-bottom:1px solid var(--border); font-family:"JetBrains Mono",monospace;}
@@ -437,7 +446,9 @@ h1,h2,h3,.display{
     <aside class="sidebar">
       <div class="search-wrap">
         <input id="search" class="search-input" type="text" placeholder="펫 이름 검색 (초성 가능, 예: ㅍㅇㄹ)" autocomplete="off">
-        <div class="chips" id="attrChips"></div>
+        <div class="filter-row"><span class="filter-label">속성</span><div class="chips" id="attrChips"></div></div>
+        <div class="attr-ranges" id="attrRanges"></div>
+        <div class="filter-row" id="obtainRow"><span class="filter-label">획득</span><div class="chips" id="obtainChips"></div></div>
       </div>
       <div class="pet-count" id="petCount"></div>
       <div class="pet-grid" id="petGrid"></div>
@@ -8197,6 +8208,8 @@ h1,h2,h3,.display{
   // ---- state ----
   let selectedId = null;
   let activeAttrs = new Set();
+  let attrRange = {};          // 속성 -> [최소, 최대] (1~10), 선택한 속성에만 적용
+  let activeObtains = new Set(); // 획득처 분류 (합집합)
   let statVals = [0,0,0,0]; // 체 공 방 순 (내구 공격 방어 순발)
   const STAT_LABELS = ['내구력','공격력','방어력','순발력'];
 
@@ -8257,8 +8270,14 @@ h1,h2,h3,.display{
 
       selectedId = null;
       activeAttrs = new Set();
+      attrRange = {};
+      activeObtains = new Set();
       els.search.value = '';
       els.chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+      obtainEls.chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+      // 제로 획득처는 표기 형식이 달라(「필드포획: 지역 · Lv」 등) 오르 분류를 그대로 쓰지 않는다.
+      obtainEls.row.hidden = activeTab==='zero';
+      renderAttrRanges();
       renderGrid();
       renderEmptyState();
     });
@@ -8595,13 +8614,71 @@ h1,h2,h3,.display{
     const btn = e.target.closest('.chip');
     if(!btn) return;
     const a = btn.dataset.attr;
-    if(activeAttrs.has(a)){ activeAttrs.delete(a); btn.setAttribute('aria-pressed','false'); }
-    else { activeAttrs.add(a); btn.setAttribute('aria-pressed','true'); }
+    if(activeAttrs.has(a)){ activeAttrs.delete(a); delete attrRange[a]; btn.setAttribute('aria-pressed','false'); }
+    else { activeAttrs.add(a); attrRange[a] = [1,10]; btn.setAttribute('aria-pressed','true'); }
+    renderAttrRanges();
+    renderGrid();
+  });
+
+  // 선택한 속성마다 수치(1~10) 범위 선택
+  const attrRangesEl = document.getElementById('attrRanges');
+  function renderAttrRanges(){
+    const opts = sel => Array.from({length:10},(_,i)=>i+1).map(v=>`<option value="${v}"${v===sel?' selected':''}>${v}</option>`).join('');
+    attrRangesEl.innerHTML = ATTRS.filter(a=>activeAttrs.has(a)).map(a=>{
+      const [lo,hi] = attrRange[a];
+      return `<div class="attr-range"><b>${a}</b>
+        <select data-attr="${a}" data-end="0" aria-label="${a} 최소">${opts(lo)}</select> ~
+        <select data-attr="${a}" data-end="1" aria-label="${a} 최대">${opts(hi)}</select></div>`;
+    }).join('');
+    attrRangesEl.hidden = !activeAttrs.size;
+  }
+  attrRangesEl.addEventListener('change', e=>{
+    const s = e.target.closest('select'); if(!s) return;
+    const a = s.dataset.attr, end = +s.dataset.end, v = +s.value;
+    const r = attrRange[a];
+    r[end] = v;
+    if(r[0] > r[1]) r[end===0 ? 1 : 0] = v; // 최소>최대가 되면 반대쪽을 맞춰 준다
+    renderAttrRanges();
+    renderGrid();
+  });
+  renderAttrRanges();
+
+  // 획득처 분류 - obtain 문자열 머리말 기준 (오르 데이터)
+  const OBTAIN_CATS = ['필드포획','희귀','퀘스트','지원','이벤트','레이드','듀얼','복권','기타'];
+  function obtainCat(o){
+    o = o || '';
+    if(/^희귀/.test(o)) return '희귀';
+    if(/^필드포획/.test(o)) return '필드포획';
+    if(/퀘스트/.test(o)) return '퀘스트';          // '황금색 페트 (카난) 퀘스트 보상' 포함
+    if(/지원/.test(o)) return '지원';              // 지원 포인트(상점·페트), 지원P 상점 환생·진화
+    if(/이벤트|토큰상점/.test(o)) return '이벤트';  // 한가위 토큰상점 등
+    if(/^레이드/.test(o)) return '레이드';
+    if(/^듀얼/.test(o)) return '듀얼';
+    if(/^복권/.test(o)) return '복권';
+    return '기타';                                  // 페트 자판기, 직접 등록 등
+  }
+  const obtainEls = { row: document.getElementById('obtainRow'), chips: document.getElementById('obtainChips') };
+  obtainEls.chips.innerHTML = OBTAIN_CATS.map(c=>`<button class="chip" type="button" data-obtain="${c}" aria-pressed="false">${c}</button>`).join('');
+  obtainEls.chips.addEventListener('click', e=>{
+    const btn = e.target.closest('.chip'); if(!btn) return;
+    const c = btn.dataset.obtain;
+    if(activeObtains.has(c)) activeObtains.delete(c); else activeObtains.add(c);
+    btn.setAttribute('aria-pressed', String(activeObtains.has(c)));
     renderGrid();
   });
 
   function matchesFilter(p, q){
-    for(const a of activeAttrs){ if(!p.attr.includes(a)) return false; } // 교집합: 선택한 속성 전부 있어야 함
+    for(const a of activeAttrs){ // 교집합: 선택한 속성 전부 있어야 하고, 수치가 범위 안이어야 함
+      const hit = (p.attrs||[]).find(x=>x[0]===a);
+      const [lo,hi] = attrRange[a] || [1,10];
+      if(!hit){ // 수치 없이 속성 문자열만 있는 개체는 범위를 좁히지 않았을 때만 통과
+        if(!p.attr.includes(a) || lo>1 || hi<10) return false;
+        continue;
+      }
+      const v = +hit[1];
+      if(v < lo || v > hi) return false;
+    }
+    if(activeObtains.size && activeTab!=='zero' && !activeObtains.has(obtainCat(p.obtain))) return false; // 합집합
     if(!q) return true;
     const hit = x => x.name.includes(q) || x._cho.includes(expandClusters(q));
     return hit(p) || (VARIANTS.get(String(p.id)) || []).some(hit); // 이름 바뀐 진화(베르푸스)로도 원본 검색
