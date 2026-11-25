@@ -6,10 +6,11 @@
   "scripts": {
     "scrape:ohrsa": "node scripts/scrape-ohrsa.playwright.js",
     "scrape:zero": "node scripts/scrape-zero-board23.playwright.js",
+    "scrape:neon": "node scripts/scrape-neon.js",
     "merge:auto": "node scripts/merge-auto-scrape.js",
     "localize:images": "node scripts/localize-images.js",
     "scrape:items": "node scripts/scrape-ohrsa-items.playwright.js",
-    "test": "node scripts/test-enhance-calc.js && node scripts/test-ohrsa-drops-parse.js"
+    "test": "node scripts/test-enhance-calc.js && node scripts/test-ohrsa-drops-parse.js && node scripts/test-neon-pet-data.js"
   },
   "devDependencies": {
     "playwright": "^1.47.0"

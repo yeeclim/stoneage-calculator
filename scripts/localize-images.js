@@ -15,7 +15,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const INDEX = path.join(ROOT, 'index.html');
 const DIR = path.join(ROOT, 'images', 'pets');
-const IDS = ['pet-data-extra', 'pet-data-zero'];
+const IDS = ['pet-data-extra', 'pet-data-zero', 'pet-data-neon'];
 
 const extOf = b => b.slice(0, 4).toString() === 'GIF8' ? 'gif'
   : b.slice(0, 4).toString() === 'RIFF' ? 'webp'
@@ -38,6 +38,7 @@ const extOf = b => b.slice(0, 4).toString() === 'GIF8' ? 'gif'
       if (file) skipped++;
       else {
         try {
+          if (done + failed > 0) await new Promise(res => setTimeout(res, 500)); // 새로 받을 때만 0.5초 간격
           const r = await fetch(p.img, { headers: { 'User-Agent': 'Mozilla/5.0' } });
           if (!r.ok) throw new Error('HTTP ' + r.status);
           const buf = Buffer.from(await r.arrayBuffer());

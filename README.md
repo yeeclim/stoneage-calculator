@@ -6,7 +6,7 @@
 
 [![Live](https://img.shields.io/badge/Live-stoneage--calculator.vercel.app-000?logo=vercel)](https://stoneage-calculator.vercel.app)
 ![Static](https://img.shields.io/badge/빌드-없음_%28index.html_하나%29-2ea44f)
-![Pets](https://img.shields.io/badge/도감-오르_360_·_제로_210-blue)
+![Pets](https://img.shields.io/badge/도감-오르_360_·_제로_210_·_네온_236-blue)
 
 </div>
 
@@ -19,6 +19,7 @@
 | **오르** | Lv1 초기치 → 178,750가지 조합(등급오프셋 5⁴ × 보너스 분배 286)을 대조해 등급별 확률 표시. |
 | **성장률·초기치 비교** | RANK 1~6 표기값과 계산값 비교 |
 | **제로** | 스톤에이지 제로(별개 서버) 도감. 오르와 값이 달라 데이터를 분리해 둔다. |
+| **네온** | 네온(neonine.cc) 도감 236마리. 탑승 가능 여부·탑승 캐릭터 수도 표시한다. |
 
 - 🧪 **맹독 데미지**: 포획 전에 맹독 데미지로 정석 여부를 거를 수 있는지 판단 (서버 `battle.c` 공식)
 - 🔁 **환생·진화 형태 전환**: 상세 화면의 버튼으로 원본 ↔ 환생 ↔ 진화 전환
@@ -35,6 +36,7 @@
 - **보너스 10포인트**: 1포인트씩 4스탯에 독립으로 배분 (다항분포)
 - **연산 순서**: 서버(gmsv `CHAR_complianceParameter`)와 같은 순서로 계산한다. 순서가 다르면 부동소수 내림 결과가 갈린다.
 - **origin·k 역산**: 도감의 초기치와 3자리 성장률로 [`solve-origin-k.js`](scripts/solve-origin-k.js)가 정수해를 찾는다. 정석(+8)이 정수 보너스로 재현돼야 채택한다.
+- **네온 역산**: 네온 도감은 S급 초기치를 내림 전 소수값으로 보여준다. 236마리 전부가 정수 k, RANK 밴드 중앙값 B, **0.25 단위 origin**으로 초기·성장 8개 값을 소수 둘째 자리까지 정확히 재현한다([`build-neon-pet-data.js`](scripts/build-neon-pet-data.js)). 그래서 네온 origin은 소수 그대로 둔다. 실측 포획으로 검증되기 전이라 등급 확률은 참고용이다.
 
 ## 📁 구조
 
@@ -43,8 +45,9 @@ index.html                 계산기 본체 (데이터 내장, 외부 의존은 
 ├─ #pet-data               오르 정밀 지원 165마리 (이미지 base64 webp 내장)
 ├─ #pet-data-extra         오르 추가 195마리 (환생·진화 88 포함, images/pets/ 경로)
 ├─ #rank-compare-data      RANK 비교 142건
-└─ #pet-data-zero          제로 도감 210마리
-images/pets/               오르·제로 펫 이미지
+├─ #pet-data-zero          제로 도감 210마리
+└─ #pet-data-neon          네온 도감 236마리
+images/pets/               오르·제로·네온 펫 이미지
 scripts/                   스크랩·역산·주입·검증 스크립트
 ```
 
@@ -57,7 +60,9 @@ scripts/                   스크랩·역산·주입·검증 스크립트
 | `npm run scrape:ohrsa` | ohrsa.net 도감 스크랩 (Playwright, 로그인 필요) |
 | `npm run merge:auto` | 스크랩 결과 중 신규 펫만 `pet-data-extra`에 추가 (역산 자동 연결) |
 | `npm run scrape:zero` | 제로 도감 스크랩 (`scripts/sathezero.local.env` 필요) |
+| `npm run scrape:neon` | 네온 도감 스크랩 (1초 간격, HTML 은 `data/neon-cache/`에 캐시) |
 | `npm run localize:images` | 새 이미지를 `images/pets/`로 내려받고 경로 치환 |
+| `npm test` | 강화·드랍 파서 테스트 + 네온 데이터 검증(계산기 코드로 S급 +8 재현 확인) |
 
 ### 제로 도감 갱신
 
@@ -72,6 +77,18 @@ npm run localize:images
 - `scripts/zero_manual_pets.json`: 게시판에 없는 개체
 - `scripts/zero_growth_overrides.json`: 게시판 성장률 오기 정정
 - `scripts/zero_legacy_board23_pets.json`: 개편 전 목록에만 있는 개체 유지
+
+### 네온 도감 갱신
+
+```bash
+npm run scrape:neon                      # → scripts/neon_pets.json (--refresh: 캐시 무시, --offline: 캐시만 파싱)
+node scripts/build-neon-pet-data.js      # → scripts/neon_pet_data.json (origin·k 역산)
+node scripts/inject-neon-pet-data.js     # → index.html #pet-data-neon 교체
+npm run localize:images
+npm test
+```
+
+neonine.cc 의 robots.txt 는 검색엔진 외 자동 수집을 막아 두었다. 갱신은 필요할 때만 돌리고, 평소에는 캐시(`--offline`)로 파서를 고친다.
 
 ### 오르 보정
 

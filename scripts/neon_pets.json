@@ -1,0 +1,9325 @@
+[
+  {
+    "no": "1",
+    "name": "우리",
+    "family": "두리 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (97,612)",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      16.75,
+      2.6,
+      2.69,
+      2.95
+    ],
+    "growth": [
+      9.63,
+      1.5,
+      1.55,
+      1.7
+    ],
+    "totalGrowth": 4.74,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100250.png"
+  },
+  {
+    "no": "2",
+    "name": "두리",
+    "family": "두리 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "샴기르 마을 출신 초기페트",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      36.35,
+      6.96,
+      4.8,
+      5.75
+    ],
+    "growth": [
+      10.09,
+      1.93,
+      1.33,
+      1.6
+    ],
+    "totalGrowth": 4.86,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100251.png"
+  },
+  {
+    "no": "3",
+    "name": "얼룩우리",
+    "family": "두리 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (117,630)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      26.14,
+      4.66,
+      4.53,
+      3.34
+    ],
+    "growth": [
+      10.02,
+      1.79,
+      1.74,
+      1.28
+    ],
+    "totalGrowth": 4.8,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100252.png"
+  },
+  {
+    "no": "4",
+    "name": "불그리",
+    "family": "두리 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 7,
+    "grade": "2등급",
+    "obtain": "JOT-B 코스 이벤트",
+    "attrs": [
+      [
+        "화",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      17.7,
+      3.1,
+      2.54,
+      3.23
+    ],
+    "growth": [
+      9.82,
+      1.72,
+      1.41,
+      1.79
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100253.png"
+  },
+  {
+    "no": "5",
+    "name": "실버우리",
+    "family": "두리 계열",
+    "category": "스페셜",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 7,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 카루타나",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      34.85,
+      6.08,
+      6.4,
+      5.7
+    ],
+    "growth": [
+      9.67,
+      1.69,
+      1.77,
+      1.58
+    ],
+    "totalGrowth": 5.04,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100388.png"
+  },
+  {
+    "no": "6",
+    "name": "환생얼룩우리",
+    "family": "두리 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 7,
+    "grade": "1등급",
+    "obtain": "환생 이벤트",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      54.88,
+      8.89,
+      9.56,
+      7
+    ],
+    "growth": [
+      10.43,
+      1.69,
+      1.82,
+      1.33
+    ],
+    "totalGrowth": 4.84,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100252.png"
+  },
+  {
+    "no": "726",
+    "name": "푸우리",
+    "family": "두리 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (얼룩우리)",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      52.5,
+      9.99,
+      6.75,
+      7.74
+    ],
+    "growth": [
+      10.39,
+      1.98,
+      1.34,
+      1.53
+    ],
+    "totalGrowth": 4.85,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100821.png"
+  },
+  {
+    "no": "727",
+    "name": "녹우리",
+    "family": "두리 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (얼룩우리)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      51.54,
+      10.03,
+      8.52,
+      6.9
+    ],
+    "growth": [
+      10.2,
+      1.98,
+      1.69,
+      1.37
+    ],
+    "totalGrowth": 5.04,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100822.png"
+  },
+  {
+    "no": "11",
+    "name": "부비",
+    "family": "골드부비 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "터프소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (608,208)",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      33.26,
+      5.29,
+      4.68,
+      2.21
+    ],
+    "growth": [
+      11.86,
+      1.89,
+      1.67,
+      0.79
+    ],
+    "totalGrowth": 4.34,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100254.png"
+  },
+  {
+    "no": "12",
+    "name": "골드부비",
+    "family": "골드부비 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "터프소녀",
+      "툰가"
+    ],
+    "slots": 7,
+    "grade": "2등급",
+    "obtain": "퀴즈 마스터(모가로스이벤트) 퀘스트",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      52.81,
+      9.91,
+      10.86,
+      4.25
+    ],
+    "growth": [
+      10.46,
+      1.96,
+      2.15,
+      0.84
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100255.png"
+  },
+  {
+    "no": "13",
+    "name": "부이",
+    "family": "골드부비 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "터프소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (610,206)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      54.45,
+      8.22,
+      6.93,
+      3.63
+    ],
+    "growth": [
+      12.25,
+      1.85,
+      1.56,
+      0.82
+    ],
+    "totalGrowth": 4.22,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100256.png"
+  },
+  {
+    "no": "14",
+    "name": "부이비",
+    "family": "골드부비 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "터프소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (357,183)",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      34,
+      6.46,
+      4.69,
+      3.4
+    ],
+    "growth": [
+      10.94,
+      2.08,
+      1.51,
+      1.09
+    ],
+    "totalGrowth": 4.68,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100257.png"
+  },
+  {
+    "no": "15",
+    "name": "얼룩부이비",
+    "family": "골드부비 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "퀴즈 마스터(오르곤이벤트) 퀘스트",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      47.96,
+      8.78,
+      7.64,
+      5.18
+    ],
+    "growth": [
+      10.74,
+      1.97,
+      1.71,
+      1.16
+    ],
+    "totalGrowth": 4.84,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100258.png"
+  },
+  {
+    "no": "728",
+    "name": "푸비",
+    "family": "골드부비 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (부비)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      52.04,
+      10.01,
+      8.05,
+      4.89
+    ],
+    "growth": [
+      10.75,
+      2.07,
+      1.66,
+      1.01
+    ],
+    "totalGrowth": 4.74,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100823.png"
+  },
+  {
+    "no": "729",
+    "name": "푸이",
+    "family": "골드부비 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (부비)",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      53.93,
+      10.18,
+      7.44,
+      5
+    ],
+    "growth": [
+      11.14,
+      2.1,
+      1.54,
+      1.03
+    ],
+    "totalGrowth": 4.67,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100824.png"
+  },
+  {
+    "no": "21",
+    "name": "꼬미",
+    "family": "꼬미 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "라토토 대복도 (161,66)",
+    "attrs": [
+      [
+        "화",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      39.11,
+      7.27,
+      5.98,
+      6.44
+    ],
+    "growth": [
+      9.87,
+      1.83,
+      1.51,
+      1.62
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100259.png"
+  },
+  {
+    "no": "22",
+    "name": "꼬비",
+    "family": "꼬미 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "라토토 대복도 (147,42)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      35.3,
+      6.42,
+      5.52,
+      6.1
+    ],
+    "growth": [
+      9.8,
+      1.78,
+      1.53,
+      1.69
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100260.png"
+  },
+  {
+    "no": "23",
+    "name": "꼬비오",
+    "family": "꼬미 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "라토토 대동굴 3층 전역",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      31.46,
+      5.63,
+      4.74,
+      5.72
+    ],
+    "growth": [
+      9.7,
+      1.74,
+      1.46,
+      1.76
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100261.png"
+  },
+  {
+    "no": "24",
+    "name": "꼬꼬비",
+    "family": "꼬미 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "라토토의 동굴 3층 (60,38)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      28.04,
+      5.27,
+      4.19,
+      4.92
+    ],
+    "growth": [
+      9.73,
+      1.83,
+      1.45,
+      1.71
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100262.png"
+  },
+  {
+    "no": "731",
+    "name": "꼬꼬미",
+    "family": "꼬미 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 라토토 대복도 (꼬미)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      44.78,
+      8.63,
+      6.69,
+      6.83
+    ],
+    "growth": [
+      10.13,
+      1.95,
+      1.51,
+      1.54
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100826.png"
+  },
+  {
+    "no": "732",
+    "name": "꼬이미",
+    "family": "꼬미 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 라토토 대복도 (꼬미)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      46.75,
+      10.36,
+      6.79,
+      7.48
+    ],
+    "growth": [
+      9.65,
+      2.14,
+      1.4,
+      1.54
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100827.png"
+  },
+  {
+    "no": "734",
+    "name": "푸미",
+    "family": "꼬미 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 라토토 대복도 (꼬미)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      49.17,
+      8.9,
+      7.52,
+      6.71
+    ],
+    "growth": [
+      10.62,
+      1.92,
+      1.62,
+      1.45
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100829.png"
+  },
+  {
+    "no": "31",
+    "name": "푸푸",
+    "family": "오투투 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (558,391)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      21.58,
+      4.13,
+      2.72,
+      4.88
+    ],
+    "growth": [
+      9.21,
+      1.76,
+      1.16,
+      2.08
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100263.png"
+  },
+  {
+    "no": "32",
+    "name": "우푸",
+    "family": "오투투 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (636,315)",
+    "attrs": [
+      [
+        "화",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      25.65,
+      4.95,
+      2.96,
+      5.66
+    ],
+    "growth": [
+      9.49,
+      1.83,
+      1.09,
+      2.1
+    ],
+    "totalGrowth": 5.02,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100264.png"
+  },
+  {
+    "no": "33",
+    "name": "투투",
+    "family": "오투투 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (280,431)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      32.56,
+      5.51,
+      3.9,
+      5.7
+    ],
+    "growth": [
+      10.25,
+      1.73,
+      1.23,
+      1.79
+    ],
+    "totalGrowth": 4.75,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100265.png"
+  },
+  {
+    "no": "34",
+    "name": "오투투",
+    "family": "오투투 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "카루타나 마을 출신 초기페트",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      34.85,
+      6.37,
+      5.29,
+      7.15
+    ],
+    "growth": [
+      9.32,
+      1.7,
+      1.41,
+      1.91
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100266.png"
+  },
+  {
+    "no": "736",
+    "name": "푸투투",
+    "family": "오투투 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 쟈루 (푸푸)",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      44.37,
+      6.57,
+      4.92,
+      6.08
+    ],
+    "growth": [
+      12.4,
+      1.84,
+      1.38,
+      1.7
+    ],
+    "totalGrowth": 4.91,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100831.png"
+  },
+  {
+    "no": "737",
+    "name": "노투투",
+    "family": "오투투 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 쟈루 (푸푸)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      40.95,
+      7.42,
+      4.63,
+      9.19
+    ],
+    "growth": [
+      9.65,
+      1.75,
+      1.09,
+      2.17
+    ],
+    "totalGrowth": 5,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100832.png"
+  },
+  {
+    "no": "738",
+    "name": "푸투",
+    "family": "오투투 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 쟈루 (푸푸)",
+    "attrs": [
+      [
+        "수",
+        6
+      ],
+      [
+        "화",
+        4
+      ]
+    ],
+    "init": [
+      41.42,
+      7.41,
+      5.33,
+      8.14
+    ],
+    "growth": [
+      9.76,
+      1.75,
+      1.26,
+      1.92
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100833.png"
+  },
+  {
+    "no": "2861",
+    "name": "리푸린",
+    "family": "오투투 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "1등급",
+    "obtain": "전설 페트 - 쟈루",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      53.19,
+      10.48,
+      7.22,
+      9.56
+    ],
+    "growth": [
+      10.11,
+      1.99,
+      1.37,
+      1.82
+    ],
+    "totalGrowth": 5.18,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/115028.png"
+  },
+  {
+    "no": "41",
+    "name": "베론",
+    "family": "베론 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠링으로의 길 1층 (33,41)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      52.32,
+      7.15,
+      10.07,
+      4.8
+    ],
+    "growth": [
+      11.23,
+      1.53,
+      2.16,
+      1.03
+    ],
+    "totalGrowth": 4.73,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100267.png"
+  },
+  {
+    "no": "42",
+    "name": "베로로크",
+    "family": "베론 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠링으로의 길 1층 (9,12)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      40.8,
+      5.8,
+      8.33,
+      3.42
+    ],
+    "growth": [
+      11.06,
+      1.57,
+      2.26,
+      0.93
+    ],
+    "totalGrowth": 4.76,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100268.png"
+  },
+  {
+    "no": "43",
+    "name": "베로보크",
+    "family": "베론 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "아름산의 지하동굴 7층 (41,22)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      50.26,
+      6.98,
+      9.88,
+      4.37
+    ],
+    "growth": [
+      11.25,
+      1.56,
+      2.21,
+      0.98
+    ],
+    "totalGrowth": 4.75,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100269.png"
+  },
+  {
+    "no": "44",
+    "name": "베로포리",
+    "family": "베론 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "속임수의 동굴",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      46.31,
+      7.24,
+      8.97,
+      4.24
+    ],
+    "growth": [
+      10.84,
+      1.69,
+      2.1,
+      0.99
+    ],
+    "totalGrowth": 4.79,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100270.png"
+  },
+  {
+    "no": "740",
+    "name": "베톤",
+    "family": "베론 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 쿠링으로의 길 1층 (베론)",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      56.64,
+      8.03,
+      11.55,
+      4.08
+    ],
+    "growth": [
+      11.7,
+      1.66,
+      2.39,
+      0.84
+    ],
+    "totalGrowth": 4.89,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100835.png"
+  },
+  {
+    "no": "741",
+    "name": "베노투리",
+    "family": "베론 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 쿠링으로의 길 1층 (베론)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      52.36,
+      7.73,
+      10.7,
+      4.51
+    ],
+    "growth": [
+      11.31,
+      1.67,
+      2.31,
+      0.97
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100836.png"
+  },
+  {
+    "no": "742",
+    "name": "베로바드",
+    "family": "베론 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "물개소녀"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 쿠링으로의 길 1층 (베론)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      52.1,
+      9.49,
+      9.69,
+      3.11
+    ],
+    "growth": [
+      11.21,
+      2.04,
+      2.09,
+      0.67
+    ],
+    "totalGrowth": 4.8,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100837.png"
+  },
+  {
+    "no": "51",
+    "name": "노북이",
+    "family": "돌북이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (566,409)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      26.6,
+      4.54,
+      6.71,
+      2.13
+    ],
+    "growth": [
+      9.79,
+      1.67,
+      2.47,
+      0.79
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100271.png"
+  },
+  {
+    "no": "52",
+    "name": "북이",
+    "family": "돌북이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (579,447)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      25.34,
+      4.56,
+      6.54,
+      1.93
+    ],
+    "growth": [
+      9.68,
+      1.74,
+      2.5,
+      0.74
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100272.png"
+  },
+  {
+    "no": "53",
+    "name": "깡북이",
+    "family": "돌북이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쿠오산의 소동굴 3층 (15,20)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      23.07,
+      4.26,
+      5.61,
+      1.89
+    ],
+    "growth": [
+      9.9,
+      1.83,
+      2.41,
+      0.81
+    ],
+    "totalGrowth": 5.05,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100273.png"
+  },
+  {
+    "no": "54",
+    "name": "돌북이",
+    "family": "돌북이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠오산의 소동굴 4층 (23,38)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      37.95,
+      6.6,
+      10.83,
+      1.85
+    ],
+    "growth": [
+      9.77,
+      1.7,
+      2.79,
+      0.48
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100274.png"
+  },
+  {
+    "no": "743",
+    "name": "물북이",
+    "family": "돌북이 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 쿠오산의 소동굴 3층 (깡북이)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      48.14,
+      7.81,
+      10.79,
+      3.05
+    ],
+    "growth": [
+      10.89,
+      1.77,
+      2.44,
+      0.69
+    ],
+    "totalGrowth": 4.9,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100838.png"
+  },
+  {
+    "no": "746",
+    "name": "킹북이",
+    "family": "돌북이 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "소동굴의 균열",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      55.06,
+      9.78,
+      13.72,
+      2.69
+    ],
+    "growth": [
+      10.46,
+      1.86,
+      2.61,
+      0.51
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100841.png"
+  },
+  {
+    "no": "61",
+    "name": "아고아",
+    "family": "네고스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "곰아저씨",
+      "물개소녀",
+      "내숭소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "진홍 동굴 6층",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      40.15,
+      8.6,
+      6.22,
+      5.2
+    ],
+    "growth": [
+      9.94,
+      2.13,
+      1.54,
+      1.29
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100275.png"
+  },
+  {
+    "no": "62",
+    "name": "네고스",
+    "family": "네고스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "곰아저씨",
+      "물개소녀",
+      "내숭소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (288,476)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      35.73,
+      7.17,
+      5.88,
+      4.14
+    ],
+    "growth": [
+      10.22,
+      2.05,
+      1.68,
+      1.18
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100276.png"
+  },
+  {
+    "no": "63",
+    "name": "타로곤",
+    "family": "네고스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "곰아저씨",
+      "물개소녀",
+      "내숭소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (309,158)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      33.75,
+      6.46,
+      6.27,
+      3.87
+    ],
+    "growth": [
+      10.22,
+      1.96,
+      1.9,
+      1.17
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100277.png"
+  },
+  {
+    "no": "64",
+    "name": "다고스",
+    "family": "네고스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "곰아저씨",
+      "물개소녀",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (250,195)",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      36.49,
+      6.97,
+      5.83,
+      4.1
+    ],
+    "growth": [
+      10.44,
+      1.99,
+      1.67,
+      1.17
+    ],
+    "totalGrowth": 4.83,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100278.png"
+  },
+  {
+    "no": "65",
+    "name": "보크곤",
+    "family": "네고스 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "몽환 동굴",
+    "attrs": [
+      [
+        "화",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      36.48,
+      7.33,
+      6.09,
+      5.37
+    ],
+    "growth": [
+      9.89,
+      1.99,
+      1.65,
+      1.45
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100393.png"
+  },
+  {
+    "no": "747",
+    "name": "골드곤",
+    "family": "네고스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (타로곤)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      50.6,
+      8.92,
+      8.97,
+      6.38
+    ],
+    "growth": [
+      10.45,
+      1.84,
+      1.85,
+      1.32
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100842.png"
+  },
+  {
+    "no": "748",
+    "name": "기고아",
+    "family": "네고스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (타로곤)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      45.52,
+      9.09,
+      7.82,
+      4.93
+    ],
+    "growth": [
+      10.3,
+      2.06,
+      1.77,
+      1.12
+    ],
+    "totalGrowth": 4.94,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100843.png"
+  },
+  {
+    "no": "749",
+    "name": "타로아",
+    "family": "네고스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (타로곤)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      48.51,
+      10.19,
+      7.57,
+      5.12
+    ],
+    "growth": [
+      10.47,
+      2.2,
+      1.63,
+      1.1
+    ],
+    "totalGrowth": 4.94,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100844.png"
+  },
+  {
+    "no": "71",
+    "name": "라고고",
+    "family": "라고고 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "가우린 (449,517)",
+    "attrs": [
+      [
+        "화",
+        10
+      ]
+    ],
+    "init": [
+      44.22,
+      8.59,
+      7.25,
+      6.96
+    ],
+    "growth": [
+      9.9,
+      1.92,
+      1.62,
+      1.56
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100279.png"
+  },
+  {
+    "no": "72",
+    "name": "후바바",
+    "family": "라고고 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "물개소녀",
+      "내숭소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (457,136)",
+    "attrs": [
+      [
+        "화",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      45.42,
+      8.36,
+      7.33,
+      7.56
+    ],
+    "growth": [
+      9.75,
+      1.79,
+      1.57,
+      1.62
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100280.png"
+  },
+  {
+    "no": "73",
+    "name": "토루루",
+    "family": "라고고 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (373,462)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      37.48,
+      6.8,
+      6.63,
+      5.65
+    ],
+    "growth": [
+      9.76,
+      1.77,
+      1.73,
+      1.47
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100281.png"
+  },
+  {
+    "no": "74",
+    "name": "루니",
+    "family": "라고고 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "물개소녀",
+      "내숭소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (526,144)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      42.96,
+      7.66,
+      8.06,
+      5.89
+    ],
+    "growth": [
+      10.06,
+      1.79,
+      1.89,
+      1.38
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100282.png"
+  },
+  {
+    "no": "750",
+    "name": "푸고고",
+    "family": "라고고 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (후바바)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      51.56,
+      9.97,
+      7.04,
+      7.69
+    ],
+    "growth": [
+      10.21,
+      1.97,
+      1.39,
+      1.52
+    ],
+    "totalGrowth": 4.89,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100845.png"
+  },
+  {
+    "no": "751",
+    "name": "라루루",
+    "family": "라고고 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 사이너스 (후바바)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      49.38,
+      9.85,
+      7.09,
+      8.4
+    ],
+    "growth": [
+      9.77,
+      1.95,
+      1.4,
+      1.66
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100846.png"
+  },
+  {
+    "no": "2243",
+    "name": "쿠로로",
+    "family": "라고고 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "페트와 이야기 하고 싶어 퀘스트",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      47.41,
+      8.36,
+      6.48,
+      6.82
+    ],
+    "growth": [
+      10.67,
+      1.88,
+      1.46,
+      1.53
+    ],
+    "totalGrowth": 4.87,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110200.png"
+  },
+  {
+    "no": "2897",
+    "name": "초로로",
+    "family": "라고고 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "캐릭터 생성 온보딩(촌장댁)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      47.52,
+      8.81,
+      6.88,
+      6.33
+    ],
+    "growth": [
+      10.69,
+      1.98,
+      1.55,
+      1.42
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110665.png"
+  },
+  {
+    "no": "81",
+    "name": "카타르카스",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "동쿠링 탄광 1층 입구 부근",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      44.17,
+      7.8,
+      11.21,
+      2.31
+    ],
+    "growth": [
+      10.34,
+      1.83,
+      2.63,
+      0.54
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100283.png"
+  },
+  {
+    "no": "82",
+    "name": "쿠카스",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "동쿠링 탄광 2층 전역",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      43.56,
+      7.39,
+      10.95,
+      2.09
+    ],
+    "growth": [
+      10.2,
+      1.73,
+      2.56,
+      0.49
+    ],
+    "totalGrowth": 4.78,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100284.png"
+  },
+  {
+    "no": "83",
+    "name": "코로카스",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "도둑의 동굴 지하 4층 (15,4)",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      34.6,
+      6.17,
+      8.16,
+      1.96
+    ],
+    "growth": [
+      10.48,
+      1.87,
+      2.47,
+      0.59
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100285.png"
+  },
+  {
+    "no": "84",
+    "name": "로기안",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "유리의 동굴 13층 (36,12)",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      45.6,
+      7.72,
+      11.29,
+      2.42
+    ],
+    "growth": [
+      10.21,
+      1.73,
+      2.53,
+      0.54
+    ],
+    "totalGrowth": 4.8,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100286.png"
+  },
+  {
+    "no": "85",
+    "name": "램가스",
+    "family": "카타르카스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "미선의 편지",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      48.44,
+      9.61,
+      13.32,
+      3.31
+    ],
+    "growth": [
+      9.59,
+      1.9,
+      2.64,
+      0.66
+    ],
+    "totalGrowth": 5.2,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100389.png"
+  },
+  {
+    "no": "86",
+    "name": "아이카스",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "칠흑의 지하동굴 9층 (18,27)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      46.42,
+      7.24,
+      10.91,
+      2.42
+    ],
+    "growth": [
+      10.87,
+      1.7,
+      2.55,
+      0.57
+    ],
+    "totalGrowth": 4.82,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100390.png"
+  },
+  {
+    "no": "87",
+    "name": "쿠타스",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "칠흑 지하동굴 11층",
+    "attrs": [
+      [
+        "수",
+        6
+      ],
+      [
+        "화",
+        4
+      ]
+    ],
+    "init": [
+      46.81,
+      8.22,
+      9.61,
+      2.48
+    ],
+    "growth": [
+      10.96,
+      1.92,
+      2.25,
+      0.58
+    ],
+    "totalGrowth": 4.75,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100391.png"
+  },
+  {
+    "no": "88",
+    "name": "카르기안",
+    "family": "카타르카스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "불량소년",
+      "내숭소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "칠흑의 지하동굴 5층 (13,56)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      40.3,
+      6.53,
+      9.46,
+      3.35
+    ],
+    "growth": [
+      10.38,
+      1.68,
+      2.44,
+      0.86
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100392.png"
+  },
+  {
+    "no": "2302",
+    "name": "스카르카스",
+    "family": "카타르카스 계열",
+    "category": "코스/환생",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "POT-F 코스 이벤트",
+    "attrs": [
+      [
+        "수",
+        9
+      ],
+      [
+        "화",
+        1
+      ]
+    ],
+    "init": [
+      59.81,
+      10.61,
+      11.06,
+      3.44
+    ],
+    "growth": [
+      11.36,
+      2.02,
+      2.1,
+      0.65
+    ],
+    "totalGrowth": 4.77,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/102161.png"
+  },
+  {
+    "no": "91",
+    "name": "리비노",
+    "family": "얀기로 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "어리버리",
+      "여꼬맹이",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "유리의 동굴 13층 (29,19)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      47.5,
+      10.85,
+      7.23,
+      4.95
+    ],
+    "growth": [
+      10.22,
+      2.34,
+      1.56,
+      1.06
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100287.png"
+  },
+  {
+    "no": "92",
+    "name": "얀기로",
+    "family": "얀기로 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "사자소년",
+      "울보소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (526,101)",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      64.6,
+      14.29,
+      8.81,
+      7.47
+    ],
+    "growth": [
+      10.58,
+      2.34,
+      1.44,
+      1.22
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100288.png"
+  },
+  {
+    "no": "93",
+    "name": "반보로",
+    "family": "얀기로 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "불량소년",
+      "여꼬맹이",
+      "바람소년",
+      "정글소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "오형제의 비밀 퀘스트",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      55.28,
+      13.09,
+      7.68,
+      7.16
+    ],
+    "growth": [
+      10.14,
+      2.4,
+      1.41,
+      1.31
+    ],
+    "totalGrowth": 5.12,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100289.png"
+  },
+  {
+    "no": "94",
+    "name": "반기노",
+    "family": "얀기로 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (441,104)",
+    "attrs": [
+      [
+        "화",
+        10
+      ]
+    ],
+    "init": [
+      52.78,
+      12.72,
+      7.51,
+      6.44
+    ],
+    "growth": [
+      10.05,
+      2.42,
+      1.43,
+      1.23
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100290.png"
+  },
+  {
+    "no": "95",
+    "name": "부르돈",
+    "family": "얀기로 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "곰아저씨",
+      "여꼬맹이",
+      "물개소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "오형제의 비밀 퀘스트",
+    "attrs": [
+      [
+        "화",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      51.56,
+      11.64,
+      6.86,
+      7.25
+    ],
+    "growth": [
+      10.21,
+      2.3,
+      1.36,
+      1.44
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100394.png"
+  },
+  {
+    "no": "754",
+    "name": "기라노",
+    "family": "얀기로 계열",
+    "category": "스페셜",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 파론",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      59.02,
+      13.1,
+      8.07,
+      6.63
+    ],
+    "growth": [
+      10.78,
+      2.39,
+      1.47,
+      1.21
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100849.png"
+  },
+  {
+    "no": "755",
+    "name": "기비노",
+    "family": "얀기로 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "골드볼라 - 유리의 동굴 13층",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      60.76,
+      14.15,
+      8.23,
+      7.7
+    ],
+    "growth": [
+      10.31,
+      2.4,
+      1.4,
+      1.31
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100850.png"
+  },
+  {
+    "no": "756",
+    "name": "프로돈",
+    "family": "얀기로 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀"
+    ],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 가우린 (얀기로)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      65.59,
+      13.38,
+      8.28,
+      7.56
+    ],
+    "growth": [
+      11.13,
+      2.27,
+      1.4,
+      1.28
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100851.png"
+  },
+  {
+    "no": "2379",
+    "name": "쥬르돈",
+    "family": "얀기로 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 가우린 (얀기로)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      55.38,
+      12.29,
+      7.44,
+      7.61
+    ],
+    "growth": [
+      10.12,
+      2.25,
+      1.36,
+      1.39
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/102214.png"
+  },
+  {
+    "no": "101",
+    "name": "쿠링",
+    "family": "쿠쿠르 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "카루타나 마을 앞마당",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      33.3,
+      5.77,
+      6.03,
+      5.08
+    ],
+    "growth": [
+      9.73,
+      1.69,
+      1.76,
+      1.48
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100291.png"
+  },
+  {
+    "no": "102",
+    "name": "쿠쿠르",
+    "family": "쿠쿠르 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈쟈 마을 출신 초기페트",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      36.55,
+      6.19,
+      5.87,
+      6.1
+    ],
+    "growth": [
+      9.78,
+      1.65,
+      1.57,
+      1.63
+    ],
+    "totalGrowth": 4.86,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100292.png"
+  },
+  {
+    "no": "103",
+    "name": "포링",
+    "family": "쿠쿠르 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (478,319)",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      33.21,
+      5.96,
+      5.76,
+      5.72
+    ],
+    "growth": [
+      9.5,
+      1.71,
+      1.65,
+      1.64
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100293.png"
+  },
+  {
+    "no": "104",
+    "name": "리스키",
+    "family": "쿠쿠르 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "카루타나 마을 앞마당",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      30.98,
+      5.2,
+      5.39,
+      5.1
+    ],
+    "growth": [
+      9.75,
+      1.64,
+      1.7,
+      1.61
+    ],
+    "totalGrowth": 4.94,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100294.png"
+  },
+  {
+    "no": "111",
+    "name": "카비트",
+    "family": "케이비 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (345,356)",
+    "attrs": [
+      [
+        "화",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      28.94,
+      5.45,
+      5.45,
+      5.81
+    ],
+    "growth": [
+      8.92,
+      1.68,
+      1.68,
+      1.79
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100295.png"
+  },
+  {
+    "no": "112",
+    "name": "케이비",
+    "family": "케이비 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "마리너스 마을 출신 초기페트",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      32.75,
+      5.96,
+      5.87,
+      6.55
+    ],
+    "growth": [
+      9.09,
+      1.65,
+      1.63,
+      1.82
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100296.png"
+  },
+  {
+    "no": "113",
+    "name": "큐이",
+    "family": "케이비 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (441,312)",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      22.24,
+      4.42,
+      4.08,
+      4.46
+    ],
+    "growth": [
+      8.52,
+      1.69,
+      1.56,
+      1.71
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100297.png"
+  },
+  {
+    "no": "114",
+    "name": "골드카비트",
+    "family": "케이비 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (441,312)",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      30.73,
+      5.8,
+      5.07,
+      6.18
+    ],
+    "growth": [
+      8.98,
+      1.69,
+      1.48,
+      1.8
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100298.png"
+  },
+  {
+    "no": "141",
+    "name": "고르돈",
+    "family": "고르돈 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (166,356)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      60.2,
+      11.83,
+      10.38,
+      6.37
+    ],
+    "growth": [
+      10.21,
+      2.01,
+      1.76,
+      1.08
+    ],
+    "totalGrowth": 4.85,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100307.png"
+  },
+  {
+    "no": "142",
+    "name": "기라돈",
+    "family": "고르돈 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "인디언돌쇠",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "폐허가 된 탄광 4층 (47,27)",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      47.9,
+      9.23,
+      7.73,
+      5.29
+    ],
+    "growth": [
+      10.31,
+      1.99,
+      1.66,
+      1.14
+    ],
+    "totalGrowth": 4.79,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100308.png"
+  },
+  {
+    "no": "143",
+    "name": "투르돈",
+    "family": "고르돈 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "인디언돌쇠",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (237,80)",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      59.29,
+      11.32,
+      9.18,
+      6.79
+    ],
+    "growth": [
+      10.48,
+      2,
+      1.62,
+      1.2
+    ],
+    "totalGrowth": 4.83,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100309.png"
+  },
+  {
+    "no": "144",
+    "name": "고르고",
+    "family": "고르돈 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "폐허가 된 탄광 4층 (16,32)",
+    "attrs": [
+      [
+        "화",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      54.88,
+      11.25,
+      8.64,
+      7.02
+    ],
+    "growth": [
+      10.06,
+      2.06,
+      1.58,
+      1.29
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100310.png"
+  },
+  {
+    "no": "2202",
+    "name": "그린고르",
+    "family": "고르돈 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "어리버리"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "하이하모 신전으로 퀘스트",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      57.04,
+      9.61,
+      10.8,
+      2.01
+    ],
+    "growth": [
+      11.78,
+      1.98,
+      2.23,
+      0.42
+    ],
+    "totalGrowth": 4.63,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110034.png"
+  },
+  {
+    "no": "2262",
+    "name": "고루바",
+    "family": "고르돈 계열",
+    "category": "코스/환생",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "POT-F 코스 이벤트",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      52.25,
+      9.67,
+      10.4,
+      6.44
+    ],
+    "growth": [
+      9.93,
+      1.84,
+      1.98,
+      1.22
+    ],
+    "totalGrowth": 5.04,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110024.png"
+  },
+  {
+    "no": "171",
+    "name": "휴보",
+    "family": "쿠보 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "2등급",
+    "obtain": "황금색 페트 퀘스트",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "수",
+        2
+      ]
+    ],
+    "init": [
+      35.86,
+      7.04,
+      6.56,
+      3.74
+    ],
+    "growth": [
+      10.26,
+      2.02,
+      1.88,
+      1.07
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100319.png"
+  },
+  {
+    "no": "172",
+    "name": "포보",
+    "family": "쿠보 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "고야산의 동굴 4층 전역",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      38.19,
+      6.37,
+      6.84,
+      3.47
+    ],
+    "growth": [
+      10.75,
+      1.79,
+      1.93,
+      0.98
+    ],
+    "totalGrowth": 4.69,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100320.png"
+  },
+  {
+    "no": "173",
+    "name": "쿠보",
+    "family": "쿠보 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "2등급",
+    "obtain": "공룡 박사 2 퀘스트",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      50.75,
+      9.34,
+      9.28,
+      5.44
+    ],
+    "growth": [
+      10.45,
+      1.92,
+      1.91,
+      1.12
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100321.png"
+  },
+  {
+    "no": "174",
+    "name": "토로쟈",
+    "family": "쿠보 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "속임수의 동굴 (28,11)",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      40.37,
+      7.55,
+      7.36,
+      4.15
+    ],
+    "growth": [
+      10.29,
+      1.92,
+      1.87,
+      1.06
+    ],
+    "totalGrowth": 4.85,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100322.png"
+  },
+  {
+    "no": "175",
+    "name": "부르보",
+    "family": "쿠보 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "미로 1층 (10,12)",
+    "attrs": [
+      [
+        "화",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      38.45,
+      7.35,
+      6.9,
+      4.95
+    ],
+    "growth": [
+      9.9,
+      1.89,
+      1.78,
+      1.27
+    ],
+    "totalGrowth": 4.94,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100395.png"
+  },
+  {
+    "no": "181",
+    "name": "카쿠",
+    "family": "카쿠 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "불량소년",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (81,1140)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      33.66,
+      6.08,
+      6.08,
+      5.4
+    ],
+    "growth": [
+      9.63,
+      1.74,
+      1.74,
+      1.55
+    ],
+    "totalGrowth": 5.02,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100323.png"
+  },
+  {
+    "no": "182",
+    "name": "바카",
+    "family": "카쿠 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "불량소년",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (81,1140)",
+    "attrs": [
+      [
+        "화",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      34.8,
+      7.41,
+      5.88,
+      6.3
+    ],
+    "growth": [
+      9.31,
+      1.98,
+      1.57,
+      1.69
+    ],
+    "totalGrowth": 5.24,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100324.png"
+  },
+  {
+    "no": "183",
+    "name": "바우",
+    "family": "카쿠 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "불량소년",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "숲의 동굴 2층 (27,34)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      28.52,
+      5.67,
+      5.18,
+      5.53
+    ],
+    "growth": [
+      8.97,
+      1.79,
+      1.63,
+      1.74
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100325.png"
+  },
+  {
+    "no": "184",
+    "name": "카우",
+    "family": "카쿠 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "불량소년",
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "숲의 동굴 4층 (14,8)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      28.09,
+      5.7,
+      5.7,
+      5.23
+    ],
+    "growth": [
+      8.84,
+      1.79,
+      1.79,
+      1.65
+    ],
+    "totalGrowth": 5.23,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100326.png"
+  },
+  {
+    "no": "191",
+    "name": "베르가",
+    "family": "베르가 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "사자소년",
+      "울보소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (442,634)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      47.1,
+      9.6,
+      6.36,
+      7.38
+    ],
+    "growth": [
+      10.11,
+      2.06,
+      1.36,
+      1.58
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100327.png"
+  },
+  {
+    "no": "192",
+    "name": "베루루",
+    "family": "베르가 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (357,680)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      43.47,
+      9.37,
+      5.85,
+      7.48
+    ],
+    "growth": [
+      9.73,
+      2.1,
+      1.31,
+      1.67
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100328.png"
+  },
+  {
+    "no": "193",
+    "name": "고르고르",
+    "family": "베르가 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "정글소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "가우린 (225,353)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      36.38,
+      7.93,
+      4.95,
+      6.2
+    ],
+    "growth": [
+      9.62,
+      2.1,
+      1.31,
+      1.64
+    ],
+    "totalGrowth": 5.04,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100329.png"
+  },
+  {
+    "no": "194",
+    "name": "노르노르",
+    "family": "베르가 계열",
+    "category": "스페셜",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "울보소녀",
+      "정글소녀"
+    ],
+    "slots": 6,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 마리너스",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      47.06,
+      9.91,
+      6.64,
+      8.19
+    ],
+    "growth": [
+      9.68,
+      2.04,
+      1.37,
+      1.69
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100330.png"
+  },
+  {
+    "no": "776",
+    "name": "도르도르",
+    "family": "베르가 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "골드볼라 - 가우린",
+    "attrs": [
+      [
+        "지",
+        1
+      ],
+      [
+        "수",
+        9
+      ]
+    ],
+    "init": [
+      53.16,
+      10.73,
+      7.01,
+      7.98
+    ],
+    "growth": [
+      10.52,
+      2.12,
+      1.39,
+      1.58
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100871.png"
+  },
+  {
+    "no": "778",
+    "name": "고루루",
+    "family": "베르가 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "샴기르 호랑이 조련사 (병든 호랑이 100레벨 교환)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      47.21,
+      9.72,
+      6.41,
+      7.3
+    ],
+    "growth": [
+      10.16,
+      2.09,
+      1.38,
+      1.57
+    ],
+    "totalGrowth": 5.04,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100873.png"
+  },
+  {
+    "no": "2351",
+    "name": "퓨르가",
+    "family": "베르가 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "POT-F 코스 이벤트",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      55.45,
+      11.68,
+      7.23,
+      8.78
+    ],
+    "growth": [
+      10.13,
+      2.13,
+      1.32,
+      1.6
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/115001.png"
+  },
+  {
+    "no": "2878",
+    "name": "초르초르",
+    "family": "베르가 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "4마을 촌장 (초로로 80레벨 교환)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      53.25,
+      11.31,
+      7.14,
+      8.63
+    ],
+    "growth": [
+      10.12,
+      2.15,
+      1.36,
+      1.64
+    ],
+    "totalGrowth": 5.14,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/117105.png"
+  },
+  {
+    "no": "3021",
+    "name": "고루르",
+    "family": "베르가 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "타이거 스피어 퀘스트",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      46.92,
+      9.76,
+      6.24,
+      7.59
+    ],
+    "growth": [
+      10.1,
+      2.1,
+      1.34,
+      1.63
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/114445.png"
+  },
+  {
+    "no": "211",
+    "name": "토리노프스",
+    "family": "펜타스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "귀염둥이",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (460,238)",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      24.51,
+      4.08,
+      4.65,
+      2.1
+    ],
+    "growth": [
+      10.52,
+      1.75,
+      2,
+      0.9
+    ],
+    "totalGrowth": 4.65,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100335.png"
+  },
+  {
+    "no": "212",
+    "name": "펜타스",
+    "family": "펜타스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "귀염둥이",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (58,590)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      35,
+      5.08,
+      6.77,
+      2.8
+    ],
+    "growth": [
+      11.27,
+      1.63,
+      2.18,
+      0.9
+    ],
+    "totalGrowth": 4.71,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100336.png"
+  },
+  {
+    "no": "213",
+    "name": "토리케라",
+    "family": "펜타스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "귀염둥이",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (136,663)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      38.39,
+      5.85,
+      7.55,
+      2.93
+    ],
+    "growth": [
+      10.98,
+      1.67,
+      2.16,
+      0.84
+    ],
+    "totalGrowth": 4.67,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100337.png"
+  },
+  {
+    "no": "214",
+    "name": "토르프스",
+    "family": "펜타스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "귀염둥이",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "JOT-A 코스 이벤트",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      29.51,
+      4.72,
+      6.05,
+      2.13
+    ],
+    "growth": [
+      10.85,
+      1.74,
+      2.22,
+      0.79
+    ],
+    "totalGrowth": 4.75,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100338.png"
+  },
+  {
+    "no": "221",
+    "name": "고반케스",
+    "family": "쟈그 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (231,557)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      37.49,
+      7.51,
+      5.33,
+      3.83
+    ],
+    "growth": [
+      10.72,
+      2.15,
+      1.52,
+      1.09
+    ],
+    "totalGrowth": 4.77,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100339.png"
+  },
+  {
+    "no": "222",
+    "name": "쟈그라",
+    "family": "쟈그 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠오의 해저터널 지하 1층 (20,35)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      45.6,
+      9.47,
+      6.06,
+      5.06
+    ],
+    "growth": [
+      10.67,
+      2.22,
+      1.42,
+      1.18
+    ],
+    "totalGrowth": 4.82,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100340.png"
+  },
+  {
+    "no": "223",
+    "name": "쟈그",
+    "family": "쟈그 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠오의 해저터널 지하 1층 (10,33)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      49.74,
+      9.82,
+      6.2,
+      5.12
+    ],
+    "growth": [
+      11.14,
+      2.2,
+      1.39,
+      1.15
+    ],
+    "totalGrowth": 4.73,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100341.png"
+  },
+  {
+    "no": "224",
+    "name": "판지",
+    "family": "쟈그 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (157,704)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      34.08,
+      6.54,
+      4.7,
+      3.4
+    ],
+    "growth": [
+      10.97,
+      2.1,
+      1.51,
+      1.09
+    ],
+    "totalGrowth": 4.71,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100342.png"
+  },
+  {
+    "no": "3027",
+    "name": "자르케스",
+    "family": "쟈그 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      57.44,
+      11.41,
+      8.77,
+      6.25
+    ],
+    "growth": [
+      10.91,
+      2.17,
+      1.67,
+      1.19
+    ],
+    "totalGrowth": 5.02,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/101944.png"
+  },
+  {
+    "no": "231",
+    "name": "기가로스",
+    "family": "기가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "곰아저씨",
+      "내숭소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "폐허가 된 탄광 3층 (40,41)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      61.39,
+      12.02,
+      11.58,
+      6.3
+    ],
+    "growth": [
+      10.41,
+      2.04,
+      1.96,
+      1.07
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100343.png"
+  },
+  {
+    "no": "232",
+    "name": "메가로스",
+    "family": "기가로스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "곰아저씨",
+      "내숭소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "환생 이벤트",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      54.54,
+      10.5,
+      10.18,
+      3.78
+    ],
+    "growth": [
+      10.79,
+      2.08,
+      2.01,
+      0.75
+    ],
+    "totalGrowth": 4.84,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100344.png"
+  },
+  {
+    "no": "233",
+    "name": "비트로스",
+    "family": "기가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "곰아저씨",
+      "내숭소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "아스마르 광산 6층 (6,6)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      54.13,
+      11.19,
+      9.51,
+      5.5
+    ],
+    "growth": [
+      10.28,
+      2.13,
+      1.81,
+      1.05
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100345.png"
+  },
+  {
+    "no": "234",
+    "name": "가가로스",
+    "family": "기가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "폐허가 된 탄광 3층 (7,40)",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      57.92,
+      12.37,
+      10.14,
+      4.62
+    ],
+    "growth": [
+      10.58,
+      2.26,
+      1.85,
+      0.84
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100346.png"
+  },
+  {
+    "no": "2824",
+    "name": "기트로스",
+    "family": "기가로스 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "흑와왕지하동굴3층 (13,45)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      55.69,
+      11.03,
+      10.64,
+      3.63
+    ],
+    "growth": [
+      10.58,
+      2.1,
+      2.02,
+      0.69
+    ],
+    "totalGrowth": 4.81,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100884.png"
+  },
+  {
+    "no": "241",
+    "name": "루이",
+    "family": "무이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "곰아저씨",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "벽청 지하동굴 8층 (19,13)",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      50.38,
+      8.38,
+      8.53,
+      2.7
+    ],
+    "growth": [
+      11.79,
+      1.96,
+      2,
+      0.63
+    ],
+    "totalGrowth": 4.59,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100347.png"
+  },
+  {
+    "no": "242",
+    "name": "무이",
+    "family": "무이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쿠르의 해저통로 (46,27)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      51.55,
+      8.05,
+      8.32,
+      2.75
+    ],
+    "growth": [
+      12.24,
+      1.91,
+      1.98,
+      0.65
+    ],
+    "totalGrowth": 4.54,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100348.png"
+  },
+  {
+    "no": "243",
+    "name": "씨보스",
+    "family": "무이 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "곰아저씨",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (141,797)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      50.4,
+      8.06,
+      8.81,
+      2.63
+    ],
+    "growth": [
+      11.88,
+      1.9,
+      2.08,
+      0.62
+    ],
+    "totalGrowth": 4.6,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100349.png"
+  },
+  {
+    "no": "244",
+    "name": "투이",
+    "family": "무이 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "곰아저씨",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "2등급",
+    "obtain": "환생 이벤트",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      53.52,
+      9.51,
+      9.24,
+      2.82
+    ],
+    "growth": [
+      11.48,
+      2.04,
+      1.98,
+      0.61
+    ],
+    "totalGrowth": 4.63,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100350.png"
+  },
+  {
+    "no": "251",
+    "name": "다이노",
+    "family": "프라키토스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "어리버리",
+      "인디언돌쇠",
+      "내숭소녀",
+      "귀염둥이"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "용왕의 동굴 7층 (44,24)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "수",
+        1
+      ]
+    ],
+    "init": [
+      60.81,
+      10.4,
+      11.41,
+      2.56
+    ],
+    "growth": [
+      11.55,
+      1.98,
+      2.17,
+      0.49
+    ],
+    "totalGrowth": 4.63,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100351.png"
+  },
+  {
+    "no": "252",
+    "name": "다이노스",
+    "family": "프라키토스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "내숭소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "칠흑 지하동굴 18층 전역",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      67.99,
+      10.4,
+      11.57,
+      2.86
+    ],
+    "growth": [
+      12.42,
+      1.9,
+      2.11,
+      0.52
+    ],
+    "totalGrowth": 4.54,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100352.png"
+  },
+  {
+    "no": "253",
+    "name": "프라키토스",
+    "family": "프라키토스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "인디언돌쇠",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "세르노스 (131,107)",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      58.74,
+      11.67,
+      10.05,
+      2.58
+    ],
+    "growth": [
+      11.63,
+      2.31,
+      1.99,
+      0.51
+    ],
+    "totalGrowth": 4.81,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100353.png"
+  },
+  {
+    "no": "255",
+    "name": "프리토스",
+    "family": "프라키토스 계열",
+    "category": "스페셜",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "곰아저씨",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 샴기르",
+    "attrs": [
+      [
+        "화",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      71.49,
+      12.51,
+      11.98,
+      4.21
+    ],
+    "growth": [
+      11.71,
+      2.05,
+      1.96,
+      0.69
+    ],
+    "totalGrowth": 4.7,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100396.png"
+  },
+  {
+    "no": "797",
+    "name": "브라키오스",
+    "family": "프라키토스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "내숭소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "마리너스 여신을 도와 성스러운 돌을 구하자 퀘스트",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      67.83,
+      11.69,
+      13.52,
+      2.66
+    ],
+    "growth": [
+      11.51,
+      1.98,
+      2.29,
+      0.45
+    ],
+    "totalGrowth": 4.73,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100892.png"
+  },
+  {
+    "no": "261",
+    "name": "만모",
+    "family": "만모 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "어리버리",
+      "불량소년",
+      "물개소녀",
+      "귀염둥이"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 채석장 3층 (23,19)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "수",
+        1
+      ]
+    ],
+    "init": [
+      74.18,
+      10.29,
+      12.05,
+      2.57
+    ],
+    "growth": [
+      13.05,
+      1.81,
+      2.12,
+      0.45
+    ],
+    "totalGrowth": 4.38,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100355.png"
+  },
+  {
+    "no": "262",
+    "name": "만모르",
+    "family": "만모 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "어리버리",
+      "불량소년",
+      "물개소녀",
+      "귀염둥이"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 채석장 5층 (25,26)",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      64.62,
+      10.05,
+      10.05,
+      2.34
+    ],
+    "growth": [
+      12.79,
+      1.99,
+      1.99,
+      0.46
+    ],
+    "totalGrowth": 4.44,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100356.png"
+  },
+  {
+    "no": "263",
+    "name": "마모나스",
+    "family": "만모 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "어리버리",
+      "불량소년",
+      "물개소녀",
+      "귀염둥이"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (133,47)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      72.35,
+      9.79,
+      9.03,
+      2.34
+    ],
+    "growth": [
+      13.77,
+      1.86,
+      1.72,
+      0.45
+    ],
+    "totalGrowth": 4.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100357.png"
+  },
+  {
+    "no": "264",
+    "name": "만모로스",
+    "family": "만모 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "가우린 (104,153)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      69.69,
+      9.78,
+      10.17,
+      2.38
+    ],
+    "growth": [
+      13.24,
+      1.86,
+      1.93,
+      0.45
+    ],
+    "totalGrowth": 4.24,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100358.png"
+  },
+  {
+    "no": "801",
+    "name": "만모드",
+    "family": "만모 계열",
+    "category": "코스/환생",
+    "ride": false,
+    "riders": [],
+    "slots": 4,
+    "grade": "2등급",
+    "obtain": "POT-E 코스 이벤트",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      69.88,
+      10.2,
+      11.9,
+      2.08
+    ],
+    "growth": [
+      12.77,
+      1.86,
+      2.17,
+      0.38
+    ],
+    "totalGrowth": 4.42,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100896.png"
+  },
+  {
+    "no": "271",
+    "name": "테라곤",
+    "family": "도라비스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "JOT-B 코스 이벤트",
+    "attrs": [
+      [
+        "화",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      55.69,
+      11.6,
+      7.95,
+      9.38
+    ],
+    "growth": [
+      9.8,
+      2.04,
+      1.4,
+      1.65
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100359.png"
+  },
+  {
+    "no": "272",
+    "name": "카르곤",
+    "family": "도라비스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "환생 이벤트",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      51.09,
+      10.94,
+      7.2,
+      8.58
+    ],
+    "growth": [
+      9.73,
+      2.08,
+      1.37,
+      1.63
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100360.png"
+  },
+  {
+    "no": "273",
+    "name": "포이비스",
+    "family": "도라비스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "비룡의 동굴 지하 2층 (35,15)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      49.74,
+      10.07,
+      7.86,
+      7.8
+    ],
+    "growth": [
+      9.84,
+      1.99,
+      1.56,
+      1.54
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100361.png"
+  },
+  {
+    "no": "274",
+    "name": "도라비스",
+    "family": "도라비스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "황금색 페트 퀘스트 | JOT-B 코스",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      47.67,
+      9.86,
+      6.35,
+      8.45
+    ],
+    "growth": [
+      9.84,
+      2.04,
+      1.31,
+      1.75
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100362.png"
+  },
+  {
+    "no": "2267",
+    "name": "보르비스",
+    "family": "도라비스 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "도티의 눈을 뜨게하자 퀘스트",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      54.67,
+      10.65,
+      8.25,
+      7.93
+    ],
+    "growth": [
+      9.99,
+      1.95,
+      1.51,
+      1.45
+    ],
+    "totalGrowth": 4.9,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110038.png"
+  },
+  {
+    "no": "291",
+    "name": "타키",
+    "family": "카키 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (638,320)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      31.62,
+      5.81,
+      3.93,
+      7.01
+    ],
+    "growth": [
+      9.58,
+      1.76,
+      1.19,
+      2.12
+    ],
+    "totalGrowth": 5.08,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100367.png"
+  },
+  {
+    "no": "292",
+    "name": "쿠쿠",
+    "family": "카키 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (669,652)",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      36.1,
+      6.81,
+      4.56,
+      8.4
+    ],
+    "growth": [
+      9.3,
+      1.75,
+      1.17,
+      2.16
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100368.png"
+  },
+  {
+    "no": "293",
+    "name": "호르쿠",
+    "family": "카키 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "쟈루 (661,682)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      33.98,
+      5.92,
+      4.5,
+      7.29
+    ],
+    "growth": [
+      9.72,
+      1.69,
+      1.29,
+      2.09
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100369.png"
+  },
+  {
+    "no": "294",
+    "name": "카키",
+    "family": "카키 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "사이너스 (629,252)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      36.25,
+      7.21,
+      4.83,
+      8.1
+    ],
+    "growth": [
+      9.33,
+      1.86,
+      1.24,
+      2.09
+    ],
+    "totalGrowth": 5.18,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100370.png"
+  },
+  {
+    "no": "2380",
+    "name": "쥬키",
+    "family": "카키 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "석기미남"
+    ],
+    "slots": 5,
+    "grade": "3등급",
+    "obtain": "희귀 - 쟈루 (쿠쿠)",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      51.81,
+      10.07,
+      6.2,
+      11.51
+    ],
+    "growth": [
+      9.46,
+      1.84,
+      1.13,
+      2.1
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100905.png"
+  },
+  {
+    "no": "3022",
+    "name": "쿠키",
+    "family": "카키 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "정령의 의식을 받아라 (진홍)",
+    "attrs": [
+      [
+        "화",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      36.1,
+      7.35,
+      4.88,
+      7.95
+    ],
+    "growth": [
+      9.3,
+      1.89,
+      1.26,
+      2.05
+    ],
+    "totalGrowth": 5.2,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/114446.png"
+  },
+  {
+    "no": "301",
+    "name": "오가로스",
+    "family": "모가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "여꼬맹이",
+      "산적",
+      "툰가"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "아스마르 광산 6층 (37,38)",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "수",
+        4
+      ]
+    ],
+    "init": [
+      53.69,
+      11.15,
+      9.74,
+      5.88
+    ],
+    "growth": [
+      10.2,
+      2.12,
+      1.85,
+      1.12
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100371.png"
+  },
+  {
+    "no": "302",
+    "name": "오르곤",
+    "family": "모가로스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "카루타나 퀴즈 도장",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      59.86,
+      12.39,
+      8.29,
+      6.96
+    ],
+    "growth": [
+      10.94,
+      2.26,
+      1.51,
+      1.27
+    ],
+    "totalGrowth": 5.05,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100372.png"
+  },
+  {
+    "no": "303",
+    "name": "모가로스",
+    "family": "모가로스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "퀴즈 마스터 퀘스트",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      56.16,
+      13.13,
+      8.58,
+      8.03
+    ],
+    "growth": [
+      9.88,
+      2.31,
+      1.51,
+      1.41
+    ],
+    "totalGrowth": 5.23,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100373.png"
+  },
+  {
+    "no": "304",
+    "name": "골로스",
+    "family": "모가로스 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 6,
+    "grade": "1등급",
+    "obtain": "환생 이벤트(5번째)",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      61.18,
+      13.56,
+      9.21,
+      7.49
+    ],
+    "growth": [
+      10.38,
+      2.3,
+      1.56,
+      1.27
+    ],
+    "totalGrowth": 5.13,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100374.png"
+  },
+  {
+    "no": "813",
+    "name": "지가로스",
+    "family": "모가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "골드볼라 - 아스마르 광산 6층",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      61.26,
+      13.42,
+      10.42,
+      7.61
+    ],
+    "growth": [
+      10.03,
+      2.2,
+      1.71,
+      1.25
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100908.png"
+  },
+  {
+    "no": "2280",
+    "name": "푸룡",
+    "family": "모가로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 6,
+    "grade": "3등급",
+    "obtain": "희귀 - 아스마르 광산 6층 (오가로스)",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      57.79,
+      12.51,
+      7.77,
+      7.8
+    ],
+    "growth": [
+      10.56,
+      2.28,
+      1.42,
+      1.43
+    ],
+    "totalGrowth": 5.13,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100909.png"
+  },
+  {
+    "no": "2349",
+    "name": "푸가로스",
+    "family": "모가로스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "POT-E 코스 이벤트",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      59.08,
+      12.24,
+      8.02,
+      7.61
+    ],
+    "growth": [
+      10.79,
+      2.24,
+      1.47,
+      1.39
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/115005.png"
+  },
+  {
+    "no": "3736",
+    "name": "흑귀",
+    "family": "모가로스 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "인디언돌쇠",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "다섯 석상을 찾아 비밀을 풀어라",
+    "attrs": [
+      [
+        "지",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      52.5,
+      11.54,
+      7.83,
+      6.88
+    ],
+    "growth": [
+      9.98,
+      2.19,
+      1.49,
+      1.31
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110042.png"
+  },
+  {
+    "no": "311",
+    "name": "프이토",
+    "family": "모나시프 계열",
+    "category": "스페셜",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 쟈쟈",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "풍",
+        8
+      ]
+    ],
+    "init": [
+      46.87,
+      8.45,
+      8.91,
+      8.26
+    ],
+    "growth": [
+      9.28,
+      1.67,
+      1.77,
+      1.64
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100375.png"
+  },
+  {
+    "no": "312",
+    "name": "모나시프",
+    "family": "모나시프 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "채석장의 비밀 퀘스트",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      50.06,
+      8.76,
+      8.98,
+      8.19
+    ],
+    "growth": [
+      9.91,
+      1.73,
+      1.78,
+      1.62
+    ],
+    "totalGrowth": 5.13,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100376.png"
+  },
+  {
+    "no": "313",
+    "name": "라나프",
+    "family": "모나시프 계열",
+    "category": "코스/환생",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "2등급",
+    "obtain": "SOT-C 코스 이벤트",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      47.6,
+      9.6,
+      9.09,
+      8.68
+    ],
+    "growth": [
+      9.1,
+      1.83,
+      1.74,
+      1.66
+    ],
+    "totalGrowth": 5.23,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100377.png"
+  },
+  {
+    "no": "315",
+    "name": "타이혼",
+    "family": "모나시프 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 7,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 후르도",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      57.6,
+      12.05,
+      9.42,
+      11.03
+    ],
+    "growth": [
+      9.12,
+      1.91,
+      1.49,
+      1.75
+    ],
+    "totalGrowth": 5.14,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100430.png"
+  },
+  {
+    "no": "323",
+    "name": "아리노스",
+    "family": "아리노스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "JOT-B 코스 이벤트",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      60.19,
+      8.71,
+      9.88,
+      5.85
+    ],
+    "growth": [
+      11.46,
+      1.66,
+      1.88,
+      1.11
+    ],
+    "totalGrowth": 4.65,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100381.png"
+  },
+  {
+    "no": "324",
+    "name": "다이노로스",
+    "family": "아리노스 계열",
+    "category": "코스/환생",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "터프소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "SOT-D 코스 이벤트",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      55.32,
+      8.64,
+      8.48,
+      6.18
+    ],
+    "growth": [
+      10.95,
+      1.71,
+      1.68,
+      1.22
+    ],
+    "totalGrowth": 4.61,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100382.png"
+  },
+  {
+    "no": "325",
+    "name": "타르노로스",
+    "family": "아리노스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "여꼬맹이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "칠흑의 지하동굴 19층 (34,25)",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      53.76,
+      8.08,
+      8.29,
+      5.58
+    ],
+    "growth": [
+      11.1,
+      1.67,
+      1.71,
+      1.15
+    ],
+    "totalGrowth": 4.53,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100383.png"
+  },
+  {
+    "no": "331",
+    "name": "바로로크스",
+    "family": "노스토로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이",
+      "물개소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (396,442)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      43.67,
+      7.03,
+      8.07,
+      5.23
+    ],
+    "growth": [
+      10.22,
+      1.64,
+      1.89,
+      1.22
+    ],
+    "totalGrowth": 4.76,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100384.png"
+  },
+  {
+    "no": "332",
+    "name": "란베르스",
+    "family": "노스토로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이",
+      "물개소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "도둑의 동굴 지하 2층 (42,9)",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      41.9,
+      6.81,
+      6.81,
+      5.57
+    ],
+    "growth": [
+      10.27,
+      1.67,
+      1.67,
+      1.36
+    ],
+    "totalGrowth": 4.7,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100385.png"
+  },
+  {
+    "no": "333",
+    "name": "코리토르스",
+    "family": "노스토로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이",
+      "물개소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "고야산 동굴 5층 (18,36)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      37.67,
+      6.23,
+      6.57,
+      4.89
+    ],
+    "growth": [
+      10.21,
+      1.69,
+      1.78,
+      1.33
+    ],
+    "totalGrowth": 4.8,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100386.png"
+  },
+  {
+    "no": "2825",
+    "name": "노스토로스",
+    "family": "노스토로스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이",
+      "물개소녀",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "흑와왕지하동굴4층 (20,18)",
+    "attrs": [
+      [
+        "화",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      51.13,
+      9.94,
+      8.42,
+      7.69
+    ],
+    "growth": [
+      9.71,
+      1.89,
+      1.6,
+      1.46
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100387.png"
+  },
+  {
+    "no": "2203",
+    "name": "포레스트크랩",
+    "family": "크랩 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "하이하모 (259,654)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      56.01,
+      10.18,
+      10.65,
+      1.9
+    ],
+    "growth": [
+      11.57,
+      2.1,
+      2.2,
+      0.39
+    ],
+    "totalGrowth": 4.69,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110037.png"
+  },
+  {
+    "no": "2204",
+    "name": "킹크랩",
+    "family": "크랩 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포우렌 (502,824)",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      55.2,
+      10.45,
+      10.04,
+      2.07
+    ],
+    "growth": [
+      11.4,
+      2.16,
+      2.07,
+      0.43
+    ],
+    "totalGrowth": 4.66,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110010.png"
+  },
+  {
+    "no": "2205",
+    "name": "크랩",
+    "family": "크랩 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포우렌 (492,712)",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      58.54,
+      9.56,
+      10.18,
+      3.11
+    ],
+    "growth": [
+      12.09,
+      1.97,
+      2.1,
+      0.64
+    ],
+    "totalGrowth": 4.72,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110011.png"
+  },
+  {
+    "no": "2222",
+    "name": "스톤크랩",
+    "family": "크랩 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "에레보스 (205,129)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      55.06,
+      10.62,
+      11.97,
+      2.81
+    ],
+    "growth": [
+      10.46,
+      2.02,
+      2.27,
+      0.53
+    ],
+    "totalGrowth": 4.82,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110046.png"
+  },
+  {
+    "no": "2206",
+    "name": "피피아",
+    "family": "포루나 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "하이하모 (324,552)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      48.25,
+      9.68,
+      6.53,
+      8
+    ],
+    "growth": [
+      9.94,
+      1.99,
+      1.34,
+      1.65
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110036.png"
+  },
+  {
+    "no": "2208",
+    "name": "포루나",
+    "family": "포루나 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "하이하모 (145,826)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "수",
+        6
+      ]
+    ],
+    "init": [
+      49.69,
+      9.74,
+      6.31,
+      7.63
+    ],
+    "growth": [
+      10.24,
+      2.01,
+      1.3,
+      1.57
+    ],
+    "totalGrowth": 4.88,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110035.png"
+  },
+  {
+    "no": "2223",
+    "name": "쿠아",
+    "family": "쿠아 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "마리너스 해양 사냥터",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      54.02,
+      11.35,
+      7.6,
+      8.26
+    ],
+    "growth": [
+      9.87,
+      2.07,
+      1.39,
+      1.51
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110067.png"
+  },
+  {
+    "no": "2224",
+    "name": "쿠팡",
+    "family": "쿠아 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포우렌 (488,850)",
+    "attrs": [
+      [
+        "화",
+        3
+      ],
+      [
+        "풍",
+        7
+      ]
+    ],
+    "init": [
+      41.37,
+      8.48,
+      5.74,
+      7.04
+    ],
+    "growth": [
+      9.75,
+      2,
+      1.35,
+      1.66
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110112.png"
+  },
+  {
+    "no": "2225",
+    "name": "카우거",
+    "family": "카우거 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "곰아저씨",
+      "물개소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "정글소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "VIP샵 페트 탭",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      54.94,
+      11.46,
+      7.13,
+      8.5
+    ],
+    "growth": [
+      10.44,
+      2.18,
+      1.35,
+      1.62
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110028.png"
+  },
+  {
+    "no": "2226",
+    "name": "크루거",
+    "family": "카우거 계열",
+    "category": "스페셜",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "바람소년",
+      "사자소년",
+      "산적",
+      "툰가"
+    ],
+    "slots": 6,
+    "grade": "1등급",
+    "obtain": "맘모스 복권 - 스라인",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      55.88,
+      11.03,
+      6.82,
+      8.44
+    ],
+    "growth": [
+      10.62,
+      2.1,
+      1.29,
+      1.6
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110027.png"
+  },
+  {
+    "no": "2228",
+    "name": "이구로스",
+    "family": "카우거 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "산적",
+      "툰가"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "어둠의 동굴 2층 (90,47)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      52.81,
+      10.79,
+      6.91,
+      8.63
+    ],
+    "growth": [
+      10.03,
+      2.05,
+      1.31,
+      1.64
+    ],
+    "totalGrowth": 5,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110045.png"
+  },
+  {
+    "no": "2236",
+    "name": "레이론",
+    "family": "샤크론 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "호피도 (181,215)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      52.81,
+      11.18,
+      7.98,
+      6.13
+    ],
+    "growth": [
+      10.46,
+      2.21,
+      1.58,
+      1.21
+    ],
+    "totalGrowth": 5.01,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110120.png"
+  },
+  {
+    "no": "2238",
+    "name": "샤크론",
+    "family": "샤크론 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "불량소년",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "바람소년",
+      "정글소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "VIP샵 페트 탭",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      60.48,
+      12.31,
+      7.27,
+      9.25
+    ],
+    "growth": [
+      10.64,
+      2.17,
+      1.28,
+      1.63
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110051.png"
+  },
+  {
+    "no": "2240",
+    "name": "밍코",
+    "family": "밍코 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "포우렌 (730,649)",
+    "attrs": [
+      [
+        "수",
+        6
+      ],
+      [
+        "화",
+        4
+      ]
+    ],
+    "init": [
+      48.95,
+      9.69,
+      5.63,
+      7.81
+    ],
+    "growth": [
+      10.57,
+      2.09,
+      1.21,
+      1.69
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110015.png"
+  },
+  {
+    "no": "2241",
+    "name": "스노밍코",
+    "family": "밍코 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "포우렌 (432,712)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      46.46,
+      8.77,
+      5.89,
+      7.35
+    ],
+    "growth": [
+      10.51,
+      1.98,
+      1.33,
+      1.66
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110014.png"
+  },
+  {
+    "no": "2245",
+    "name": "데블로스",
+    "family": "데블로스 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "여꼬맹이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "미선의 편지",
+    "attrs": [
+      [
+        "수",
+        1
+      ],
+      [
+        "화",
+        9
+      ]
+    ],
+    "init": [
+      51.63,
+      11.35,
+      6.63,
+      8.63
+    ],
+    "growth": [
+      9.81,
+      2.16,
+      1.26,
+      1.64
+    ],
+    "totalGrowth": 5.05,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110012.png"
+  },
+  {
+    "no": "2246",
+    "name": "발로스",
+    "family": "데블로스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "다섯 석상을 찾아 비밀을 풀어라",
+    "attrs": [
+      [
+        "지",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      48.81,
+      10.12,
+      8.04,
+      8.5
+    ],
+    "growth": [
+      9.27,
+      1.92,
+      1.53,
+      1.62
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110013.png"
+  },
+  {
+    "no": "2251",
+    "name": "아코로비",
+    "family": "아코로비 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "하이하모 (294,455) 트위스터 창 소지 시 1레벨",
+    "attrs": [
+      [
+        "지",
+        1
+      ],
+      [
+        "수",
+        9
+      ]
+    ],
+    "init": [
+      53.94,
+      10.42,
+      7.5,
+      7.14
+    ],
+    "growth": [
+      10.68,
+      2.06,
+      1.48,
+      1.41
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110121.png"
+  },
+  {
+    "no": "2252",
+    "name": "갈푸스",
+    "family": "갈푸스 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "불량소년"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1 확정",
+    "attrs": [
+      [
+        "화",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      61.09,
+      13.37,
+      7.23,
+      9.18
+    ],
+    "growth": [
+      10.75,
+      2.35,
+      1.27,
+      1.62
+    ],
+    "totalGrowth": 5.24,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110029.png"
+  },
+  {
+    "no": "2254",
+    "name": "가이록스",
+    "family": "갈푸스 계열",
+    "category": "필드",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "내숭소녀",
+      "귀염둥이"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "에레보스 (377,276)",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      53.94,
+      10.92,
+      6.93,
+      7.63
+    ],
+    "growth": [
+      10.25,
+      2.07,
+      1.32,
+      1.45
+    ],
+    "totalGrowth": 4.84,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110021.png"
+  },
+  {
+    "no": "2257",
+    "name": "베르푸스",
+    "family": "갈푸스 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "귀염둥이",
+      "터프소녀"
+    ],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "마함마의 증표",
+    "attrs": [
+      [
+        "풍",
+        10
+      ]
+    ],
+    "init": [
+      50.34,
+      10.57,
+      6.31,
+      8.76
+    ],
+    "growth": [
+      9.96,
+      2.09,
+      1.25,
+      1.73
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110016.png"
+  },
+  {
+    "no": "2260",
+    "name": "울푸스",
+    "family": "갈푸스 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "물개소녀"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "이상한 사랑",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      52.62,
+      10.52,
+      6.58,
+      8.28
+    ],
+    "growth": [
+      10.41,
+      2.08,
+      1.3,
+      1.64
+    ],
+    "totalGrowth": 5.02,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110017.png"
+  },
+  {
+    "no": "2263",
+    "name": "지라크",
+    "family": "지라크 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 4,
+    "grade": "일반",
+    "obtain": "하이하모 (175,498)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      49.38,
+      10.76,
+      7.41,
+      6.42
+    ],
+    "growth": [
+      10.18,
+      2.22,
+      1.53,
+      1.32
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110111.png"
+  },
+  {
+    "no": "2328",
+    "name": "타이판",
+    "family": "지라크 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "호피도 (244,220)",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      50.34,
+      10.65,
+      6.44,
+      6.78
+    ],
+    "growth": [
+      10.38,
+      2.2,
+      1.33,
+      1.4
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110110.png"
+  },
+  {
+    "no": "2321",
+    "name": "황호",
+    "family": "황호 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "산적",
+      "툰가"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "마리너스 목장의 의뢰(오랑이 이벤트) 퀘스트",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      50.88,
+      10.63,
+      7.12,
+      7.98
+    ],
+    "growth": [
+      10.07,
+      2.1,
+      1.41,
+      1.58
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110033.png"
+  },
+  {
+    "no": "2322",
+    "name": "이블티거",
+    "family": "황호 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "바람소년",
+      "사자소년",
+      "정글소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "마리너스 목장의 의뢰(오랑이 이벤트) 퀘스트",
+    "attrs": [
+      [
+        "화",
+        10
+      ]
+    ],
+    "init": [
+      50.52,
+      11.34,
+      6.75,
+      7.5
+    ],
+    "growth": [
+      10,
+      2.24,
+      1.34,
+      1.48
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110053.png"
+  },
+  {
+    "no": "2325",
+    "name": "청호",
+    "family": "황호 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "마리너스 목장의 의뢰(오랑이 이벤트) 퀘스트",
+    "attrs": [
+      [
+        "지",
+        2
+      ],
+      [
+        "수",
+        8
+      ]
+    ],
+    "init": [
+      54.63,
+      11.42,
+      7.76,
+      7.31
+    ],
+    "growth": [
+      10.38,
+      2.17,
+      1.47,
+      1.39
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110056.png"
+  },
+  {
+    "no": "2326",
+    "name": "흑호",
+    "family": "황호 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀"
+    ],
+    "slots": 6,
+    "grade": "일반",
+    "obtain": "마리너스 목장의 의뢰(오랑이 이벤트) 퀘스트",
+    "attrs": [
+      [
+        "화",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      48.56,
+      10.04,
+      6.33,
+      8.44
+    ],
+    "growth": [
+      10,
+      2.07,
+      1.3,
+      1.74
+    ],
+    "totalGrowth": 5.11,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110057.png"
+  },
+  {
+    "no": "2342",
+    "name": "우라노스",
+    "family": "우라노스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "일일 레이드 광명의 우라노스",
+    "attrs": [
+      [
+        "지",
+        1
+      ],
+      [
+        "수",
+        9
+      ]
+    ],
+    "init": [
+      61.04,
+      11.84,
+      9.09,
+      6.63
+    ],
+    "growth": [
+      11.15,
+      2.16,
+      1.66,
+      1.21
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110148.png"
+  },
+  {
+    "no": "2407",
+    "name": "불카노스",
+    "family": "우라노스 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "일일 레이드 암흑의 불카노스",
+    "attrs": [
+      [
+        "수",
+        4
+      ],
+      [
+        "화",
+        6
+      ]
+    ],
+    "init": [
+      59.86,
+      12.17,
+      8.72,
+      7.02
+    ],
+    "growth": [
+      10.94,
+      2.22,
+      1.59,
+      1.28
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110138.png"
+  },
+  {
+    "no": "2374",
+    "name": "루파루파",
+    "family": "그외 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      61.56,
+      12.13,
+      7.51,
+      7.67
+    ],
+    "growth": [
+      11.25,
+      2.22,
+      1.37,
+      1.4
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110384.png"
+  },
+  {
+    "no": "2997",
+    "name": "키비로",
+    "family": "그외 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "1등급",
+    "obtain": "전설 페트 - 가우린",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      56.06,
+      11.76,
+      7.76,
+      7.5
+    ],
+    "growth": [
+      10.65,
+      2.23,
+      1.47,
+      1.43
+    ],
+    "totalGrowth": 5.13,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/102834.png"
+  },
+  {
+    "no": "2998",
+    "name": "트라이어던",
+    "family": "그외 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "1등급",
+    "obtain": "전설 페트 - 사이너스",
+    "attrs": [
+      [
+        "화",
+        6
+      ],
+      [
+        "풍",
+        4
+      ]
+    ],
+    "init": [
+      53.56,
+      12.38,
+      7.1,
+      7.94
+    ],
+    "growth": [
+      10.18,
+      2.35,
+      1.35,
+      1.51
+    ],
+    "totalGrowth": 5.21,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/114444.png"
+  },
+  {
+    "no": "3024",
+    "name": "흑아스타로",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "석기미남"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "주간 레이드 암흑정령왕의 발현",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      59.48,
+      12.16,
+      8.35,
+      8.06
+    ],
+    "growth": [
+      10.87,
+      2.22,
+      1.53,
+      1.47
+    ],
+    "totalGrowth": 5.22,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110578.png"
+  },
+  {
+    "no": "3025",
+    "name": "웅이",
+    "family": "그외 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      60.63,
+      11.77,
+      8.62,
+      5.88
+    ],
+    "growth": [
+      11.52,
+      2.24,
+      1.64,
+      1.12
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110199.png"
+  },
+  {
+    "no": "3035",
+    "name": "로미",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      53.56,
+      13.06,
+      7.15,
+      8.13
+    ],
+    "growth": [
+      9.79,
+      2.39,
+      1.31,
+      1.48
+    ],
+    "totalGrowth": 5.18,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110575.png"
+  },
+  {
+    "no": "3036",
+    "name": "격수",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      59.54,
+      10.02,
+      10.31,
+      7.22
+    ],
+    "growth": [
+      10.88,
+      1.83,
+      1.88,
+      1.32
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110544.png"
+  },
+  {
+    "no": "3037",
+    "name": "파라오닉스",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "수",
+        6
+      ],
+      [
+        "화",
+        4
+      ]
+    ],
+    "init": [
+      58.57,
+      11.64,
+      9.83,
+      6.37
+    ],
+    "growth": [
+      10.7,
+      2.13,
+      1.8,
+      1.16
+    ],
+    "totalGrowth": 5.09,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110621.png"
+  },
+  {
+    "no": "3038",
+    "name": "스피로사",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "화",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      60.45,
+      12.8,
+      9.05,
+      5.33
+    ],
+    "growth": [
+      11.04,
+      2.34,
+      1.65,
+      0.97
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110567.png"
+  },
+  {
+    "no": "3039",
+    "name": "헬릭스",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "수",
+        10
+      ]
+    ],
+    "init": [
+      56.88,
+      12.66,
+      9.91,
+      5.59
+    ],
+    "growth": [
+      10.39,
+      2.31,
+      1.81,
+      1.02
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110632.png"
+  },
+  {
+    "no": "3040",
+    "name": "펜릭스",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      55.9,
+      12.61,
+      7.99,
+      7.87
+    ],
+    "growth": [
+      10.21,
+      2.3,
+      1.46,
+      1.44
+    ],
+    "totalGrowth": 5.2,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110631.png"
+  },
+  {
+    "no": "3041",
+    "name": "카오로스",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "수",
+        7
+      ],
+      [
+        "화",
+        3
+      ]
+    ],
+    "init": [
+      60.58,
+      12.07,
+      10.32,
+      4.94
+    ],
+    "growth": [
+      11.07,
+      2.21,
+      1.88,
+      0.9
+    ],
+    "totalGrowth": 4.99,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/115075.png"
+  },
+  {
+    "no": "3042",
+    "name": "볼카리온",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "화",
+        10
+      ]
+    ],
+    "init": [
+      60.45,
+      11.32,
+      9.04,
+      6.83
+    ],
+    "growth": [
+      11.04,
+      2.07,
+      1.65,
+      1.25
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110638.png"
+  },
+  {
+    "no": "3043",
+    "name": "녹티론",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "지",
+        1
+      ],
+      [
+        "풍",
+        9
+      ]
+    ],
+    "init": [
+      60.51,
+      12.46,
+      7.32,
+      7.48
+    ],
+    "growth": [
+      11.06,
+      2.28,
+      1.34,
+      1.37
+    ],
+    "totalGrowth": 4.98,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110636.png"
+  },
+  {
+    "no": "3044",
+    "name": "아스타로",
+    "family": "그외 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "심연의 탑·칠흑의 탑 보스 상자",
+    "attrs": [
+      [
+        "화",
+        10
+      ]
+    ],
+    "init": [
+      58.96,
+      13.06,
+      8.14,
+      7.35
+    ],
+    "growth": [
+      10.77,
+      2.39,
+      1.49,
+      1.34
+    ],
+    "totalGrowth": 5.21,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110563.png"
+  },
+  {
+    "no": "2377",
+    "name": "히파",
+    "family": "히파 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "불량소년",
+      "물개소녀",
+      "도감으로",
+      "© 2026 네온",
+      "다운로드",
+      "디스코드",
+      "이용약관",
+      "개인정보처리방침",
+      "홈",
+      "서버 안내",
+      "커뮤니티",
+      "게임정보",
+      "내 정보"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "VIP샵 페트 탭",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      54.93,
+      11.43,
+      6.11,
+      10.66
+    ],
+    "growth": [
+      10.03,
+      2.09,
+      1.12,
+      1.95
+    ],
+    "totalGrowth": 5.15,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110075.png"
+  },
+  {
+    "no": "2378",
+    "name": "쟈무시",
+    "family": "쟈무시 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "도감으로",
+      "© 2026 네온",
+      "다운로드",
+      "디스코드",
+      "이용약관",
+      "개인정보처리방침",
+      "홈"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "샴기르의 영웅 퀘스트 보상",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      64.22,
+      11.33,
+      12.38,
+      3.25
+    ],
+    "growth": [
+      11.73,
+      2.07,
+      2.26,
+      0.59
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/101760.png"
+  },
+  {
+    "no": "2381",
+    "name": "슈우",
+    "family": "파르페 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포우렌 (202,562)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "수",
+        5
+      ]
+    ],
+    "init": [
+      56.94,
+      9.89,
+      9.13,
+      8.13
+    ],
+    "growth": [
+      10.4,
+      1.81,
+      1.67,
+      1.48
+    ],
+    "totalGrowth": 4.96,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110022.png"
+  },
+  {
+    "no": "2383",
+    "name": "카라쿠",
+    "family": "카라쿠 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (302,63)",
+    "attrs": [
+      [
+        "지",
+        10
+      ]
+    ],
+    "init": [
+      55.38,
+      11.24,
+      12.23,
+      3.06
+    ],
+    "growth": [
+      10.12,
+      2.05,
+      2.23,
+      0.56
+    ],
+    "totalGrowth": 4.85,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110454.png"
+  },
+  {
+    "no": "2384",
+    "name": "파라쿠",
+    "family": "카라쿠 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (146,394)",
+    "attrs": [
+      [
+        "지",
+        3
+      ],
+      [
+        "수",
+        7
+      ]
+    ],
+    "init": [
+      56.55,
+      11.36,
+      8.2,
+      6.89
+    ],
+    "growth": [
+      10.33,
+      2.07,
+      1.5,
+      1.26
+    ],
+    "totalGrowth": 4.83,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110455.png"
+  },
+  {
+    "no": "2385",
+    "name": "토라쿠",
+    "family": "카라쿠 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (344,78)",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      55.58,
+      11.78,
+      7.28,
+      7.67
+    ],
+    "growth": [
+      10.15,
+      2.15,
+      1.33,
+      1.4
+    ],
+    "totalGrowth": 4.88,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110456.png"
+  },
+  {
+    "no": "2386",
+    "name": "차라쿠",
+    "family": "카라쿠 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (190,376)",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      54.15,
+      11.5,
+      7.17,
+      8.13
+    ],
+    "growth": [
+      9.89,
+      2.1,
+      1.31,
+      1.48
+    ],
+    "totalGrowth": 4.9,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110457.png"
+  },
+  {
+    "no": "2387",
+    "name": "구에라",
+    "family": "구에라 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "세르노스 (78,46)",
+    "attrs": [
+      [
+        "수",
+        3
+      ],
+      [
+        "화",
+        7
+      ]
+    ],
+    "init": [
+      53.76,
+      10.44,
+      6.93,
+      9.56
+    ],
+    "growth": [
+      9.82,
+      1.91,
+      1.27,
+      1.75
+    ],
+    "totalGrowth": 4.92,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/101953.png"
+  },
+  {
+    "no": "2389",
+    "name": "파이어노스돈",
+    "family": "구에라 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포우렌 (679,407)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      53.3,
+      10.71,
+      6.38,
+      9.88
+    ],
+    "growth": [
+      9.74,
+      1.96,
+      1.16,
+      1.81
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/101956.png"
+  },
+  {
+    "no": "2855",
+    "name": "샤베르",
+    "family": "샤베르 계열",
+    "category": "퀘스트",
+    "ride": true,
+    "riders": [
+      "바람소년"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "해저용궁 마리너스를 돕자 퀘스트",
+    "attrs": [
+      [
+        "수",
+        8
+      ],
+      [
+        "화",
+        2
+      ]
+    ],
+    "init": [
+      53.56,
+      11.01,
+      7.18,
+      8.44
+    ],
+    "growth": [
+      10.18,
+      2.09,
+      1.37,
+      1.6
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/100397.png"
+  },
+  {
+    "no": "2923",
+    "name": "레피온",
+    "family": "샤베르 계열",
+    "category": "구입",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "바람소년",
+      "정글소녀",
+      "산적",
+      "툰가"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1 희귀",
+    "attrs": [
+      [
+        "수",
+        2
+      ],
+      [
+        "화",
+        8
+      ]
+    ],
+    "init": [
+      54.44,
+      12.23,
+      7.11,
+      8
+    ],
+    "growth": [
+      10.34,
+      2.32,
+      1.35,
+      1.52
+    ],
+    "totalGrowth": 5.19,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110102.png"
+  },
+  {
+    "no": "2856",
+    "name": "그래스테일",
+    "family": "그래스테일 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      52.81,
+      11.11,
+      7.06,
+      8.69
+    ],
+    "growth": [
+      10.03,
+      2.11,
+      1.34,
+      1.65
+    ],
+    "totalGrowth": 5.1,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/115027.png"
+  },
+  {
+    "no": "2857",
+    "name": "미니스",
+    "family": "토라 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "에레보스 (233,175)",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      56.13,
+      10.31,
+      8.9,
+      6.56
+    ],
+    "growth": [
+      10.66,
+      1.96,
+      1.69,
+      1.25
+    ],
+    "totalGrowth": 4.9,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110023.png"
+  },
+  {
+    "no": "2983",
+    "name": "페르페",
+    "family": "토라 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "내숭소녀",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "폐기물 광산 3층",
+    "attrs": [
+      [
+        "수",
+        6
+      ],
+      [
+        "화",
+        4
+      ]
+    ],
+    "init": [
+      54.38,
+      10.22,
+      6.78,
+      8.69
+    ],
+    "growth": [
+      10.33,
+      1.94,
+      1.29,
+      1.65
+    ],
+    "totalGrowth": 4.88,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110019.png"
+  },
+  {
+    "no": "2984",
+    "name": "토라",
+    "family": "토라 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "내숭소녀",
+      "터프소녀",
+      "몸짱아줌마"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "폐기물 광산 7층",
+    "attrs": [
+      [
+        "화",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      48.06,
+      9.32,
+      5.72,
+      8.69
+    ],
+    "growth": [
+      9.9,
+      1.92,
+      1.18,
+      1.79
+    ],
+    "totalGrowth": 4.89,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110018.png"
+  },
+  {
+    "no": "2858",
+    "name": "비트로돈",
+    "family": "디메트로돈 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "용암 동굴 1층 전역",
+    "attrs": [
+      [
+        "화",
+        7
+      ],
+      [
+        "풍",
+        3
+      ]
+    ],
+    "init": [
+      51.44,
+      12.01,
+      7.9,
+      6.75
+    ],
+    "growth": [
+      9.77,
+      2.28,
+      1.5,
+      1.28
+    ],
+    "totalGrowth": 5.06,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110201.png"
+  },
+  {
+    "no": "2859",
+    "name": "야무리",
+    "family": "야무리 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "에레보스 (354,135)",
+    "attrs": [
+      [
+        "화",
+        8
+      ],
+      [
+        "풍",
+        2
+      ]
+    ],
+    "init": [
+      55.56,
+      11.32,
+      9.18,
+      5.44
+    ],
+    "growth": [
+      10.56,
+      2.15,
+      1.75,
+      1.03
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110048.png"
+  },
+  {
+    "no": "2912",
+    "name": "샤우트",
+    "family": "샤우트 계열",
+    "category": "",
+    "ride": true,
+    "riders": [
+      "남꼬맹이",
+      "석기미남",
+      "어리버리",
+      "불량소년",
+      "곰아저씨",
+      "인디언돌쇠",
+      "여꼬맹이",
+      "물개소녀",
+      "내숭소녀",
+      "귀염둥이",
+      "터프소녀",
+      "몸짱아줌마",
+      "바람소년",
+      "사자소년",
+      "울보소녀",
+      "정글소녀",
+      "산적",
+      "툰가",
+      "도감으로"
+    ],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "VIP샵 페트 탭",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      59.38,
+      11.8,
+      11.97,
+      2.69
+    ],
+    "growth": [
+      11.28,
+      2.24,
+      2.27,
+      0.51
+    ],
+    "totalGrowth": 5.03,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110089.png"
+  },
+  {
+    "no": "2914",
+    "name": "막쿠마의 아이",
+    "family": "막쿠마의 아이 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "쟈루 (399,232)",
+    "attrs": [
+      [
+        "지",
+        9
+      ],
+      [
+        "풍",
+        1
+      ]
+    ],
+    "init": [
+      51.25,
+      10.8,
+      10.18,
+      4.94
+    ],
+    "growth": [
+      9.74,
+      2.05,
+      1.94,
+      0.94
+    ],
+    "totalGrowth": 4.93,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110313.png"
+  },
+  {
+    "no": "2921",
+    "name": "판쵸",
+    "family": "판쵸 계열",
+    "category": "퀘스트",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "고야산 동굴의 균열",
+    "attrs": [
+      [
+        "수",
+        5
+      ],
+      [
+        "화",
+        5
+      ]
+    ],
+    "init": [
+      54.5,
+      11.51,
+      7.57,
+      6.75
+    ],
+    "growth": [
+      10.36,
+      2.19,
+      1.44,
+      1.28
+    ],
+    "totalGrowth": 4.91,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/101719.png"
+  },
+  {
+    "no": "2932",
+    "name": "몬타",
+    "family": "몬타 계열",
+    "category": "",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "사이너스 (570,388)",
+    "attrs": [
+      [
+        "지",
+        7
+      ],
+      [
+        "수",
+        3
+      ]
+    ],
+    "init": [
+      52.44,
+      11.14,
+      8.16,
+      6.88
+    ],
+    "growth": [
+      9.96,
+      2.12,
+      1.55,
+      1.31
+    ],
+    "totalGrowth": 4.97,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110641.png"
+  },
+  {
+    "no": "2933",
+    "name": "문타",
+    "family": "몬타 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "포루섬 (400,380)",
+    "attrs": [
+      [
+        "화",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      52.06,
+      11.34,
+      6.5,
+      8.19
+    ],
+    "growth": [
+      9.89,
+      2.15,
+      1.24,
+      1.56
+    ],
+    "totalGrowth": 4.95,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110640.png"
+  },
+  {
+    "no": "3026",
+    "name": "히바티",
+    "family": "히바티 계열",
+    "category": "구입",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "맘모스 쿠폰 시즌 1",
+    "attrs": [
+      [
+        "지",
+        4
+      ],
+      [
+        "풍",
+        6
+      ]
+    ],
+    "init": [
+      57.27,
+      11.75,
+      7.71,
+      8.32
+    ],
+    "growth": [
+      10.46,
+      2.15,
+      1.41,
+      1.52
+    ],
+    "totalGrowth": 5.07,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/114448.png"
+  },
+  {
+    "no": "3729",
+    "name": "푸타푸타",
+    "family": "페타페타 계열",
+    "category": "필드",
+    "ride": false,
+    "riders": [],
+    "slots": 5,
+    "grade": "일반",
+    "obtain": "몽환의 동굴 (39,45)",
+    "attrs": [
+      [
+        "지",
+        5
+      ],
+      [
+        "풍",
+        5
+      ]
+    ],
+    "init": [
+      51.38,
+      10.45,
+      6.51,
+      9.63
+    ],
+    "growth": [
+      9.76,
+      1.99,
+      1.24,
+      1.83
+    ],
+    "totalGrowth": 5.05,
+    "rebirth": null,
+    "img": "https://neonine.cc/game/pets/110145.png"
+  }
+]
