@@ -428,6 +428,22 @@ h1,h2,h3,.display{
 .drop-hist-item ul{ margin:0; padding-left:18px; line-height:1.7; }
 .ic-cat-lv{ color:var(--accent); font-weight:800; }
 .item-card .ic-desc{ font-size:12.5px; color:var(--text); line-height:1.5; overflow-wrap:anywhere; }
+/* 네온 아이템 도감 */
+#neonItemsView .item-card img{ image-rendering:pixelated; }
+.n-item-meta{ display:flex; flex-wrap:wrap; gap:5px; align-items:center; font-size:12px; color:var(--text-muted); }
+.n-price{ font-family:"JetBrains Mono",monospace; }
+.n-badge{ font-size:10.5px; padding:1px 7px; border-radius:100px; border:1px solid var(--border); color:var(--text-muted); white-space:nowrap; }
+.n-variants summary{ cursor:pointer; font-size:12px; font-weight:700; color:var(--text-muted); padding:2px 0; }
+.n-variants .enh-table td{ font-family:"JetBrains Mono",monospace; }
+.n-variants .enh-table th, .n-variants .enh-table td{ white-space:nowrap; padding:5px 7px; }   /* 칸 안 줄바꿈 대신 표 안에서 가로 스크롤 */
+.n-variants .enh-table td.n-no{ color:var(--text-muted); font-size:11px; }
+.n-mats{ display:flex; flex-wrap:wrap; gap:5px; align-items:center; font-size:12px; }
+.n-mats-label{ font-weight:700; color:var(--text-muted); margin-right:2px; }
+.n-mat{ padding:2px 8px; border-radius:8px; background:var(--surface-2); border:1px solid var(--border); }
+.n-mat i{ font-style:normal; color:var(--text-muted); }
+.n-mat-note{ flex-basis:100%; font-size:11px; color:var(--text-muted); }
+.n-item-src{ margin:14px 2px 0; font-size:12px; color:var(--text-muted); overflow-wrap:anywhere; }
+.n-item-src a{ color:inherit; }
 
 </style>
 </head>
@@ -447,7 +463,8 @@ h1,h2,h3,.display{
     <button type="button" class="tab-btn" data-tab="compare" role="tab" aria-selected="false" hidden>성장률·초기치 비교</button>
     <button type="button" class="tab-btn" data-tab="zero" role="tab" aria-selected="false">제로</button>
     <button type="button" class="tab-btn" data-tab="neon" role="tab" aria-selected="false">네온</button>
-    <button type="button" class="tab-btn" data-tab="items" role="tab" aria-selected="false">아이템</button>
+    <button type="button" class="tab-btn" data-tab="items" role="tab" aria-selected="false">오르 아이템</button>
+    <button type="button" class="tab-btn" data-tab="neonitems" role="tab" aria-selected="false">네온 아이템</button>
   </div>
 
   <div class="layout">
@@ -512,6 +529,32 @@ h1,h2,h3,.display{
       <div class="enh-grid" id="enhanceTables"></div>
     </section>
     </div>
+  </div>
+
+  <!-- 네온 아이템 도감 (neon-items.json, 탭을 처음 열 때 불러옴) -->
+  <div id="neonItemsView" hidden>
+    <div class="items-toolbar">
+      <div class="row">
+        <input id="nItemSearch" class="search-input" type="text" placeholder="이름·설명·재료 검색 (초성 가능)" autocomplete="off">
+        <select id="nItemSort" class="items-sort" aria-label="정렬">
+          <option value="site">도감 순서</option>
+          <option value="공">공격 높은순</option>
+          <option value="방">방어 높은순</option>
+          <option value="순">순발 높은순</option>
+          <option value="크리">크리 높은순</option>
+          <option value="회피">회피 높은순</option>
+          <option value="매력">매력 높은순</option>
+          <option value="lv">필요 레벨 낮은순</option>
+          <option value="price">가격 낮은순</option>
+          <option value="name">이름순</option>
+        </select>
+      </div>
+      <div class="chips" id="nItemGroupChips"></div>
+      <div class="chips" id="nItemCatChips" hidden></div>
+      <div class="items-count" id="nItemCount"></div>
+    </div>
+    <div class="item-grid" id="nItemGrid"></div>
+    <p class="n-item-src" id="nItemSrc"></p>
   </div>
 
   <div class="modal-backdrop" id="growthModalBackdrop" hidden>
@@ -8261,15 +8304,29 @@ h1,h2,h3,.display{
     subtitle: '오르 공홈 아이템 정보 기준으로 능력치와 획득처를 찾아봅니다.',
     badge: '아이템 도감'
   };
+  TAB_TEXT.neonitems = {
+    title: '스톤에이지 네온 아이템 도감',
+    subtitle: '네온(neonine.cc) 아이템 도감 기준입니다. 속성·마법 변형은 한 줄로 묶었고, 변형별 능력치와 제작 재료를 함께 봅니다.',
+    badge: '아이템 도감'
+  };
 
   let activeTab = 'calc';
   document.querySelectorAll('.tab-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       activeTab = btn.dataset.tab;
       document.querySelectorAll('.tab-btn').forEach(b=>b.setAttribute('aria-selected', String(b===btn)));
-      const isItems = activeTab==='items';
-      document.querySelector('.layout').hidden = isItems;
+      const isItems = activeTab==='items', isNeonItems = activeTab==='neonitems';
+      document.querySelector('.layout').hidden = isItems || isNeonItems;
       document.getElementById('itemsView').hidden = !isItems;
+      document.getElementById('neonItemsView').hidden = !isNeonItems;
+      if(isNeonItems){
+        const t = TAB_TEXT.neonitems;
+        document.getElementById('mainTitle').textContent = t.title;
+        document.getElementById('mainSubtitle').textContent = t.subtitle;
+        document.getElementById('methodBadge').textContent = N_ITEMS ? `아이템 ${N_ITEMS.length}종` : t.badge;
+        loadNeonItems();
+        return;
+      }
       if(isItems){
         const t = TAB_TEXT.items;
         document.getElementById('mainTitle').textContent = t.title;
@@ -8626,6 +8683,130 @@ h1,h2,h3,.display{
     itemCat = btn.dataset.cat;
     itemEls.chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed', String(c===btn)));
     renderItems();
+  });
+
+  // ---- 네온 아이템 도감 (neon-items.json, 탭을 처음 열 때 불러옴) ----
+  // 분류는 네온 도감과 같은 묶음·순서. 능력치는 공·방·순·매력 순서로 보이고, 변형이 있으면 변형별 표를 붙인다.
+  const N_ITEM_GROUPS = [
+    ['무기', ['도끼','클럽','창','활','부메랑','투척 도끼','투척 돌','맨손']],
+    ['방어구', ['투구','갑옷']],
+    ['장신구', ['목걸이','반지','귀걸이','팔찌','부적','악기','기타 장비']],
+  ];
+  const N_STAT_ORDER = ['공','방','순','내','크리','회피','명중','매력','행운','모든 내성','독','석화','잠','혼란','취함'];
+  const nStatIdx = k => { const i = N_STAT_ORDER.indexOf(k); return i < 0 ? 99 : i; };
+  const nGroupOf = cat => (N_ITEM_GROUPS.find(([,cs])=>cs.includes(cat)) || ['기타'])[0];
+  const nCatIdx = cat => { for(const [,cs] of N_ITEM_GROUPS){ const i = cs.indexOf(cat); if(i>=0) return i; } return 99; };
+  const nLvMin = s => { const m = /Lv\.(\d+)/.exec(s || ''); return m ? +m[1] : 0; };
+  let N_ITEMS = null, nItemsLoading = null, nGroup = '전체', nCat = '';
+  const nEls = {
+    search: document.getElementById('nItemSearch'), sort: document.getElementById('nItemSort'),
+    groups: document.getElementById('nItemGroupChips'), cats: document.getElementById('nItemCatChips'),
+    count: document.getElementById('nItemCount'), grid: document.getElementById('nItemGrid'), src: document.getElementById('nItemSrc'),
+  };
+
+  function loadNeonItems(){
+    if(N_ITEMS || nItemsLoading) return nItemsLoading;
+    nEls.grid.innerHTML = '<div class="empty-state">네온 아이템 정보를 불러오는 중…</div>';
+    nItemsLoading = fetch('neon-items.json').then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).then(d=>{
+      N_ITEMS = d.items.map((it,i)=>({ ...it, _i:i, _group:nGroupOf(it.cat), _lv:nLvMin(it.lv), _cho:chosung(it.name),
+        _hay:[it.name, it.cat, it.desc, ...(it.badges||[]), ...(it.materials||[]).map(m=>m.name)].join(' ').toLowerCase() }));
+      if(activeTab==='neonitems') document.getElementById('methodBadge').textContent = `아이템 ${N_ITEMS.length}종`;
+      nEls.src.innerHTML = `출처: <a href="${escHtml(d.source)}" target="_blank" rel="noopener">네온 아이템 도감</a>`
+        + (d.note ? ` · ${escHtml(d.note)}` : '') + (d.scrapedAt ? ` · ${escHtml(d.scrapedAt.slice(0,10))} 기준` : '');
+      renderNeonChips(); renderNeonItems();
+    }).catch(()=>{
+      nItemsLoading = null;
+      nEls.grid.innerHTML = '<div class="empty-state">네온 아이템 정보를 불러오지 못했습니다. 새로고침해 주세요.</div>';
+    });
+    return nItemsLoading;
+  }
+
+  // 정렬용 값: 대표 능력치와 변형 중 가장 큰 값 (능력치는 [최소, 최대], 예: 야무야무의 도끼 공 9 / 35 -> 35)
+  function nStatMax(it, k){
+    const vals = [it.stats[k], ...(it.variants||[]).map(v=>v.stats[k])].filter(Array.isArray).map(r=>r[1]);
+    return vals.length ? Math.max(...vals) : null;
+  }
+  // [최소, 최대] -> "+5", "+43~+65", "-22~-14"
+  const nRange = r => r[0]===r[1] ? signed(r[0]) : `${signed(r[0])}~${signed(r[1])}`;
+
+  function renderNeonChips(){
+    const cnt = {};
+    for(const it of N_ITEMS){ cnt[it._group] = (cnt[it._group]||0)+1; cnt['c:'+it.cat] = (cnt['c:'+it.cat]||0)+1; }
+    const groups = ['전체', ...N_ITEM_GROUPS.map(g=>g[0]), '기타'].filter(g=>g==='전체' || cnt[g]);
+    nEls.groups.innerHTML = groups.map(g=>`<button class="chip" type="button" data-group="${escHtml(g)}" aria-pressed="${g===nGroup}">${escHtml(g)}<span class="cnt">${g==='전체'?N_ITEMS.length:cnt[g]}</span></button>`).join('');
+    const cats = nGroup==='전체' ? [] : [...new Set(N_ITEMS.filter(it=>it._group===nGroup).map(it=>it.cat))].sort((a,b)=>nCatIdx(a)-nCatIdx(b));
+    nEls.cats.hidden = cats.length < 2;
+    nEls.cats.innerHTML = ['', ...cats].map(c=>`<button class="chip" type="button" data-cat="${escHtml(c)}" aria-pressed="${c===nCat}">${c ? escHtml(c) : `${escHtml(nGroup)} 전부`}<span class="cnt">${c ? cnt['c:'+c] : (cnt[nGroup]||0)}</span></button>`).join('');
+  }
+
+  function nItemCardHtml(it){
+    const sortKey = nEls.sort.value;
+    const keys = Object.keys(it.stats||{}).sort((a,b)=>nStatIdx(a)-nStatIdx(b));
+    const pills = keys.map(k=>{
+      const r = it.stats[k];
+      return `<span class="stat-pill ${r[0]>0?'pos':r[1]<0?'neg':''}${k===sortKey?' hl':''}"><b>${escHtml(k)}</b>${escHtml(nRange(r))}</span>`;
+    });
+    if(it.hits) pills.push(`<span class="stat-pill" title="한 번 공격에 맞히는 횟수"><b>타수</b>x${escHtml(it.hits)}</span>`);
+    const hasTable = (it.variants||[]).length > 1;
+    const meta = [
+      it.price!=null ? `<span class="n-price">${it.price.toLocaleString()} 스톤</span>` : '',
+      it.attrTag ? `<span class="n-badge" title="속성 변형">속성 ${escHtml(it.attrTag.replace(/^\[|\]$/g,''))}</span>` : '',
+      !hasTable && it.variantCount > 1 ? `<span class="n-badge" title="네온 도감에 변형별 능력치 표가 없는 아이템">변형 ${escHtml(it.variantCount)}종</span>` : '',
+      ...(it.badges||[]).map(b=>`<span class="n-badge">${escHtml(b)}</span>`),
+    ].filter(Boolean).join('');
+    let variants = '';
+    if(hasTable){
+      const cols = [...new Set(it.variants.flatMap(v=>Object.keys(v.stats)))].sort((a,b)=>nStatIdx(a)-nStatIdx(b));
+      const hasAttr = it.variants.some(v=>v.attr), hasMagic = it.variants.some(v=>v.magic);
+      const rows = it.variants.map(v=>`<tr>${hasAttr?`<td>${escHtml(v.attr||'')}</td>`:''}${hasMagic?`<td>${escHtml(v.magic||'-')}</td>`:''}${cols.map(c=>`<td>${v.stats[c] ? escHtml(nRange(v.stats[c])) : ''}</td>`).join('')}<td class="n-no">${escHtml(v.no)}</td></tr>`).join('');
+      variants = `<details class="n-variants"${it.variants.length<=4?' open':''}><summary>변형 ${it.variants.length}종 능력치</summary>
+          <div class="enh-scroll"><table class="enh-table"><thead><tr>${hasAttr?'<th>속성</th>':''}${hasMagic?'<th>마법</th>':''}${cols.map(c=>`<th>${escHtml(c)}</th>`).join('')}<th>번호</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+    }
+    const mats = (it.materials||[]).length
+      ? `<div class="n-mats"><span class="n-mats-label">제작 재료</span>${it.materials.map(m=>`<span class="n-mat">${escHtml(m.name)} <i>${escHtml(m.lv)}단계</i></span>`).join('')}${it.materialNote?`<span class="n-mat-note">${escHtml(it.materialNote)}</span>`:''}</div>`
+      : '';
+    return `<article class="item-card" data-id="${escHtml(it.id)}">
+        <div class="ic-top">
+          ${it.img ? `<img src="${escHtml(it.img)}" alt="" loading="lazy" width="52" height="52">` : ''}
+          <div class="ic-head">
+            <span class="ic-cat">${escHtml(it.cat)}${it.lv?` <span class="ic-cat-lv">${escHtml(it.lv)}</span>`:''}</span>
+            <span class="ic-name">${escHtml(it.name)}</span>
+            ${meta ? `<div class="n-item-meta">${meta}</div>` : ''}
+          </div>
+        </div>
+        ${pills.length ? `<div class="ic-stats">${pills.join('')}</div>` : ''}
+        ${variants}
+        ${mats}
+        ${it.desc ? `<div class="ic-desc">${escHtml(it.desc)}</div>` : ''}
+      </article>`;
+  }
+
+  function renderNeonItems(){
+    if(!N_ITEMS) return;
+    const q = nEls.search.value.trim().toLowerCase();
+    const qc = expandClusters(q);
+    const sortKey = nEls.sort.value;
+    let list = N_ITEMS.filter(it=>(nGroup==='전체' || it._group===nGroup) && (!nCat || it.cat===nCat)
+      && (!q || it._hay.includes(q) || it._cho.includes(qc)));
+    if(sortKey==='name') list = [...list].sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+    else if(sortKey==='lv') list = [...list].sort((a,b)=>a._lv-b._lv || a._i-b._i);
+    else if(sortKey==='price') list = list.filter(it=>it.price!=null).sort((a,b)=>a.price-b.price || a._i-b._i);
+    else if(sortKey!=='site') list = list.filter(it=>nStatMax(it, sortKey)!=null).sort((a,b)=>nStatMax(b, sortKey)-nStatMax(a, sortKey) || a._i-b._i);
+    nEls.count.textContent = `전체 ${N_ITEMS.length}종 · ${list.length}종 표시`;
+    nEls.grid.innerHTML = list.length ? list.map(nItemCardHtml).join('') : '<div class="empty-state">조건에 맞는 아이템이 없습니다.</div>';
+  }
+
+  nEls.search.addEventListener('input', renderNeonItems);
+  nEls.sort.addEventListener('change', renderNeonItems);
+  nEls.groups.addEventListener('click', e=>{
+    const btn = e.target.closest('.chip'); if(!btn || !N_ITEMS) return;
+    nGroup = btn.dataset.group; nCat = '';
+    renderNeonChips(); renderNeonItems();
+  });
+  nEls.cats.addEventListener('click', e=>{
+    const btn = e.target.closest('.chip'); if(!btn || !N_ITEMS) return;
+    nCat = btn.dataset.cat;
+    renderNeonChips(); renderNeonItems();
   });
 
   // attribute chips

@@ -20,6 +20,8 @@
 | **성장률·초기치 비교** | RANK 1~6 표기값과 계산값 비교 |
 | **제로** | 스톤에이지 제로(별개 서버) 도감. 오르와 값이 달라 데이터를 분리해 둔다. |
 | **네온** | 네온(neonine.cc) 도감 236마리. 탑승 가능 여부·탑승 캐릭터 수도 표시한다. |
+| **오르 아이템** | 오르 공홈 아이템 도감 + 드롭·상자 확률 + 강화 표·기대 비용 (`items.json`) |
+| **네온 아이템** | 네온 아이템 도감. 분류·능력치 정렬, 속성·마법 변형별 능력치, 제작 재료, 가격 (`neon-items.json`) |
 
 - 🧪 **맹독 데미지**: 포획 전에 맹독 데미지로 정석 여부를 거를 수 있는지 판단 (서버 `battle.c` 공식)
 - 🔁 **환생·진화 형태 전환**: 상세 화면의 버튼으로 원본 ↔ 환생 ↔ 진화 전환
@@ -47,7 +49,11 @@ index.html                 계산기 본체 (데이터 내장, 외부 의존은 
 ├─ #rank-compare-data      RANK 비교 142건
 ├─ #pet-data-zero          제로 도감 210마리
 └─ #pet-data-neon          네온 도감 236마리
+items.json                 오르 아이템 도감 (아이템 탭을 처음 열 때 불러옴)
+neon-items.json            네온 아이템 도감 (네온 아이템 탭을 처음 열 때 불러옴)
 images/pets/               오르·제로·네온 펫 이미지
+images/items/              오르 아이템 이미지
+images/neon-items/         네온 아이템 이미지 (게임 이미지 번호.png)
 scripts/                   스크랩·역산·주입·검증 스크립트
 ```
 
@@ -61,8 +67,9 @@ scripts/                   스크랩·역산·주입·검증 스크립트
 | `npm run merge:auto` | 스크랩 결과 중 신규 펫만 `pet-data-extra`에 추가 (역산 자동 연결) |
 | `npm run scrape:zero` | 제로 도감 스크랩 (`scripts/sathezero.local.env` 필요) |
 | `npm run scrape:neon` | 네온 도감 스크랩 (1초 간격, HTML 은 `data/neon-cache/`에 캐시) |
+| `npm run scrape:neon-items` | 네온 아이템 도감 스크랩 → `neon-items.json` + `images/neon-items/` (1초 간격, 같은 캐시, `--offline` 은 캐시만 파싱) |
 | `npm run localize:images` | 새 이미지를 `images/pets/`로 내려받고 경로 치환 |
-| `npm test` | 강화·드랍 파서 테스트 + 네온 데이터 검증(계산기 코드로 S급 +8 재현 확인) |
+| `npm test` | 강화·드랍 파서 테스트 + 네온 펫 데이터 검증(계산기 코드로 S급 +8 재현 확인) + 네온 아이템 데이터 검증 |
 
 ### 제로 도감 갱신
 
